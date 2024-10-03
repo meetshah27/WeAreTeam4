@@ -8,7 +8,8 @@ using ContosoCrafts.WebSite.Services;
 
 namespace ContosoCrafts.WebSite.Pages.Product
 {
-    /// <summary>
+    /// <summary> Jenitza Ruiz
+    /// above the IndexModel class
     /// Index Page will return all the data to show the user
     /// </summary>
     public class IndexModel : PageModel
