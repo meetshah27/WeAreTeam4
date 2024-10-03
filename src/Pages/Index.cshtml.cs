@@ -10,6 +10,7 @@ namespace ContosoCrafts.WebSite.Pages
 {
     ///<summary>
     ///Meet Shah
+    ///Lucas Lovering
     ///</summary>
     public class IndexModel : PageModel
     {
