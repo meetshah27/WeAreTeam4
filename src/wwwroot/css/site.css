@@ -47,7 +47,7 @@ for details on configuring this project to bundle and minify static web assets. 
 
 a.navbar-brand {
     white-space: normal;
-    font-family: 'Yellowtail', cursive;
+    font-family: 'Bebas Neue';
     font-size: xx-large;
     text-align: center;
     word-break: break-all;
@@ -141,5 +141,5 @@ ul {
     background: -webkit-linear-gradient(110deg, #252152 60%, #e9a8a6 60%);
     background: -o-linear-gradient(110deg, #252152 60%, #e9a8a6 60%);
     background: -moz-linear-gradient(110deg, #252152 60%, #e9a8a6 60%);
-    background: linear-gradient(110deg, #252152 60%, #e9a8a6 60%);
+    background: linear-gradient(110deg, #69225b 60%, #795ca3 60%);
 }
