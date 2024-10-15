@@ -47,11 +47,7 @@ for details on configuring this project to bundle and minify static web assets. 
 
 a.navbar-brand {
     white-space: normal;
-<<<<<<< Updated upstream
     font-family: 'Bebas Neue';
-=======
-    font-family: 'Playfair Display', cursive;
->>>>>>> Stashed changes
     font-size: xx-large;
     text-align: center;
     word-break: break-all;
