@@ -2,7 +2,7 @@
   {
     "Id": "jenlooper-cactus",
     "Maker": "@jenlooper",
-    "img": "https://user-images.githubusercontent.com/41929050/61567048-13938600-aa33-11e9-9cfd-712191013192.jpeg",
+    "img": "../assets/Duolingo.png",
     "Url": "https://ichef.bbci.co.uk/news/1024/branded_news/7614/production/_105482203__105172250_gettyimages-857294664",
     "Title": "Duolingo",
     "Description": "A language-learning platform that gamifies the process of acquiring new languages. Users can practice reading, writing, and speaking through engaging exercises and quizzes..",
@@ -22,7 +22,7 @@
   {
     "Id": "jenlooper-light",
     "Maker": "jenlooper",
-    "img": "https://user-images.githubusercontent.com/41929050/61567049-13938600-aa33-11e9-9c69-a4184bf8e524.jpeg",
+    "img": "../assets/Coursera.PNG",
     "Url": "https://www.hackster.io/agent-hawking-1/book-light-dee7e4",
     "Title": "Coursera",
     "Description": "It is an online learning platform partnering with universities and organizations to offer courses, specializations. Users can access high-quality educational content across various fields.",
@@ -35,7 +35,7 @@
   {
     "Id": "jenlooper-lightshow",
     "Maker": "@jenlooper",
-    "img": "https://user-images.githubusercontent.com/41929050/61567053-13938600-aa33-11e9-9780-104fe4019659.png",
+    "img": "../assets/Flipkart.PNG",
     "Url": "https://www.hackster.io/agent-hawking-1/bling-your-laptop-with-an-internet-connected-light-show-30e4db",
     "Title": "Flipkart",
     "Description": "It offers a wide range of products across categories such as electronics, home appliances, fashion. This platform has a user-friendly interface, easy checkout process, and a variety of payment options.",
@@ -48,7 +48,7 @@
   {
     "Id": "jenlooper-survival",
     "Maker": "jenlooper",
-    "img": "https://user-images.githubusercontent.com/41929050/61567051-13938600-aa33-11e9-8ae7-0b5c19aafab4.jpeg",
+    "img": "../assets/PhonePe.png",
     "Url": "https://www.hackster.io/agent-hawking-1/create-a-compact-survival-kit-38bfdb",
     "Title": "PhonePe",
     "Description": "PhonePe is a mobile payment platform using which you can transfer money using UPI, recharge phone numbers, pay utility bills, etc.",
@@ -61,7 +61,7 @@
   {
     "Id": "sailorhg-bubblesortpic",
     "Maker": "sailorhg",
-    "img": "https://user-images.githubusercontent.com/41929050/61567054-13938600-aa33-11e9-9163-eec98e239b7a.png",
+    "img": "../assets/Zerodha.png",
     "Url": "https://twitter.com/sailorhg/status/1090107740049952770",
     "Title": "zerodha",
     "Description": "its stock broker and financial services company. It offers institutional and retail brokerage, currency and commodity trading, mutual funds and bonds.",
@@ -74,7 +74,7 @@
   {
     "Id": "sailorhg-corsage",
     "Maker": "sailorhg",
-    "img": "https://user-images.githubusercontent.com/41929050/61567055-142c1c80-aa33-11e9-96ff-9fbac6413625.png",
+    "img": "../assets/Zomato.PNG",
     "Url": "https://twitter.com/sailorhg/status/1090113666911891456",
     "Title": "Zomato",
     "Description": "Zomato is an online restaurant discovery and food delivery company that provides information about restaurants, menus, reviews, and food delivery options: .",
@@ -89,7 +89,7 @@
   {
     "Id": "sailorhg-kit",
     "Maker": "sailorhg",
-    "img": "https://user-images.githubusercontent.com/41929050/61567056-142c1c80-aa33-11e9-8682-10065d338145.png",
+    "img": "../assets/BharatPe.png",
     "Url": "https://twitter.com/sailorhg/status/1090122822007963648",
     "Title": "BharatPe",
     "Description": "BharatPe is an Indian fintech company that offers digital payment and financial services to small and medium-sized businesses, including offline merchants and kirana store owners:.",
@@ -102,7 +102,7 @@
   {
     "Id": "sailorhg-led",
     "Maker": "sailorhg",
-    "img": "https://user-images.githubusercontent.com/41929050/61567052-13938600-aa33-11e9-9a88-cd842073ba44.jpg",
+    "img": "../assets/RentoMojo.PNG",
     "Url": "https://twitter.com/sailorhg/status/1090117277540745216",
     "Title": "RentoMojo",
     "Description": "Rentomojo is a furniture and appliance rental platform in India that offers a variety of services.",
@@ -115,7 +115,7 @@
   {
     "Id": "selinazawacki-soi-shirt",
     "Maker": "selinazawacki",
-    "img": "https://user-images.githubusercontent.com/41929050/61567060-142c1c80-aa33-11e9-8188-5a4803844a9e.png",
+    "img": "../assets/Lenskart.png",
     "Url": "https://www.instagram.com/p/BNvESj-j8PI/",
     "Title": "Lenskart",
     "Description": "Lenskart is an eyewear company that sells eyeglasses, sunglasses, and contact lenses, and offers free eye exams and repair services.",
@@ -128,7 +128,7 @@
   {
     "Id": "selinazawacki-soi-pins",
     "Maker": "selinazawacki",
-    "img": "https://user-images.githubusercontent.com/41929050/61567059-142c1c80-aa33-11e9-939b-2ecf4492786d.png",
+    "img": "../assets/Blinkit.PNG",
     "Url": "https://www.instagram.com/p/BNm6hZzDoEF/",
     "Title": "Blinkit",
     "Description": "Blinkit is an Indian e-commerce marketplace that offers instant delivery of a variety of products, including groceries, electronics .",
@@ -141,7 +141,7 @@
   {
     "Id": "vogueandcode-hipster-dev-bro",
     "Maker": "vogueandcode",
-    "img": "https://user-images.githubusercontent.com/41929050/61567061-14c4b300-aa33-11e9-9fee-63ff2c0c9823.png",
+    "img": "../assets/Pinterest.png",
     "Url": "https://www.vogueandcode.com/shop/hipster-dev-bro",
     "Title": "Pinterest",
     "Description": "A visual discovery platform that allows users to find and save ideas for various projects and interests, from home decor to recipes. It acts as a digital pinboard for inspiration..",
@@ -154,7 +154,7 @@
   {
     "Id": "vogueandcode-pretty-girls-code-tee",
     "Maker": "vogueandcode",
-    "img": "https://user-images.githubusercontent.com/41929050/61567062-14c4b300-aa33-11e9-9dcd-8bfed4ece810.png",
+    "img": "../assets/Bumble.png",
     "Url": "https://www.vogueandcode.com/shop/pretty-girls-code-tee",
     "Title": "Bumble",
     "Description": "A dating app that empowers women by allowing them to initiate conversations with matches. It also includes features for finding friends and professional networking.",
@@ -167,7 +167,7 @@
   {
     "Id": "vogueandcode-ruby-sis-2",
     "Maker": "vogueandcode",
-    "img": "https://user-images.githubusercontent.com/41929050/61567063-14c4b300-aa33-11e9-8515-bcb866da9ea3.png",
+    "img": "../assets/AirBNB.png",
     "Url": "https://www.vogueandcode.com/shop/ruby-sis-2",
     "Title": "Airbnb",
     "Description": "A platform that allows individuals to rent out their homes or rooms to travelers, offering unique accommodations worldwide. It connects hosts with guests seeking alternative lodging options.",
@@ -180,7 +180,7 @@
   {
     "Id": "selinazawacki-moon",
     "Maker": "selinazawacki",
-    "img": "https://user-images.githubusercontent.com/41929050/61567057-142c1c80-aa33-11e9-9781-9e442418eaab.png",
+    "img": "../assets/Sharechat.png",
     "Url": "https://www.instagram.com/p/BFktVYPinKQ/",
     "Title": "ShareChat",
     "Description": "ShareChat is a social media platform tailored for Indian users, enabling them to create and share content in various regional language.it allows users to post status updates, photos, and videos, and engage in discussions across diverse topics.",
@@ -193,7 +193,7 @@
   {
     "Id": "selinazawacki-shirt",
     "Maker": "selinazawacki",
-    "img": "https://user-images.githubusercontent.com/41929050/61567058-142c1c80-aa33-11e9-89fb-b4f30d84d69d.png",
+    "img": "../assets/Rapido.png",
     "Url": "https://www.instagram.com/p/BEXlpiZCnJ3",
     "Title": "Rapido",
     "Description": "Rapido is an Indian bike taxi service that provides quick and affordable transportation options through its mobile app.it allows users to book rides on two-wheelers, making it a convenient choice for navigating traffic in urban areas.",
