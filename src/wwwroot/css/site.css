@@ -55,8 +55,11 @@ a.navbar-brand {
 
 /* Provide sufficient contrast against white background */
 a {
-    color: #F8E1EE;
+    color: #9B86BD;
 }
+    a:hover {
+        color: #F8E1EE;
+    }
 
 .btn-primary {
     color: #fff;
@@ -73,6 +76,17 @@ a {
   color: #fff;
   background-color: #1b6ec2;
   border-color: #1861ac;
+}
+.navbar-light .navbar-brand:hover, .navbar-light .navbar-brand:focus {
+    color: #F8E1EE;
+}
+
+.navbar-light .navbar-nav .nav-link:hover, .navbar-light .navbar-nav .nav-link:focus {
+    color: #f6e0ed;
+}
+
+.navbar-light .navbar-brand {
+    color: #deb2d3;
 }
 
 /* Sticky footer styles
@@ -110,8 +124,9 @@ html {
 }
 
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+    background-color: #FDF5F9;
 }
 p {
     font-family: 'Nunito', sans-serif;
