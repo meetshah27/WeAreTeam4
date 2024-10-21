@@ -89,11 +89,13 @@ a {
 .navbar-light .navbar-brand {
     color: #deb2d3;
 }
-
+.navbar-nav {
+    flex-wrap: wrap;
+}
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 @media (min-width: 768px) {
   html {
@@ -181,4 +183,12 @@ ul {
         color: #fff;
         background-color: #A65470;
         border-color: #A65470;
+    }
+/*Resposinve*/
+@media (max-width: 768px) {
+    .navbar-nav {
+        flex: 1 1 100%; /* Stack items vertically on smaller screens */
+        text-align: center;
+        font-size: 1.2em;
+        flex-wrap: wrap;
     }
