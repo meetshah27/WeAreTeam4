@@ -65,6 +65,7 @@ a {
     color: #fff;
     background-color: #E6CDE3;
     border-color: #252152;
+    border: 1px solid rgba(0, 0, 0, 0.22);
 }
     .btn-primary:hover {
         color: #fff;
@@ -159,3 +160,25 @@ ul {
     background: -moz-linear-gradient(110deg, #252152 60%, #e9a8a6 60%);
     background: linear-gradient(110deg, #69225b 50%, #795ca3 60%);
 }
+/*Action Buttons*/
+.btn-read {
+    color: #fff;
+    background-color: #E6CDE3;
+    border-color: #252152;
+    border: 1px solid rgba(0, 0, 0, 0.22);
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 0.25rem;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    text-align: center;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    display: inline-block;
+    font-weight: 400;
+}
+    .btn-read:hover {
+        color: #fff;
+        background-color: #A65470;
+        border-color: #A65470;
+    }
