@@ -20,7 +20,9 @@
                 <tr>
                     <td>@product.Title</td>
                     @*<td><a asp-page="Read" asp-route-id="@product.Id">Read</a></td>*@
-                    <td><button class="btn-read">Read</button></td>
+                    <td>
+                        <button class="btn-read" onclick="window.location.href='@Url.Page("Read", new { id = product.Id })'">Read</button>
+                    </td>
                 </tr>
             }
         </tbody>
