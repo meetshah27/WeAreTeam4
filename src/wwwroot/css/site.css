@@ -19,17 +19,21 @@ for details on configuring this project to bundle and minify static web assets. 
     background: #fbfafd;
 }
 
-.card-img{
-    width: 45%; /*Resize images in projects*/
+.container .card-columns .card .card-img { /*resizing images in index*/
+   width: 100%;
+}
+
+.container .card-img {
+    width: 45%; /*resizing images in projects*/
 }
 
 .card-columns .card-img {
-  height: 330px;
-  vertical-align: bottom;
-  background-position: center; /* Center the image */
-  background-repeat: no-repeat; /* Do not repeat the image */
-  background-size: cover; /* Resize the background image to cover the entire container */
-  opacity: .8;
+    height: 330px;
+    vertical-align: bottom;
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; /* Resize the background image to cover the entire container */
+    opacity: .8;
 }
 
 .modal .card-img {
