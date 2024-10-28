@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using NUnit.Framework;
 
 using ContosoCrafts.WebSite.Models;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace UnitTests.Pages.Product.AddRating
 {
@@ -138,6 +139,43 @@ namespace UnitTests.Pages.Product.AddRating
             Assert.That(dataNewList.Ratings.Last(), Is.EqualTo(5));
         }
         #endregion AddRating
+
+        #region UpdateData
+        
+        [Test]
+        public void UpdateData_InValid_Product_Nonexistent_Should_Return_Null()
+        {
+            // Arrange
+            var nonexistent = TestHelper.ProductService.CreateData();
+            nonexistent.Id += "NonexistentTestProductDoNotMakeAProductWithThisName";
+
+            // Act
+            var result = TestHelper.ProductService.UpdateData(nonexistent);
+
+            // Assert
+            Assert.That(result, Is.Null);
+        }
+
+        [Test]
+        public void UpdateData_Valid_Product_Should_Return_Updated_Product()
+        {
+            // Arrange
+
+            // Get the First data item
+            var NewData = TestHelper.ProductService.GetAllData().First();
+            var NewTitle = NewData.Title + " (But very, very cool)";
+            NewData.Title = NewTitle;
+
+            // Act
+            var result = TestHelper.ProductService.UpdateData(NewData);
+
+            // Assert
+            Assert.That(result.Title, Is.EqualTo(NewTitle));
+        }
+
+        #endregion UpdateData
+
+
 
     }
 }
