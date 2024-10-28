@@ -76,6 +76,67 @@ namespace UnitTests.Pages.Product.AddRating
             Assert.That(dataNewList.Ratings.Length, Is.EqualTo(countOriginal + 1));
             Assert.That(dataNewList.Ratings.Last(), Is.EqualTo(5));
         }
+
+        [Test]
+        public void AddRating_Invalid_Product_Nonexistent_Should_Return_False()
+        {
+            // Arrange
+
+            // Act
+            var result = TestHelper.ProductService.AddRating("NonexistentTestProductDoNotMakeAProductWithThisName", 5);
+
+            // Assert
+            Assert.That(result, Is.EqualTo(false));
+        }
+
+        [Test]
+        public void AddRating_Invalid_Product_Rating_Greater_Than_5_Should_Return_False()
+        {
+            // Arrange
+
+            // Get the First data item
+            var data = TestHelper.ProductService.GetAllData().First();
+            var countOriginal = data.Ratings.Length;
+
+            // Act
+            var result = TestHelper.ProductService.AddRating(data.Id, 6);
+
+            // Assert
+            Assert.That(result, Is.EqualTo(false));
+        }
+
+        [Test]
+        public void AddRating_Invalid_Product_Rating_Less_Than_0_Should_Return_False()
+        {
+            // Arrange
+
+            // Get the First data item
+            var data = TestHelper.ProductService.GetAllData().First();
+            var countOriginal = data.Ratings.Length;
+
+            // Act
+            var result = TestHelper.ProductService.AddRating(data.Id, -1);
+
+            // Assert
+            Assert.That(result, Is.EqualTo(false));
+        }
+
+        [Test]
+        public void AddRating_Valid_Product_No_Ratings_Create_Array()
+        {
+            // Arrange
+
+            // Create dummy product with no ratings
+            var data = TestHelper.ProductService.CreateData();
+
+            // Act
+            var result = TestHelper.ProductService.AddRating(data.Id, 5);
+            var dataNewList = TestHelper.ProductService.GetAllData().Last();
+
+            // Assert
+            Assert.That(dataNewList.Ratings.Length, Is.EqualTo(1));
+            Assert.That(dataNewList.Ratings.Last(), Is.EqualTo(5));
+        }
         #endregion AddRating
 
     }
