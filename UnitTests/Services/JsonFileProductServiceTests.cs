@@ -190,6 +190,23 @@ namespace UnitTests.Pages.Product.AddRating
 
         #endregion CreateData
 
+        #region DeleteData
+        [Test]
+        public void DeleteData_Should_Remove_Product_From_Array()
+        {
+            // Arrange
+            var data = TestHelper.ProductService.CreateData();
+            var OriginalLength = TestHelper.ProductService.GetAllData().Count();
+
+            // Act
+            TestHelper.ProductService.DeleteData(data.Id);
+
+            // Assert
+            Assert.That(TestHelper.ProductService.GetAllData().Count(), Is.EqualTo(OriginalLength - 1));
+        }
+
+        #endregion DeleteData
+
 
 
     }
