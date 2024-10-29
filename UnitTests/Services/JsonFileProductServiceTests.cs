@@ -175,6 +175,21 @@ namespace UnitTests.Pages.Product.AddRating
 
         #endregion UpdateData
 
+        #region CreateData
+        [Test]
+        public void CreateData_Should_Return_Newly_Created_Product()
+        {
+            // Arrange
+
+            // Act
+            var data = TestHelper.ProductService.CreateData();
+
+            // Assert
+            var newProduct = TestHelper.ProductService.GetAllData().FirstOrDefault(x => x.Id.Equals(data.Id));
+        }
+
+        #endregion CreateData
+
 
 
     }
