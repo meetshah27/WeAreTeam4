@@ -21,7 +21,8 @@
                     <td>@product.Title</td>
                     @*<td><a asp-page="Read" asp-route-id="@product.Id">Read</a></td>*@
                     <td>
-                        <button class="btn-read" onclick="window.location.href='@Url.Page("Read", new { id = product.Id })'">Read</button>
+                        <button class="btn-read" style="background-color: red; color: white; border: none; padding: 5px 10px; border-radius: 3px; cursor: pointer;" onclick="window.location.href='@Url.Page("Read", new { id = product.Id })'">Read</button>
+
                     </td>
                 </tr>
             }
