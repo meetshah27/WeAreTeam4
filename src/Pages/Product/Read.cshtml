@@ -1,6 +1,7 @@
 ﻿@page "{id}"
 
 @using ContosoCrafts.WebSite.Services
+@using ContosoCrafts.WebSite.Components
 
 @inject JsonFileProductService ProductService
 
@@ -29,6 +30,6 @@
 
 <div class="row">
     <a asp-page="Update" asp-route-id="@Model.Product.Id" class="btn btn-info" onclick="window.location.href='@Url.Page("Update", new { id = @Model.Product.Id})'">Update</a> &nbsp; &nbsp;
-    <a asp-page="Delete" asp-route-id="@Model.Product.Id" class="btn btn-danger">Delete</a>
+    @(await Html.RenderComponentAsync<DeleteConfirmation>(RenderMode.ServerPrerendered, new { ProductID = Model.Product.Id }))
 </div>
 
