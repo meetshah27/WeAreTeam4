@@ -28,7 +28,7 @@ public class UpdateModel : PageModel
     /// <summary> Post the model back to the page The model is in the class variable </summary>
     public IActionResult OnPost()
     {
-        if (!ModelState.IsValid)
+        if (ModelState.IsValid == false)
         {
             return Page();
         }
