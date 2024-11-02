@@ -153,7 +153,7 @@ namespace ContosoCrafts.WebSite.Services
                 Title = "Enter Title",
                 Description = "Enter Description",
                 Url = "Enter URL",
-                Image = "",
+                Image = "Enter Image URL",
             };
 
             // Get the current set, and append the new record to it because IEnumerable does not have Add
