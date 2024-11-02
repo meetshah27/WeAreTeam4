@@ -101,13 +101,12 @@
         {
             currentRating = 0;
             voteCount = 0;
+            System.Console.WriteLine($"Current rating for {selectedProduct.Id}: {currentRating}");
+            return;
         }
-        else
-        {
-            voteCount = selectedProduct.Ratings.Count();
-            voteLabel = voteCount > 1 ? "Votes" : "Vote";
-            currentRating = selectedProduct.Ratings.Sum() / voteCount;
-        }
+        voteCount = selectedProduct.Ratings.Count();
+        voteLabel = voteCount > 1 ? "Votes" : "Vote";
+        currentRating = selectedProduct.Ratings.Sum() / voteCount;
 
         System.Console.WriteLine($"Current rating for {selectedProduct.Id}: {currentRating}");
     }
