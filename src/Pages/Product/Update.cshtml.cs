@@ -32,9 +32,7 @@ public class UpdateModel : PageModel
         {
             return Page();
         }
-
         ProductService.UpdateData(Product);
-
         return RedirectToPage("./Index");
     }
 }
