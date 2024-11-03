@@ -16,7 +16,10 @@ namespace ContosoCrafts.WebSite.Controllers
             ProductService = productService;
         }
 
-        public JsonFileProductService ProductService { get; }
+        public JsonFileProductService ProductService
+        {
+            get;
+        }
 
         [HttpGet]
         public IEnumerable<ProductModel> Get()
@@ -34,8 +37,14 @@ namespace ContosoCrafts.WebSite.Controllers
 
         public class RatingRequest
         {
-            public string ProductId { get; set; }
-            public int Rating { get; set; }
+            public string ProductId
+            {
+                get; set;
+            }
+            public int Rating
+            {
+                get; set;
+            }
         }
     }
 }
