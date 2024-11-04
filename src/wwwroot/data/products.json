@@ -17,7 +17,8 @@
     "ProductType": 55,
     "Quantity": null,
     "Price": 0,
-    "CommentList": []
+    "CommentList": [],
+    "GitHubUrl": "https://github.com/username/duolingo12"
   },
   {
     "Id": "jenlooper-light",
@@ -30,7 +31,8 @@
     "ProductType": 1,
     "Quantity": null,
     "Price": 0,
-    "CommentList": []
+    "CommentList": [],
+    "GitHubUrl": "https://github.com/username/coursera123"
   },
   {
     "Id": "jenlooper-lightshow",
@@ -43,7 +45,8 @@
     "ProductType": 55,
     "Quantity": null,
     "Price": 0,
-    "CommentList": []
+    "CommentList": [],
+    "GitHubUrl": "https://github.com/username/flipkart"
   },
   {
     "Id": "jenlooper-survival",
@@ -56,7 +59,8 @@
     "ProductType": 1,
     "Quantity": null,
     "Price": 0,
-    "CommentList": []
+    "CommentList": [],
+    "GitHubUrl": "https://github.com/username/phonepe"
   },
   {
     "Id": "sailorhg-bubblesortpic",
@@ -69,7 +73,9 @@
     "ProductType": 55,
     "Quantity": null,
     "Price": 0,
-    "CommentList": []
+    "CommentList": null,
+    "GitHubUrl": "https://github.com/username/zerodha"
+
   },
   {
     "Id": "sailorhg-corsage",
@@ -84,7 +90,8 @@
     "ProductType": 1,
     "Quantity": null,
     "Price": 0,
-    "CommentList": []
+    "CommentList": [],
+    "GitHubUrl": "https://github.com/username/zomato"
   },
   {
     "Id": "sailorhg-kit",
@@ -97,7 +104,8 @@
     "ProductType": 130,
     "Quantity": null,
     "Price": 0,
-    "CommentList": []
+    "CommentList": [],
+    "GitHubUrl": "https://github.com/username/bharatpe"
   },
   {
     "Id": "sailorhg-led",
@@ -110,7 +118,8 @@
     "ProductType": 1,
     "Quantity": null,
     "Price": 0,
-    "CommentList": []
+    "CommentList": [],
+    "GitHubUrl": "https://github.com/username/rentomojo"
   },
   {
     "Id": "selinazawacki-soi-shirt",
@@ -123,7 +132,8 @@
     "ProductType": 55,
     "Quantity": null,
     "Price": 0,
-    "CommentList": []
+    "CommentList": [],
+    "GitHubUrl": "https://github.com/username/lenskart"
   },
   {
     "Id": "selinazawacki-soi-pins",
@@ -136,7 +146,8 @@
     "ProductType": 1,
     "Quantity": null,
     "Price": 0,
-    "CommentList": []
+    "CommentList": [],
+    "GitHubUrl": "https://github.com/username/blinkit"
   },
   {
     "Id": "vogueandcode-hipster-dev-bro",
@@ -149,7 +160,8 @@
     "ProductType": 1,
     "Quantity": null,
     "Price": 0,
-    "CommentList": []
+    "CommentList": [],
+    "GitHubUrl": "https://github.com/username/pinterest"
   },
   {
     "Id": "vogueandcode-pretty-girls-code-tee",
@@ -162,7 +174,8 @@
     "ProductType": 0,
     "Quantity": null,
     "Price": 0,
-    "CommentList": []
+    "CommentList": [],
+    "GitHubUrl": " https://github.com/username/bumble"
   },
   {
     "Id": "vogueandcode-ruby-sis-2",
@@ -175,7 +188,8 @@
     "ProductType": 0,
     "Quantity": null,
     "Price": 0,
-    "CommentList": []
+    "CommentList": [],
+    "GitHubUrl": "https://github.com/username/airbnb"
   },
   {
     "Id": "selinazawacki-moon",
@@ -188,7 +202,8 @@
     "ProductType": 0,
     "Quantity": null,
     "Price": 0,
-    "CommentList": []
+    "CommentList": [],
+    "GitHubUrl": "https://github.com/username/sharechat"
   },
   {
     "Id": "selinazawacki-shirt",
@@ -201,6 +216,7 @@
     "ProductType": 0,
     "Quantity": null,
     "Price": 0,
-    "CommentList": []
+    "CommentList": [],
+    "GitHubUrl": "https://github.com/username/rapido"
   }
 ]
