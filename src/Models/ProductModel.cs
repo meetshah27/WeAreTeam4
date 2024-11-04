@@ -34,6 +34,8 @@ namespace ContosoCrafts.WebSite.Models
 
         public override string ToString() => JsonSerializer.Serialize<ProductModel>(this);
 
+        public int Counter {  get; set; }
+
 
     }
 }
