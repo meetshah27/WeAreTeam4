@@ -181,6 +181,19 @@ namespace ContosoCrafts.WebSite.Services
 
             return data;
         }
+
+        public bool WebsiteCounter(string id)
+        {
+            if (string.IsNullOrEmpty(id))
+            {
+                return false;
+            }
+            var products = GetAllData();
+            var data = products.FirstOrDefault(x => x.Id.Equals(id));
+            data.Counter += 1;
+            SaveData(products);
+            return true;
+        }
         
     }
 }
