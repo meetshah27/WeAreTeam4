@@ -155,10 +155,10 @@ namespace UnitTests.Pages.Product.AddRating
         {
             //Arrange
             var data = TestHelper.ProductService.GetAllData().First();
-            var Invalid_id = data.Id + "cool";
+            var invalidId = data.Id + "cool";
 
             //Act
-            var result = TestHelper.ProductService.WebsiteCounter(Invalid_id);
+            var result = TestHelper.ProductService.WebsiteCounter(invalidId);
 
             // Assert
             Assert.That(result, Is.EqualTo(false));
@@ -212,15 +212,15 @@ namespace UnitTests.Pages.Product.AddRating
             // Arrange
 
             // Get the First data item
-            var NewData = TestHelper.ProductService.GetAllData().First();
-            var NewTitle = NewData.Title + " (But very, very cool)";
-            NewData.Title = NewTitle;
+            var newData = TestHelper.ProductService.GetAllData().First();
+            var newTitle = newData.Title + " (But very, very cool)";
+            newData.Title = newTitle;
 
             // Act
-            var result = TestHelper.ProductService.UpdateData(NewData);
+            var result = TestHelper.ProductService.UpdateData(newData);
 
             // Assert
-            Assert.That(result.Title, Is.EqualTo(NewTitle));
+            Assert.That(result.Title, Is.EqualTo(newTitle));
         }
 
         #endregion UpdateData
@@ -230,13 +230,13 @@ namespace UnitTests.Pages.Product.AddRating
         public void CreateData_Should_Add_Product_To_Array()
         {
             // Arrange
-            var OriginalLength = TestHelper.ProductService.GetAllData().Count();
+            var originalLength = TestHelper.ProductService.GetAllData().Count();
 
             // Act
             TestHelper.ProductService.CreateData();
 
             // Assert
-            Assert.That(TestHelper.ProductService.GetAllData().Count(), Is.EqualTo(OriginalLength + 1));
+            Assert.That(TestHelper.ProductService.GetAllData().Count(), Is.EqualTo(originalLength + 1));
         }
 
         #endregion CreateData
@@ -247,13 +247,13 @@ namespace UnitTests.Pages.Product.AddRating
         {
             // Arrange
             var data = TestHelper.ProductService.CreateData();
-            var OriginalLength = TestHelper.ProductService.GetAllData().Count();
+            var originalLength = TestHelper.ProductService.GetAllData().Count();
 
             // Act
             TestHelper.ProductService.DeleteData(data.Id);
 
             // Assert
-            Assert.That(TestHelper.ProductService.GetAllData().Count(), Is.EqualTo(OriginalLength - 1));
+            Assert.That(TestHelper.ProductService.GetAllData().Count(), Is.EqualTo(originalLength - 1));
         }
 
         #endregion DeleteData
