@@ -22,37 +22,37 @@ namespace UnitTests.Pages.Product.Read
     public class ReadTests
     {
         #region TestSetup
-        public static IUrlHelperFactory urlHelperFactory;
-        public static DefaultHttpContext httpContextDefault;
-        public static IWebHostEnvironment webHostEnvironment;
-        public static ModelStateDictionary modelState;
-        public static ActionContext actionContext;
-        public static EmptyModelMetadataProvider modelMetadataProvider;
-        public static ViewDataDictionary viewData;
-        public static TempDataDictionary tempData;
-        public static PageContext pageContext;
+        public static IUrlHelperFactory UrlHelperFactory;
+        public static DefaultHttpContext HttpContextDefault;
+        public static IWebHostEnvironment WebHostEnvironment;
+        public static ModelStateDictionary ModelState;
+        public static ActionContext ActionContext;
+        public static EmptyModelMetadataProvider ModelMetadataProvider;
+        public static ViewDataDictionary TestsViewData;
+        public static TempDataDictionary TempData;
+        public static PageContext PageContext;
 
-        public static ReadModel pageModel;
+        public static ReadModel PageModel;
 
         [SetUp]
         public void TestInitialize()
         {
-            httpContextDefault = new DefaultHttpContext()
+            HttpContextDefault = new DefaultHttpContext()
             {
                 //RequestServices = serviceProviderMock.Object,
             };
 
-            modelState = new ModelStateDictionary();
+            ModelState = new ModelStateDictionary();
 
-            actionContext = new ActionContext(httpContextDefault, httpContextDefault.GetRouteData(), new PageActionDescriptor(), modelState);
+            ActionContext = new ActionContext(HttpContextDefault, HttpContextDefault.GetRouteData(), new PageActionDescriptor(), ModelState);
 
-            modelMetadataProvider = new EmptyModelMetadataProvider();
-            viewData = new ViewDataDictionary(modelMetadataProvider, modelState);
-            tempData = new TempDataDictionary(httpContextDefault, Mock.Of<ITempDataProvider>());
+            ModelMetadataProvider = new EmptyModelMetadataProvider();
+            TestsViewData = new ViewDataDictionary(ModelMetadataProvider, ModelState);
+            TempData = new TempDataDictionary(HttpContextDefault, Mock.Of<ITempDataProvider>());
 
-            pageContext = new PageContext(actionContext)
+            PageContext = new PageContext(ActionContext)
             {
-                ViewData = viewData,
+                ViewData = TestsViewData,
             };
 
             var mockWebHostEnvironment = new Mock<IWebHostEnvironment>();
@@ -65,7 +65,7 @@ namespace UnitTests.Pages.Product.Read
 
             productService = new JsonFileProductService(mockWebHostEnvironment.Object);
 
-            pageModel = new ReadModel(productService)
+            PageModel = new ReadModel(productService)
             {
             };
         }
@@ -79,10 +79,10 @@ namespace UnitTests.Pages.Product.Read
             var data = TestHelper.ProductService.CreateData();
 
             // Act
-            pageModel.OnGet(data.Id);
+            PageModel.OnGet(data.Id);
 
             // Assert
-            Assert.That(pageModel.ModelState.IsValid, Is.EqualTo(true));
+            Assert.That(PageModel.ModelState.IsValid, Is.EqualTo(true));
         }
         #endregion OnGet
     }
