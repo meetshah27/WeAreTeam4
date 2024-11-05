@@ -98,7 +98,6 @@ namespace UnitTests.Pages.Product.AddRating
 
             // Get the First data item
             var data = TestHelper.ProductService.GetAllData().First();
-            var countOriginal = data.Ratings.Length;
 
             // Act
             var result = TestHelper.ProductService.AddRating(data.Id, 6);
@@ -114,7 +113,6 @@ namespace UnitTests.Pages.Product.AddRating
 
             // Get the First data item
             var data = TestHelper.ProductService.GetAllData().First();
-            var countOriginal = data.Ratings.Length;
 
             // Act
             var result = TestHelper.ProductService.AddRating(data.Id, -1);
@@ -132,7 +130,7 @@ namespace UnitTests.Pages.Product.AddRating
             var data = TestHelper.ProductService.CreateData();
 
             // Act
-            var result = TestHelper.ProductService.AddRating(data.Id, 5);
+            TestHelper.ProductService.AddRating(data.Id, 5);
             var dataNewList = TestHelper.ProductService.GetAllData().Last();
 
             // Assert
@@ -235,7 +233,7 @@ namespace UnitTests.Pages.Product.AddRating
             var OriginalLength = TestHelper.ProductService.GetAllData().Count();
 
             // Act
-            var data = TestHelper.ProductService.CreateData();
+            TestHelper.ProductService.CreateData();
 
             // Assert
             Assert.That(TestHelper.ProductService.GetAllData().Count(), Is.EqualTo(OriginalLength + 1));
