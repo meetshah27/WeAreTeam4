@@ -37,7 +37,7 @@ namespace UnitTests.Pages.Product.AddRating
         // ....
 
         [Test]
-        public void AddRating_InValid_Product_Null_Should_Return_False()
+        public void AddRating_Invalid_Product_Null_Should_Return_False()
         {
             // Arrange
 
@@ -49,7 +49,7 @@ namespace UnitTests.Pages.Product.AddRating
         }
 
         [Test]
-        public void AddRating_InValid_Product_Empty_Should_Return_False()
+        public void AddRating_Invalid_Product_Empty_Should_Return_False()
         {
             // Arrange
 
@@ -143,7 +143,7 @@ namespace UnitTests.Pages.Product.AddRating
 
         #region WebsiteCounter
         [Test]
-        public void WebsiteCounter_InValid_ProductId_Null_Should_Return_False()
+        public void WebsiteCounter_Invalid_ProductId_Null_Should_Return_False()
         {
             //Act
             var result = TestHelper.ProductService.WebsiteCounter(null);
@@ -153,7 +153,7 @@ namespace UnitTests.Pages.Product.AddRating
         }
 
         [Test]
-        public void WebsiteCounter_InValid_ProductId_NotValid_Should_Return_False()
+        public void WebsiteCounter_Invalid_ProductId_Not_Valid_Should_Return_False()
         {
             //Arrange
             var data = TestHelper.ProductService.GetAllData().First();
@@ -195,7 +195,7 @@ namespace UnitTests.Pages.Product.AddRating
         #region UpdateData
 
         [Test]
-        public void UpdateData_InValid_Product_Nonexistent_Should_Return_Null()
+        public void UpdateData_Invalid_Product_Nonexistent_Should_Return_Null()
         {
             // Arrange
             var nonexistent = TestHelper.ProductService.CreateData();
