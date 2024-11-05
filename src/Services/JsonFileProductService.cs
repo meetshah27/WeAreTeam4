@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
@@ -111,11 +112,6 @@ namespace ContosoCrafts.WebSite.Services
             productData.Url = data.Url;
             productData.Image = data.Image;
 
-            productData.Quantity = data.Quantity;
-            productData.Price = data.Price;
-
-            productData.CommentList = data.CommentList;
-
             SaveData(products);
 
             return productData;
@@ -184,14 +180,21 @@ namespace ContosoCrafts.WebSite.Services
 
         public bool WebsiteCounter(string id)
         {
+            var products = GetAllData();
+            var data = products.FirstOrDefault(x => x.Id.Equals(id));
             if (string.IsNullOrEmpty(id))
             {
                 return false;
             }
-            var products = GetAllData();
-            var data = products.FirstOrDefault(x => x.Id.Equals(id));
-            data.Counter += 1;
-            SaveData(products);
+            if(data==null)
+            {
+                return false;
+            }
+            if(data.Counter>=0)
+            {
+                data.Counter += 1;
+                SaveData(products);
+            }
             return true;
         }
         
