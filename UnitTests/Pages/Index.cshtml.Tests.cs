@@ -14,14 +14,14 @@ namespace UnitTests.Pages.Index
     {
         #region TestSetup
 
-        public static IndexModel pageModel;
+        public static IndexModel PageModel;
 
         [SetUp]
         public void TestInitialize()
         {
-            var MockLoggerDirect = Mock.Of<ILogger<IndexModel>>();
+            var mockLoggerDirect = Mock.Of<ILogger<IndexModel>>();
 
-            pageModel = new IndexModel(MockLoggerDirect, TestHelper.ProductService)
+            PageModel = new IndexModel(mockLoggerDirect, TestHelper.ProductService)
             {
             };
         }
@@ -35,11 +35,11 @@ namespace UnitTests.Pages.Index
             // Arrange
 
             // Act
-            pageModel.OnGet();
+            PageModel.OnGet();
 
             // Assert
-            Assert.That(pageModel.ModelState.IsValid, Is.EqualTo(true));
-            Assert.That(pageModel.Products.ToList().Any(), Is.EqualTo(true));
+            Assert.That(PageModel.ModelState.IsValid, Is.EqualTo(true));
+            Assert.That(PageModel.Products.ToList().Any(), Is.EqualTo(true));
         }
         #endregion OnGet
     }
