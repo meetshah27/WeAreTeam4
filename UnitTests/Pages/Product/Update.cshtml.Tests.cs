@@ -21,32 +21,32 @@ namespace UnitTests.Pages.Product.Update
     public class UpdateTests
     {
         #region TestSetup
-        public static DefaultHttpContext httpContextDefault;
-        public static ModelStateDictionary modelState;
-        public static ActionContext actionContext;
-        public static EmptyModelMetadataProvider modelMetadataProvider;
-        public static ViewDataDictionary viewData;
-        public static TempDataDictionary tempData;
-        public static PageContext pageContext;
+        public static DefaultHttpContext HttpContextDefault;
+        public static ModelStateDictionary ModelState;
+        public static ActionContext ActionContext;
+        public static EmptyModelMetadataProvider ModelMetadataProvider;
+        public static ViewDataDictionary TestsViewData;
+        public static TempDataDictionary TempData;
+        public static PageContext PageContext;
 
-        public static UpdateModel pageModel;
+        public static UpdateModel PageModel;
 
         [SetUp]
         public void TestInitialize()
         {
-            httpContextDefault = new DefaultHttpContext();
+            HttpContextDefault = new DefaultHttpContext();
 
-            modelState = new ModelStateDictionary();
+            ModelState = new ModelStateDictionary();
 
-            actionContext = new ActionContext(httpContextDefault, httpContextDefault.GetRouteData(), new PageActionDescriptor(), modelState);
+            ActionContext = new ActionContext(HttpContextDefault, HttpContextDefault.GetRouteData(), new PageActionDescriptor(), ModelState);
             
-            modelMetadataProvider = new EmptyModelMetadataProvider();
-            viewData = new ViewDataDictionary(modelMetadataProvider, modelState);
-            tempData = new TempDataDictionary(httpContextDefault, Mock.Of<ITempDataProvider>());
+            ModelMetadataProvider = new EmptyModelMetadataProvider();
+            TestsViewData = new ViewDataDictionary(ModelMetadataProvider, ModelState);
+            TempData = new TempDataDictionary(HttpContextDefault, Mock.Of<ITempDataProvider>());
 
-            pageContext = new PageContext(actionContext)
+            PageContext = new PageContext(ActionContext)
             {
-                ViewData = viewData,
+                ViewData = TestsViewData,
             };
 
             var mockWebHostEnvironment = new Mock<IWebHostEnvironment>();
@@ -54,13 +54,13 @@ namespace UnitTests.Pages.Product.Update
             mockWebHostEnvironment.Setup(m => m.WebRootPath).Returns("../../../../src/bin/Debug/net7.0/wwwroot");
             mockWebHostEnvironment.Setup(m => m.ContentRootPath).Returns("./data/");
             
-            var MockLoggerDirect = Mock.Of<ILogger<UpdateModel>>();
+            var mockLoggerDirect = Mock.Of<ILogger<UpdateModel>>();
             JsonFileProductService productService = new JsonFileProductService(mockWebHostEnvironment.Object);
 
-            pageModel = new UpdateModel(productService)
+            PageModel = new UpdateModel(productService)
             {
-                PageContext = pageContext,
-                TempData = tempData,
+                PageContext = PageContext,
+                TempData = TempData,
             };
         }
 
@@ -124,10 +124,10 @@ namespace UnitTests.Pages.Product.Update
             var id = "jenlooper-cactus";
 
             // Act
-            pageModel.OnGet(id);
+            PageModel.OnGet(id);
 
             // Assert
-            Assert.That(pageModel.ModelState.IsValid, Is.EqualTo(true));
+            Assert.That(PageModel.ModelState.IsValid, Is.EqualTo(true));
         }
 
         [Test]
