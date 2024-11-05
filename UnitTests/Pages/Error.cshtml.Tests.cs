@@ -13,14 +13,14 @@ namespace UnitTests.Pages.Error
     public class ErrorTests
     {
         #region TestSetup
-        public static ErrorModel pageModel;
+        public static ErrorModel PageModel;
 
         [SetUp]
         public void TestInitialize()
         {
             var MockLoggerDirect = Mock.Of<ILogger<ErrorModel>>();
 
-            pageModel = new ErrorModel(MockLoggerDirect)
+            PageModel = new ErrorModel(MockLoggerDirect)
             {
                 PageContext = TestHelper.PageContext,
                 TempData = TestHelper.TempData,
@@ -39,14 +39,14 @@ namespace UnitTests.Pages.Error
             activity.Start();
 
             // Act
-            pageModel.OnGet();
+            PageModel.OnGet();
 
             // Reset
             activity.Stop();
 
             // Assert
-            Assert.That(pageModel.ModelState.IsValid, Is.EqualTo(true));
-            Assert.That(pageModel.RequestId, Is.EqualTo(activity.Id));
+            Assert.That(PageModel.ModelState.IsValid, Is.EqualTo(true));
+            Assert.That(PageModel.RequestId, Is.EqualTo(activity.Id));
         }
 
         [Test]
@@ -55,14 +55,14 @@ namespace UnitTests.Pages.Error
             // Arrange
 
             // Act
-            pageModel.OnGet();
+            PageModel.OnGet();
 
             // Reset
 
             // Assert
-            Assert.That(pageModel.ModelState.IsValid, Is.EqualTo(true));
-            Assert.That(pageModel.RequestId, Is.EqualTo("trace"));
-            Assert.That(pageModel.ShowRequestId, Is.EqualTo(true));
+            Assert.That(PageModel.ModelState.IsValid, Is.EqualTo(true));
+            Assert.That(PageModel.RequestId, Is.EqualTo("trace"));
+            Assert.That(PageModel.ShowRequestId, Is.EqualTo(true));
         }
         #endregion OnGet
     }
