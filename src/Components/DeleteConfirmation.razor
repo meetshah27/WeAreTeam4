@@ -10,16 +10,16 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="productTitle">
-                    <a href="Confirmation Dialogue" target="_blank">Are you sure you want to PERMANENTLY delete this product?</a>
+                    Are you sure you want to PERMANENTLY delete this product?
                 </h5>
             </div>
             <div class="modal-body">
                 <button data-dismiss="modal" data-target="#deleteConfirmation" class="btn btn-primary">
                     Cancel
                 </button>
-                <button class="btn btn-danger">
+                <a class="btn btn-danger" href="/Product" onclick="@ProductService.DeleteData(ProductId);">
                     Delete
-                </button>
+                </a>
             </div>
         </div>
     </div>
@@ -31,4 +31,5 @@
 {
     [Parameter]
     public string ProductId { get; set; }
+
 }
