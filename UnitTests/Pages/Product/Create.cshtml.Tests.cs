@@ -62,7 +62,7 @@ namespace UnitTests.Pages.Product.Create
             mockWebHostEnvironment.Setup(m => m.WebRootPath).Returns("../../../../src/bin/Debug/net7.0/wwwroot");
             mockWebHostEnvironment.Setup(m => m.ContentRootPath).Returns("./data/");
 
-            var MockLoggerDirect = Mock.Of<ILogger<CreateModel>>();
+            var mockLoggerDirect = Mock.Of<ILogger<CreateModel>>();
             JsonFileProductService productService;
 
             productService = new JsonFileProductService(mockWebHostEnvironment.Object);
