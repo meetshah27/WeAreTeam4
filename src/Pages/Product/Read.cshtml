@@ -11,18 +11,13 @@
 
     ViewData["Title"] = "Read page";
 
-} 
-@{
-    string imagePath = Model.Product.Image.StartsWith("../")
-                        ? Model.Product.Image.Replace("..", "")
-                        : Model.Product.Image;
 }
 
 <h1>Read</h1>
 
 <div class="container">
     <h5 class="title" id="productTitle">@Model.Product.Title</h5>
-    <img class="card-img" src="@imagePath" alt='Image for @Model.Product.Title'>
+    <img class="card-img" src="@Model.Product.Image" alt='Image for @Model.Product.Title'>
     <p class="card-text">@Model.Product.Description</p>
 </div>
 
