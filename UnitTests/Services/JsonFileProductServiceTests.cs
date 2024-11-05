@@ -6,6 +6,7 @@ using NUnit.Framework;
 
 using ContosoCrafts.WebSite.Models;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+using System.Diagnostics.Metrics;
 
 namespace UnitTests.Pages.Product.AddRating
 {
@@ -140,8 +141,59 @@ namespace UnitTests.Pages.Product.AddRating
         }
         #endregion AddRating
 
+        #region WebsiteCounter
+        [Test]
+        public void WebsiteCounter_InValid_ProductId_Null_Should_Return_False()
+        {
+            //Act
+            var result = TestHelper.ProductService.WebsiteCounter(null);
+
+            // Assert
+            Assert.That(result, Is.EqualTo(false));
+        }
+
+        [Test]
+        public void WebsiteCounter_InValid_ProductId_NotValid_Should_Return_False()
+        {
+            //Arrange
+            var data = TestHelper.ProductService.GetAllData().First();
+            var Invalid_id = data.Id + "cool";
+
+            //Act
+            var result = TestHelper.ProductService.WebsiteCounter(Invalid_id);
+
+            // Assert
+            Assert.That(result, Is.EqualTo(false));
+        }
+        [Test]
+        public void WebsiteCounter_Valid_ProductId_Valid_Should_Return_True()
+        {
+            //Arrange
+            var data = TestHelper.ProductService.GetAllData().First();
+
+            //Act
+            var result = TestHelper.ProductService.WebsiteCounter(data.Id);
+
+            // Assert
+            Assert.That(result, Is.EqualTo(true));
+        }
+
+        [Test]
+        public void WebsiteCounter_Valid_Counter_Greater_Than_Zero_Should_Return_True()
+        {
+            //Arrange
+            var data = TestHelper.ProductService.GetAllData().First();
+
+            //Act
+            var result = TestHelper.ProductService.WebsiteCounter(data.Id);
+
+            // Assert
+            Assert.That(result, Is.EqualTo(true));
+        }
+        #endregion WebsiteCounter
+
         #region UpdateData
-        
+
         [Test]
         public void UpdateData_InValid_Product_Nonexistent_Should_Return_Null()
         {
