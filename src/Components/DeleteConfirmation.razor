@@ -3,7 +3,7 @@
 @using Microsoft.AspNetCore.Components.Web
 @inject JsonFileProductService ProductService
 
-<a asp-page="Delete" asp-route-id="@ProductId" class="btn btn-danger" data-toggle="modal" data-target="#deleteConfirmation">Delete</a>
+<a asp-page="Delete" asp-route-id="@productId" class="btn btn-danger" data-toggle="modal" data-target="#deleteConfirmation">Delete</a>
 
 <div class="modal fade" id="deleteConfirmation" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmationLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -17,7 +17,7 @@
                 <button data-dismiss="modal" data-target="#deleteConfirmation" class="btn btn-primary">
                     Cancel
                 </button>
-                <a class="btn btn-danger" href="/Product" onclick="@ProductService.DeleteData(ProductId);">
+                <a class="btn btn-danger" href="/Product" onclick="@ProductService.DeleteData(productId);">
                     Delete
                 </a>
             </div>
@@ -30,6 +30,6 @@
 @code
 {
     [Parameter]
-    public string ProductId { get; set; }
+    public string productId { get; set; }
 
 }
