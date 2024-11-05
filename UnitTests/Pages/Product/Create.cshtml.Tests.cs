@@ -24,37 +24,37 @@ namespace UnitTests.Pages.Product.Create
     public class CreateTests
     {
         #region TestSetup
-        public static IUrlHelperFactory urlHelperFactory;
-        public static DefaultHttpContext httpContextDefault;
-        public static IWebHostEnvironment webHostEnvironment;
-        public static ModelStateDictionary modelState;
-        public static ActionContext actionContext;
-        public static EmptyModelMetadataProvider modelMetadataProvider;
-        public static ViewDataDictionary viewData;
-        public static TempDataDictionary tempData;
-        public static PageContext pageContext;
+        public static IUrlHelperFactory UrlHelperFactory;
+        public static DefaultHttpContext HttpContextDefault;
+        public static IWebHostEnvironment WebHostEnvironment;
+        public static ModelStateDictionary ModelState;
+        public static ActionContext ActionContext;
+        public static EmptyModelMetadataProvider ModelMetadataProvider;
+        public static ViewDataDictionary TestsViewData;
+        public static TempDataDictionary TempData;
+        public static PageContext PageContext;
 
-        public static CreateModel pageModel;
+        public static CreateModel PageModel;
 
         [SetUp]
         public void TestInitialize()
         {
-            httpContextDefault = new DefaultHttpContext()
+            HttpContextDefault = new DefaultHttpContext()
             {
                 //RequestServices = serviceProviderMock.Object,
             };
 
-            modelState = new ModelStateDictionary();
+            ModelState = new ModelStateDictionary();
 
-            actionContext = new ActionContext(httpContextDefault, httpContextDefault.GetRouteData(), new PageActionDescriptor(), modelState);
+            ActionContext = new ActionContext(HttpContextDefault, HttpContextDefault.GetRouteData(), new PageActionDescriptor(), ModelState);
 
-            modelMetadataProvider = new EmptyModelMetadataProvider();
-            viewData = new ViewDataDictionary(modelMetadataProvider, modelState);
-            tempData = new TempDataDictionary(httpContextDefault, Mock.Of<ITempDataProvider>());
+            ModelMetadataProvider = new EmptyModelMetadataProvider();
+            TestsViewData = new ViewDataDictionary(ModelMetadataProvider, ModelState);
+            TempData = new TempDataDictionary(HttpContextDefault, Mock.Of<ITempDataProvider>());
 
-            pageContext = new PageContext(actionContext)
+            PageContext = new PageContext(ActionContext)
             {
-                ViewData = viewData,
+                ViewData = TestsViewData,
             };
 
             var mockWebHostEnvironment = new Mock<IWebHostEnvironment>();
@@ -67,7 +67,7 @@ namespace UnitTests.Pages.Product.Create
 
             productService = new JsonFileProductService(mockWebHostEnvironment.Object);
 
-            pageModel = new CreateModel(productService)
+            PageModel = new CreateModel(productService)
             {
             };
         }
@@ -82,10 +82,10 @@ namespace UnitTests.Pages.Product.Create
             var data = TestHelper.ProductService.CreateData();
 
             // Act
-            pageModel.OnGet();
+            PageModel.OnGet();
 
             // Assert
-            Assert.That(pageModel.ModelState.IsValid, Is.EqualTo(true));
+            Assert.That(PageModel.ModelState.IsValid, Is.EqualTo(true));
         }
         [Test]
         public void OnGet_Should_Initialize_Product_Property()
@@ -94,10 +94,10 @@ namespace UnitTests.Pages.Product.Create
             var expectedData = TestHelper.ProductService.CreateData();
 
             // Act
-            pageModel.OnGet();
+            PageModel.OnGet();
 
             // Assert
-            Assert.That(pageModel.Product, Is.Not.Null);
+            Assert.That(PageModel.Product, Is.Not.Null);
         }
         #endregion OnGet
 
@@ -106,10 +106,10 @@ namespace UnitTests.Pages.Product.Create
         public void OnPost_InvalidModelState_Should_Return_PageResult()
         {
             // Arrange
-            pageModel.ModelState.AddModelError("Product", "Invalid data"); 
+            PageModel.ModelState.AddModelError("Product", "Invalid data"); 
 
             // Act
-            var result = pageModel.OnPost();
+            var result = PageModel.OnPost();
 
             // Assert
             Assert.That(result, Is.TypeOf<PageResult>(), "Expected PageResult when ModelState is invalid.");
@@ -119,13 +119,13 @@ namespace UnitTests.Pages.Product.Create
         public void OnPost_Should_Have_Product_Not_Null()
         {
             // Arrange
-            pageModel.Product = TestHelper.ProductService.CreateData();
+            PageModel.Product = TestHelper.ProductService.CreateData();
 
             // Act
-            pageModel.OnPost();
+            PageModel.OnPost();
 
             // Assert
-            Assert.That(pageModel.Product, Is.Not.Null, "Product property should not be null when OnPost is executed.");
+            Assert.That(PageModel.Product, Is.Not.Null, "Product property should not be null when OnPost is executed.");
         }
         #endregion onPost
 
