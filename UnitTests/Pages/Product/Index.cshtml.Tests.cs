@@ -60,7 +60,7 @@ namespace UnitTests.Pages.Product.Index
             mockWebHostEnvironment.Setup(m => m.WebRootPath).Returns("../../../../src/bin/Debug/net7.0/wwwroot");
             mockWebHostEnvironment.Setup(m => m.ContentRootPath).Returns("./data/");
 
-            var MockLoggerDirect = Mock.Of<ILogger<IndexModel>>();
+            var mockLoggerDirect = Mock.Of<ILogger<IndexModel>>();
             JsonFileProductService productService;
 
             productService = new JsonFileProductService(mockWebHostEnvironment.Object);
