@@ -25,6 +25,6 @@
 
 <div class="row">
     <a asp-page="Update" asp-route-id="@Model.Product.Id" class="btn btn-info" onclick="window.location.href='@Url.Page("Update", new { id = @Model.Product.Id})'">Update</a> &nbsp; &nbsp;
-    @(await Html.RenderComponentAsync<DeleteConfirmation>(RenderMode.ServerPrerendered, new { productId = Model.Product.Id }))
+    <a asp-page="Delete" asp-route-id="@Model.Product.Id" class="btn btn-danger" onclick="window.location.href='@Url.Page("Delete", new { id = @Model.Product.Id})'">Delete</a> &nbsp; &nbsp;
 </div>
 
