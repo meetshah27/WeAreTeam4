@@ -29,14 +29,14 @@ public class DeleteModel : PageModel
     }
 
     /// <summary> Delete the product with the saved id </summary>
-    public IActionResult OnPost(string id)
+    public IActionResult OnPost()
     {      // Check if the model state is valid; if not, return to the same page
         if (ModelState.IsValid == false)
         {
             return Page();
         }
         // Delete the product with the given id
-        ProductService.DeleteData(id);
+        ProductService.DeleteData(ProductId);
         // Redirect to the Index page after deletion
         return RedirectToPage("./Index");
     }
