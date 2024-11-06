@@ -19,14 +19,14 @@ public class DeleteModel : PageModel
 
     // The data model for a product, bound for form submission
     [BindProperty]
-    public string productId { get; set; }
+    public string ProductId { get; set; }
 
     /// <summary> Save the product id for the produt so it can be used later</summary>
     /// <param name="id"></param>
     public void OnGet(string id)
     {
         // Fetch all product data and find the first product that matches the given ID
-        productId = id;
+        ProductId = id;
     }
 
     /// <summary> Delete the product with the given Id </summary>
