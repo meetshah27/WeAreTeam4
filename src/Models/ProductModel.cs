@@ -12,6 +12,7 @@ namespace ContosoCrafts.WebSite.Models
 
         [JsonPropertyName("img")]
         public string Image { get; set; }
+        public string GitHub { get; set; }
 
         public string Url { get; set; }
         
