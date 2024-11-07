@@ -16,7 +16,17 @@
 <h1>Read</h1>
 
 <div class="container">
-    <h5 class="title" id="productTitle">@Model.Product.Title</h5>
+   <h5 class="title" id="productTitle">
+        @Model.Product.Title
+        @if (!string.IsNullOrEmpty(Model.Product.GitHub))
+        {
+            <a href="@Model.Product.GitHub" target="_blank" rel="noopener noreferrer" title="GitHub Repository" style="margin-left: 10px;">
+                <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+                 alt="GitHub" style="width:30px; height:30px;">
+            </a>
+        }
+    </h5>
+
     <img class="card-img" src="@Model.Product.Image" alt='Image for @Model.Product.Title'>
     <p class="card-text">@Model.Product.Description</p>
 </div>
