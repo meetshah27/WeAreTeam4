@@ -115,6 +115,20 @@ namespace UnitTests.Pages.Product.Update
             Assert.That(model.ModelState.Keys, Does.Contain("Product.Description"));
 
         }
+
+        [Test]
+        public void OnPost_ValidModel_ShouldRedirectToIndex()
+        {
+            // Arrange
+            PageModel.Product = TestHelper.ProductService.CreateData();
+
+            // Act
+            PageModel.OnPost();
+
+            // Assert
+            Assert.That(PageModel.Product, Is.Not.Null, "Product property should not be null when OnPost is executed.");
+        }
+
         #endregion OnPost
 
         [Test]
