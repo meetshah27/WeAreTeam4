@@ -15,7 +15,8 @@
       1,
       5
     ],
-    "Counter": 8
+    "Counter": 21,
+    "UrlCounter": 0
   },
   {
     "Id": "jenlooper-light",
@@ -26,7 +27,8 @@
     "Title": "Coursera123",
     "Description": "An online learning platform partnering with universities and organizations to offer courses \u0026 specializations. Users can access high-quality educational content across various fields.",
     "Ratings": null,
-    "Counter": 0
+    "Counter": 0,
+    "UrlCounter": 0
   },
   {
     "Id": "jenlooper-lightshow",
@@ -37,7 +39,8 @@
     "Title": "Flipkart",
     "Description": "Flipkart offers a wide range of products across categories such as electronics, home appliances, and fashion. This platform has a user-friendly interface, easy checkout process, and a variety of payment options.",
     "Ratings": null,
-    "Counter": 0
+    "Counter": 0,
+    "UrlCounter": 0
   },
   {
     "Id": "jenlooper-survival",
@@ -48,7 +51,8 @@
     "Title": "PhonePe",
     "Description": "PhonePe is a mobile payment platform which you can use to transfer money using UPI, recharge phone numbers, pay utility bills, etc.",
     "Ratings": null,
-    "Counter": 0
+    "Counter": 0,
+    "UrlCounter": 0
   },
   {
     "Id": "sailorhg-bubblesortpic",
@@ -59,7 +63,8 @@
     "Title": "zerodha",
     "Description": "A stock broker and financial services company. It offers institutional \u0026 retail brokerage, currency \u0026 commodity trading, and mutual funds \u0026 bonds.",
     "Ratings": null,
-    "Counter": 0
+    "Counter": 1,
+    "UrlCounter": 0
   },
   {
     "Id": "sailorhg-corsage",
@@ -72,7 +77,8 @@
     "Ratings": [
       4
     ],
-    "Counter": 2
+    "Counter": 6,
+    "UrlCounter": 0
   },
   {
     "Id": "sailorhg-kit",
@@ -83,7 +89,8 @@
     "Title": "BharatPe",
     "Description": "BharatPe is an Indian fintech company that offers digital payment and financial services to small and medium-sized businesses, including offline merchants and kirana store owners.",
     "Ratings": null,
-    "Counter": 0
+    "Counter": 0,
+    "UrlCounter": 0
   },
   {
     "Id": "sailorhg-led",
@@ -94,7 +101,8 @@
     "Title": "RentoMojo",
     "Description": "Rentomojo is a furniture and appliance rental platform in India that offers a variety of services.",
     "Ratings": null,
-    "Counter": 0
+    "Counter": 6,
+    "UrlCounter": 0
   },
   {
     "Id": "selinazawacki-soi-shirt",
@@ -105,7 +113,8 @@
     "Title": "Lenskart",
     "Description": "Lenskart is an eyewear company that sells eyeglasses, sunglasses, and contact lenses, and offers free eye exams and repair services.",
     "Ratings": null,
-    "Counter": 0
+    "Counter": 1,
+    "UrlCounter": 0
   },
   {
     "Id": "selinazawacki-soi-pins",
@@ -116,7 +125,8 @@
     "Title": "Blinkit",
     "Description": "Blinkit is an Indian e-commerce marketplace that offers instant delivery of a variety of products, including groceries and electronics.",
     "Ratings": null,
-    "Counter": 0
+    "Counter": 4,
+    "UrlCounter": 0
   },
   {
     "Id": "vogueandcode-hipster-dev-bro",
@@ -127,7 +137,8 @@
     "Title": "Pinterest",
     "Description": "A visual discovery platform that allows users to find and save ideas for various projects and interests, from home decor to recipes. It acts as a digital pinboard for inspiration.",
     "Ratings": null,
-    "Counter": 0
+    "Counter": 4,
+    "UrlCounter": 0
   },
   {
     "Id": "vogueandcode-pretty-girls-code-tee",
@@ -138,7 +149,8 @@
     "Title": "Bumble",
     "Description": "A dating app that empowers women by allowing them to initiate conversations with matches. It also includes features for finding friends and professional networking.",
     "Ratings": null,
-    "Counter": 0
+    "Counter": 0,
+    "UrlCounter": 0
   },
   {
     "Id": "vogueandcode-ruby-sis-2",
@@ -149,7 +161,8 @@
     "Title": "Airbnb",
     "Description": "A platform that allows individuals to rent out their homes or rooms to travelers, offering unique accommodations worldwide. It connects hosts with guests seeking alternative lodging options.",
     "Ratings": null,
-    "Counter": 0
+    "Counter": 4,
+    "UrlCounter": 0
   },
   {
     "Id": "selinazawacki-moon",
@@ -160,7 +173,8 @@
     "Title": "ShareChat",
     "Description": "ShareChat is a social media platform tailored for Indian users, enabling them to create and share content in various regional languages. It allows users to post status updates, photos, and videos, and engage in discussions across diverse topics.",
     "Ratings": null,
-    "Counter": 0
+    "Counter": 1,
+    "UrlCounter": 0
   },
   {
     "Id": "selinazawacki-shirt",
@@ -171,6 +185,7 @@
     "Title": "Rapido",
     "Description": "Rapido is an Indian bike taxi service that provides quick and affordable transportation options through its mobile app. It allows users to book rides on two-wheelers, making it a convenient choice for navigating traffic in urban areas.",
     "Ratings": null,
-    "Counter": 0
+    "Counter": 1,
+    "UrlCounter": 0
   }
 ]
