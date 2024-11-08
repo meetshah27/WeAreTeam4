@@ -25,5 +25,6 @@ namespace ContosoCrafts.WebSite.Models
 
         public int Counter {  get; set; }
 
+        public int UrlCounter { get; set; }
     }
 }
