@@ -92,7 +92,7 @@ namespace UnitTests.Pages.Product
             PageModel.ModelState.AddModelError("ProductId", "Id does not exist");
 
             // Act
-            var result = PageModel.OnPost();
+            var result = PageModel.OnPost(null);
 
             // Assert
             Assert.That(PageModel.ModelState.IsValid, Is.False);
@@ -107,7 +107,7 @@ namespace UnitTests.Pages.Product
             PageModel.OnGet(data.Id);
 
             // Act
-            var result = PageModel.OnPost();
+            var result = PageModel.OnPost(data.Id);
 
             // Assert
             Assert.That(PageModel.ModelState.IsValid, Is.True);
