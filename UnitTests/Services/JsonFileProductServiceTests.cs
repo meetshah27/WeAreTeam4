@@ -190,6 +190,58 @@ namespace UnitTests.Pages.Product.AddRating
         }
         #endregion WebsiteCounter
 
+        #region UrlCounter
+
+        [Test]
+        public void UrlCounter_Invalid_ProductId_Null_Should_Return_False()
+        {
+            //Act
+            var result = TestHelper.ProductService.UrlCounter(null);
+
+            // Assert
+            Assert.That(result, Is.EqualTo(false));
+        }
+
+        [Test]
+        public void UrlCounter_Invalid_ProductId_Not_Valid_Should_Return_False()
+        {
+            //Arrange
+            var data = TestHelper.ProductService.GetAllData().First();
+            var invalidId = data.Id + "cool";
+
+            //Act
+            var result = TestHelper.ProductService.UrlCounter(invalidId);
+
+            // Assert
+            Assert.That(result, Is.EqualTo(false));
+        }
+        [Test]
+        public void UrlCounter_Valid_ProductId_Valid_Should_Return_True()
+        {
+            //Arrange
+            var data = TestHelper.ProductService.GetAllData().First();
+
+            //Act
+            var result = TestHelper.ProductService.UrlCounter(data.Id);
+
+            // Assert
+            Assert.That(result, Is.EqualTo(true));
+        }
+
+        [Test]
+        public void UrlCounter_Valid_Counter_Greater_Than_Zero_Should_Return_True()
+        {
+            //Arrange
+            var data = TestHelper.ProductService.GetAllData().First();
+
+            //Act
+            var result = TestHelper.ProductService.UrlCounter(data.Id);
+
+            // Assert
+            Assert.That(result, Is.EqualTo(true));
+        }
+        #endregion UrlCounter
+
         #region UpdateData
 
         [Test]
