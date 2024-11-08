@@ -31,7 +31,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="productTitle">
-                        <a href="@selectedProduct.Url" target="_blank">@selectedProduct.Title</a>
+                        <a href="@selectedProduct.Url" target="_blank" @onclick="(e => UrlCounter())">@selectedProduct.Title</a>
                     </h5>
                     <span>
                         <a href="@selectedProduct.GitHub" target="_blank" rel="noopener noreferrer" title="GitHub Repository">
@@ -52,6 +52,7 @@
                         </div>
                         <div class="card-body">
                             <p class="card-text">Total Website Visiters: @selectedProduct.Counter</p>
+                            <p class="card-text">Popularity: @urlClickPercentage %</p>
                         </div>
                     </div>
                 </div>
@@ -98,11 +99,13 @@
         selectedProductId = productId;
         selectedProduct = ProductService.GetAllData().First(x => x.Id == productId);
         GetCurrentRating();
+        CalculateUrlClickPercentage();
     }
 
     int currentRating = 0;
     int voteCount = 0;
     string voteLabel;
+    decimal urlClickPercentage = 0;
 
     void GetCurrentRating()
     {
@@ -133,5 +136,26 @@
     void WebsiteCounter()
     {
         ProductService.WebsiteCounter(selectedProductId);
+    }
+
+    void UrlCounter()
+    {
+        ProductService.UrlCounter(selectedProductId);
+    }
+
+    void CalculateUrlClickPercentage()
+    {
+        if (selectedProduct.Counter > 0)
+        {
+            urlClickPercentage = (int)((decimal)selectedProduct.UrlCounter / selectedProduct.Counter * 100);
+        }
+        if(selectedProduct.Counter<selectedProduct.UrlCounter)
+        {
+            urlClickPercentage = 100;
+        }
+        if(selectedProduct.Counter<=0)
+        {
+            urlClickPercentage = 0;
+        }
     }
 }
