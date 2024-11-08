@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Hosting;
 
 namespace ContosoCrafts.WebSite.Services
 {
-   public class JsonFileProductService
+    public class JsonFileProductService
     {
         public JsonFileProductService(IWebHostEnvironment webHostEnvironment)
         {
@@ -26,7 +26,7 @@ namespace ContosoCrafts.WebSite.Services
 
         public IEnumerable<ProductModel> GetAllData()
         {
-            using(var jsonFileReader = File.OpenText(JsonFileName))
+            using (var jsonFileReader = File.OpenText(JsonFileName))
             {
                 return JsonSerializer.Deserialize<ProductModel[]>(jsonFileReader.ReadToEnd(),
                     new JsonSerializerOptions
@@ -75,7 +75,7 @@ namespace ContosoCrafts.WebSite.Services
             }
 
             // Check to see if the rating exist, if there are none, then create the array
-            if(data.Ratings == null)
+            if (data.Ratings == null)
             {
                 data.Ratings = new int[] { };
             }
@@ -172,7 +172,7 @@ namespace ContosoCrafts.WebSite.Services
             var data = dataSet.FirstOrDefault(m => m.Id.Equals(id));
 
             var newDataSet = GetAllData().Where(m => m.Id.Equals(id) == false);
-            
+
             SaveData(newDataSet);
 
             return data;
@@ -186,17 +186,36 @@ namespace ContosoCrafts.WebSite.Services
             {
                 return false;
             }
-            if(data==null)
+            if (data == null)
             {
                 return false;
             }
-            if(data.Counter>=0)
+            if (data.Counter >= 0)
             {
                 data.Counter += 1;
                 SaveData(products);
             }
             return true;
         }
-        
+
+        public bool UrlCounter(string id)
+        {
+            var products = GetAllData();
+            var data = products.FirstOrDefault(x => x.Id.Equals(id));
+            if (string.IsNullOrEmpty(id))
+            {
+                return false;
+            }
+            if (data == null)
+            {
+                return false;
+            }
+            if (data.UrlCounter >= 0)
+            {
+                data.UrlCounter += 1;
+                SaveData(products);
+            }
+            return true;
+        }
     }
 }
