@@ -1,6 +1,4 @@
-﻿using System.Linq;
-
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
@@ -14,7 +12,6 @@ using Moq;
 
 using NUnit.Framework;
 
-using ContosoCrafts.WebSite.Pages.Product;
 using ContosoCrafts.WebSite.Services;
 
 namespace UnitTests.Pages.Product.Read
