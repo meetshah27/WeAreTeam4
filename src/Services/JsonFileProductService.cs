@@ -146,11 +146,11 @@ namespace ContosoCrafts.WebSite.Services
             var data = new ProductModel()
             {
                 Id = System.Guid.NewGuid().ToString(),
-                Title = "Enter Title",
-                Description = "Enter Description",
-                Url = "Enter URL",
-                Image = "Enter Image URL",
-                GitHub="Enter Github URL"
+                Title = "",
+                Description = "",
+                Url = "",
+                Image = "",
+                GitHub=""
             };
 
             // Get the current set, and append the new record to it because IEnumerable does not have Add
