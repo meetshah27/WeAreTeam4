@@ -1,28 +1,5 @@
 [
   {
-    "Id": "jenlooper-cactus",
-    "Maker": "@jenlooper",
-    "img": "https://www.cnet.com/a/img/resize/e35e8194ed30d0a26baf9c028f585818e1ca6e86/hub/2022/05/05/d6fbb617-2e84-411b-acde-17da898cb9d7/duolingo-duo-owl-logo-2022.jpg?auto=webp\u0026fit=crop\u0026height=675\u0026width=1200",
-    "GitHub": "https://github.com/duolingo",
-    "Url": "https://www.duolingo.com",
-    "Title": null,
-    "Description": "A language-learning platform that gamifies the process of acquiring new languages. Users can practice reading, writing, and speaking through engaging exercises and quizzes.",
-    "Ratings": [
-      5,
-      5,
-      3,
-      2,
-      1,
-      5
-    ],
-<<<<<<< Updated upstream
-    "Counter": 23,
-=======
-    "Counter": 22,
->>>>>>> Stashed changes
-    "UrlCounter": 0
-  },
-  {
     "Id": "jenlooper-light",
     "Maker": "jenlooper",
     "img": "https://about.coursera.org/static/blueCoursera-646f855eae3d677239ea9db93d6c9e17.svg",
@@ -104,9 +81,12 @@
     "Url": "https://twitter.com/sailorhg/status/1090117277540745216",
     "Title": "RentoMojo",
     "Description": "Rentomojo is a furniture and appliance rental platform in India that offers a variety of services.",
-    "Ratings": null,
-    "Counter": 6,
-    "UrlCounter": 0
+    "Ratings": [
+      1,
+      2
+    ],
+    "Counter": 8,
+    "UrlCounter": 1
   },
   {
     "Id": "selinazawacki-soi-shirt",
@@ -193,17 +173,10 @@
     "UrlCounter": 0
   },
   {
-<<<<<<< Updated upstream
     "Id": "00688728-f31b-45b0-b6b3-1cd5267969c9",
     "Maker": null,
     "img": "Enter Image URL",
     "GitHub": "Enter Github URL",
-=======
-    "Id": "89327664-f75d-4487-9650-92eb244717bf",
-    "Maker": null,
-    "img": "Enter Image URL",
-    "GitHub": null,
->>>>>>> Stashed changes
     "Url": "Enter URL",
     "Title": "Enter Title",
     "Description": "Enter Description",
@@ -212,17 +185,10 @@
     "UrlCounter": 0
   },
   {
-<<<<<<< Updated upstream
     "Id": "4aca169c-e532-46c4-974a-24ae4f2a8747",
     "Maker": null,
     "img": "Enter Image URL",
     "GitHub": "Enter Github URL",
-=======
-    "Id": "07c53089-d85e-4be5-ac6e-68a7a3563100",
-    "Maker": null,
-    "img": "Enter Image URL",
-    "GitHub": null,
->>>>>>> Stashed changes
     "Url": "Enter URL",
     "Title": "Enter Title",
     "Description": "Enter Description",
@@ -231,7 +197,6 @@
     "UrlCounter": 0
   },
   {
-<<<<<<< Updated upstream
     "Id": "47866c73-fb25-48d2-93c0-82b7bd886d0d",
     "Maker": null,
     "img": "Enter Image",
@@ -260,15 +225,21 @@
     "Maker": null,
     "img": "Enter Image URL",
     "GitHub": "Enter Github URL",
-=======
-    "Id": "c736f74b-dd4a-454d-a231-098ce34f166e",
-    "Maker": null,
-    "img": "Enter Image URL",
-    "GitHub": null,
->>>>>>> Stashed changes
     "Url": "Enter URL",
     "Title": "Enter Title",
     "Description": "Enter Description",
+    "Ratings": null,
+    "Counter": 0,
+    "UrlCounter": 0
+  },
+  {
+    "Id": "f4a2631e-8d35-47ea-a4b2-b97c6aa17347",
+    "Maker": null,
+    "img": "https://localo.com/assets/img/definitions/what-is-bootstrap.webp",
+    "GitHub": "Enter Github URL",
+    "Url": "https://getbootstrap.com/docs/5.0/forms/validation/",
+    "Title": "que pasa",
+    "Description": "hsdhflsdjl;",
     "Ratings": null,
     "Counter": 0,
     "UrlCounter": 0
