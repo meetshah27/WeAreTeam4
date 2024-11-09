@@ -45,6 +45,7 @@ public class UpdateModel : PageModel
         {
 
             return Page();
+
         }
 
         ProductService.UpdateData(Product);   // Update the product data in the service with the provided Product model
