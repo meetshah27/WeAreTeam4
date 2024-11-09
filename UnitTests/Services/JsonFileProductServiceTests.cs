@@ -61,7 +61,12 @@ namespace UnitTests.Pages.Product.AddRating
 
             // Get the First data item
             var data = TestHelper.ProductService.GetAllData().First();
-            var countOriginal = data.Ratings.Length;
+            var countOriginal = 0;
+            if(data.Ratings != null)
+            { 
+                countOriginal = data.Ratings.Length;
+            }
+            
 
             // Act
             var result = TestHelper.ProductService.AddRating(data.Id, 5);
