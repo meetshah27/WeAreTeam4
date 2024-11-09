@@ -12,9 +12,6 @@ using Moq;
 using NUnit.Framework;
 
 using ContosoCrafts.WebSite.Services;
-using ContosoCrafts.WebSite.Models;
-using Microsoft.AspNetCore.Http.HttpResults;
-using System.Linq;
 
 namespace UnitTests.Pages.Product
 {
