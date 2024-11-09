@@ -15,7 +15,7 @@
       1,
       5
     ],
-    "Counter": 21,
+    "Counter": 23,
     "UrlCounter": 0
   },
   {
@@ -149,7 +149,7 @@
     "Title": "Bumble",
     "Description": "A dating app that empowers women by allowing them to initiate conversations with matches. It also includes features for finding friends and professional networking.",
     "Ratings": null,
-    "Counter": 0,
+    "Counter": 1,
     "UrlCounter": 0
   },
   {
@@ -186,6 +186,54 @@
     "Description": "Rapido is an Indian bike taxi service that provides quick and affordable transportation options through its mobile app. It allows users to book rides on two-wheelers, making it a convenient choice for navigating traffic in urban areas.",
     "Ratings": null,
     "Counter": 1,
+    "UrlCounter": 0
+  },
+  {
+    "Id": "00688728-f31b-45b0-b6b3-1cd5267969c9",
+    "Maker": null,
+    "img": "Enter Image URL",
+    "GitHub": "Enter Github URL",
+    "Url": "Enter URL",
+    "Title": "Enter Title",
+    "Description": "Enter Description",
+    "Ratings": null,
+    "Counter": 0,
+    "UrlCounter": 0
+  },
+  {
+    "Id": "4aca169c-e532-46c4-974a-24ae4f2a8747",
+    "Maker": null,
+    "img": "Enter Image URL",
+    "GitHub": "Enter Github URL",
+    "Url": "Enter URL",
+    "Title": "Enter Title",
+    "Description": "Enter Description",
+    "Ratings": null,
+    "Counter": 0,
+    "UrlCounter": 0
+  },
+  {
+    "Id": "47866c73-fb25-48d2-93c0-82b7bd886d0d",
+    "Maker": null,
+    "img": "Enter Image",
+    "GitHub": "Enter Github URL",
+    "Url": "Enter URL",
+    "Title": "Enter Title",
+    "Description": "Enter Description",
+    "Ratings": null,
+    "Counter": 0,
+    "UrlCounter": 0
+  },
+  {
+    "Id": "48dae42d-6499-481a-bc0e-f2b5b8520e2c",
+    "Maker": null,
+    "img": "Enter Image URL",
+    "GitHub": "Enter Github URL",
+    "Url": "Enter URL",
+    "Title": "Enter Title",
+    "Description": "Enter Description",
+    "Ratings": null,
+    "Counter": 0,
     "UrlCounter": 0
   }
 ]
