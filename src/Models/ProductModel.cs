@@ -1,17 +1,20 @@
-using System.Text.Json;
 using System.Text.Json.Serialization;
+
 using System.ComponentModel.DataAnnotations;
-using System.Collections.Generic;
 
 namespace ContosoCrafts.WebSite.Models
 {
+
     public class ProductModel
     {
+
         public string Id { get; set; }
+
         public string Maker { get; set; }
 
         [JsonPropertyName("img")]
         public string Image { get; set; }
+
         public string GitHub { get; set; }
 
         public string Url { get; set; }
@@ -26,5 +29,7 @@ namespace ContosoCrafts.WebSite.Models
         public int Counter {  get; set; }
 
         public int UrlCounter { get; set; }
+
     }
+
 }
