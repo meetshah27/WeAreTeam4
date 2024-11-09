@@ -1,12 +1,6 @@
 using System.Linq;
 
-using Microsoft.AspNetCore.Mvc;
-
 using NUnit.Framework;
-
-using ContosoCrafts.WebSite.Models;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-using System.Diagnostics.Metrics;
 
 namespace UnitTests.Pages.Product.AddRating
 {
