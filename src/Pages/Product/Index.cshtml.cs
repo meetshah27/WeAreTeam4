@@ -1,6 +1,5 @@
 using System.Collections.Generic;  // Importing collections for managing lists
 
-using Microsoft.AspNetCore.Mvc;    // Importing ASP.NET MVC components
 using Microsoft.AspNetCore.Mvc.RazorPages;   // Importing Razor Pages components
 
 using ContosoCrafts.WebSite.Models;          // Importing models for product representation
