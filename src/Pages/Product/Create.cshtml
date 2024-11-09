@@ -39,6 +39,12 @@
         </div>
 
         <div class="form-group">
+            <label asp-for="Product.GitHub" class="control-label"></label>
+            <input asp-for="Product.GitHub" class="form-control" />
+            <span asp-validation-for="Product.GitHub" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
             <input type="submit" value="Submit" class="btn btn-primary" />
         </div>
     </form>
