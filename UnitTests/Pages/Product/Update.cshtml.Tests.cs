@@ -1,10 +1,17 @@
 ﻿using Microsoft.AspNetCore.Http;
+
 using Microsoft.AspNetCore.Mvc;
+
 using Microsoft.AspNetCore.Mvc.RazorPages;
+
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
+
 using Microsoft.AspNetCore.Hosting;
+
 using Microsoft.AspNetCore.Routing;
+
 using Microsoft.Extensions.Logging;
 
 using Moq;
@@ -12,6 +19,7 @@ using Moq;
 using NUnit.Framework;
 
 using ContosoCrafts.WebSite.Services;
+
 using ContosoCrafts.WebSite.Models;
 
 namespace UnitTests.Pages.Product.Update
@@ -22,16 +30,28 @@ namespace UnitTests.Pages.Product.Update
     {
         #region TestSetup
         public static DefaultHttpContext HttpContextDefault;
+
         public static ModelStateDictionary ModelState;
+
         public static ActionContext ActionContext;
+
         public static EmptyModelMetadataProvider ModelMetadataProvider;
+
         public static ViewDataDictionary TestsViewData;
+
         public static TempDataDictionary TempData;
+
         public static PageContext PageContext;
 
         public static UpdateModel PageModel;
 
         [SetUp]
+
+        /// <summary>
+        /// Initializes the test setup by creating mock dependencies and configuring
+        /// the PageModel with a default context, ModelState, TempData, and other required components.
+        /// </summary>
+
         public void TestInitialize()
         {
             HttpContextDefault = new DefaultHttpContext();
@@ -41,12 +61,16 @@ namespace UnitTests.Pages.Product.Update
             ActionContext = new ActionContext(HttpContextDefault, HttpContextDefault.GetRouteData(), new PageActionDescriptor(), ModelState);
             
             ModelMetadataProvider = new EmptyModelMetadataProvider();
+
             TestsViewData = new ViewDataDictionary(ModelMetadataProvider, ModelState);
+
             TempData = new TempDataDictionary(HttpContextDefault, Mock.Of<ITempDataProvider>());
 
             PageContext = new PageContext(ActionContext)
             {
+
                 ViewData = TestsViewData,
+
             };
 
             var mockWebHostEnvironment = new Mock<IWebHostEnvironment>();
@@ -59,14 +83,22 @@ namespace UnitTests.Pages.Product.Update
 
             PageModel = new UpdateModel(productService)
             {
+
                 PageContext = PageContext,
                 TempData = TempData,
+
             };
         }
 
         #endregion TestSetup
 
         #region OnPost
+
+        /// <summary>
+        /// Ensures OnPost returns the page when the provided URL is invalid.
+        /// Verifies that ModelState captures the error.
+        /// </summary>
+
         [Test]
         public void OnPost_Invalid_Url_Should_Return_Page()
         {
@@ -93,6 +125,11 @@ namespace UnitTests.Pages.Product.Update
             Assert.That(model.ModelState.IsValid, Is.False);
         }
 
+        /// <summary>
+        /// Verifies that OnPost returns the page and captures the ModelState errors
+        /// when required fields are missing in the model.
+        /// </summary>
+
         [Test]
         public void OnPost_Missing_Required_Fields_Should_Return_Page()
         {
@@ -100,8 +137,11 @@ namespace UnitTests.Pages.Product.Update
             var mockProductService = new Mock<JsonFileProductService>(Mock.Of<IWebHostEnvironment>());
             var model = new UpdateModel(mockProductService.Object)
             {
+
                 Product = new ProductModel { Id = "test-id" }
+
             };
+
             model.ModelState.AddModelError("Product.Title", "Title is required");
             model.ModelState.AddModelError("Product.Description", "Description is required");
 
@@ -127,9 +167,14 @@ namespace UnitTests.Pages.Product.Update
 
             // Assert
             Assert.That(PageModel.Product, Is.Not.Null, "Product property should not be null when OnPost is executed.");
+
         }
 
         #endregion OnPost
+
+        /// <summary>
+        /// Verifies that OnGet correctly initializes a valid model state when provided with a valid product ID.
+        /// </summary>
 
         [Test]
         public void OnGet_Valid_Should_Return_Valid_State()
@@ -142,7 +187,13 @@ namespace UnitTests.Pages.Product.Update
 
             // Assert
             Assert.That(PageModel.ModelState.IsValid, Is.EqualTo(true));
+
         }
+
+        /// <summary>
+        /// Verifies that the constructor correctly assigns the ProductService
+        /// when provided with a valid instance.
+        /// </summary>
 
         [Test]
         public void Constructor_ValidProductService_Should_Set_ProductService()
@@ -156,7 +207,13 @@ namespace UnitTests.Pages.Product.Update
             // Assert
             Assert.That(model.ProductService, Is.Not.Null);
             Assert.That(model.ProductService, Is.EqualTo(mockProductService.Object));
+
         }
+
+        /// <summary>
+        /// Ensures that the constructor initializes the ProductService
+        /// when a valid instance is provided.
+        /// </summary>
 
         [Test]
         public void Constructor_WithValidProductService_ShouldInitializeProductService()
@@ -170,6 +227,7 @@ namespace UnitTests.Pages.Product.Update
             // Assert
             Assert.That(updateModel.ProductService, Is.Not.Null, "ProductService should be initialized.");
             Assert.That(updateModel.ProductService, Is.EqualTo(mockProductService.Object), "ProductService should match the provided instance.");
+
         }
     }
 }
