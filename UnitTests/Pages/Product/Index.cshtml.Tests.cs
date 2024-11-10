@@ -1,13 +1,21 @@
 ﻿using System.Linq;
 
 using Microsoft.AspNetCore.Http;
+
 using Microsoft.AspNetCore.Mvc;
+
 using Microsoft.AspNetCore.Mvc.Routing;
+
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
+
 using Microsoft.AspNetCore.Mvc.RazorPages;
+
 using Microsoft.AspNetCore.Routing;
+
 using Microsoft.AspNetCore.Hosting;
+
 using Microsoft.Extensions.Logging;
 
 using Moq;
@@ -15,21 +23,32 @@ using Moq;
 using NUnit.Framework;
 
 using ContosoCrafts.WebSite.Pages.Product;
+
 using ContosoCrafts.WebSite.Services;
 
 namespace UnitTests.Pages.Product.Index
 {
+
     public class IndexTests
     {
+
         #region TestSetup
         public static IUrlHelperFactory UrlHelperFactory;
+
         public static DefaultHttpContext HttpContextDefault;
+
         public static IWebHostEnvironment WebHostEnvironment;
+
         public static ModelStateDictionary ModelState;
+
         public static ActionContext ActionContext;
+
         public static EmptyModelMetadataProvider ModelMetadataProvider;
+
         public static ViewDataDictionary TestsViewData;
+
         public static TempDataDictionary TempData;
+
         public static PageContext PageContext;
 
         public static IndexModel PageModel;
@@ -37,9 +56,12 @@ namespace UnitTests.Pages.Product.Index
         [SetUp]
         public void TestInitialize()
         {
+
             HttpContextDefault = new DefaultHttpContext()
             {
+
                 //RequestServices = serviceProviderMock.Object,
+
             };
 
             ModelState = new ModelStateDictionary();
@@ -47,12 +69,16 @@ namespace UnitTests.Pages.Product.Index
             ActionContext = new ActionContext(HttpContextDefault, HttpContextDefault.GetRouteData(), new PageActionDescriptor(), ModelState);
 
             ModelMetadataProvider = new EmptyModelMetadataProvider();
+
             TestsViewData = new ViewDataDictionary(ModelMetadataProvider, ModelState);
+
             TempData = new TempDataDictionary(HttpContextDefault, Mock.Of<ITempDataProvider>());
 
             PageContext = new PageContext(ActionContext)
             {
+
                 ViewData = TestsViewData,
+
             };
 
             var mockWebHostEnvironment = new Mock<IWebHostEnvironment>();
@@ -67,7 +93,9 @@ namespace UnitTests.Pages.Product.Index
 
             PageModel = new IndexModel(productService)
             {
+
             };
+
         }
 
         #endregion TestSetup
@@ -76,6 +104,7 @@ namespace UnitTests.Pages.Product.Index
         [Test]
         public void OnGet_Valid_Should_Return_Products()
         {
+
             // Arrange
 
             // Act
@@ -84,7 +113,10 @@ namespace UnitTests.Pages.Product.Index
             // Assert
             Assert.That(PageModel.ModelState.IsValid, Is.EqualTo(true));
             Assert.That(PageModel.Products.ToList().Any(), Is.EqualTo(true));
+
         }
         #endregion OnGet
+
     }
+
 }
