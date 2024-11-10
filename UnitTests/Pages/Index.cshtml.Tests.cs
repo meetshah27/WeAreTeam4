@@ -10,8 +10,10 @@ using ContosoCrafts.WebSite.Pages;
 
 namespace UnitTests.Pages.Index
 {
+
     public class IndexTests
     {
+
         #region TestSetup
 
         public static IndexModel PageModel;
@@ -23,7 +25,9 @@ namespace UnitTests.Pages.Index
 
             PageModel = new IndexModel(mockLoggerDirect, TestHelper.ProductService)
             {
+
             };
+
         }
 
         #endregion TestSetup
@@ -42,5 +46,7 @@ namespace UnitTests.Pages.Index
             Assert.That(PageModel.Products.ToList().Any(), Is.EqualTo(true));
         }
         #endregion OnGet
+
     }
+
 }
