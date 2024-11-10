@@ -100,7 +100,7 @@ namespace UnitTests.Pages.Product
             // Assert
             Assert.That(PageModel.ModelState.IsValid, Is.EqualTo(true));
             Assert.That(PageModel.ProductId, Is.EqualTo(data.Id));
-
+            Assert.That(PageModel.ProductId, Is.Not.Null);  //Ensures that the product is loaded and not null.
         }
         #endregion OnGet
 
@@ -118,6 +118,8 @@ namespace UnitTests.Pages.Product
 
             // Assert
             Assert.That(PageModel.ModelState.IsValid, Is.False);
+            Assert.That(result, Is.InstanceOf<PageResult>());  //Ensures that the result is a PageResult, indicating an error or invalid state.
+            Assert.That(PageModel.ProductId, Is.Null);        //Verifies that no product was loaded or deleted.
         }
 
 
@@ -133,6 +135,11 @@ namespace UnitTests.Pages.Product
 
             // Assert
             Assert.That(PageModel.ModelState.IsValid, Is.True);
+            Assert.That(result, Is.InstanceOf<RedirectToPageResult>());
+
+            // Additional assertions to check if product was removed from the list
+            var deletedProduct = TestHelper.ProductService.GetProductById(data.Id);
+            Assert.That(deletedProduct, Is.Null);
         }
         #endregion OnPost
 
