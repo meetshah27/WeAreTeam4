@@ -13,7 +13,7 @@
   },
   {
     "Id": "jenlooper-lightshow",
-    "Maker": "@jenlooper",
+    "Maker": "jenlooper",
     "img": "https://assets.entrepreneur.com/content/3x2/2000/20180511063849-flipkart-logo-detail-icon.jpeg",
     "GitHub": "https://github.com/flipkart-incubator",
     "Url": "https://www.flipkart.com",
@@ -43,8 +43,14 @@
     "Url": "https://zerodha.com",
     "Title": "zerodha",
     "Description": "A stock broker and financial services company. It offers institutional \u0026 retail brokerage, currency \u0026 commodity trading, and mutual funds \u0026 bonds.",
-    "Ratings": null,
-    "Counter": 1,
+    "Ratings": [
+      5,
+      5,
+      5,
+      5,
+      5
+    ],
+    "Counter": 3,
     "UrlCounter": 0
   },
   {
@@ -56,10 +62,12 @@
     "Title": "Zomato",
     "Description": "Zomato is an online restaurant discovery and food delivery companies that provides information about restaurants, menus, reviews, and food delivery options.",
     "Ratings": [
-      4
+      4,
+      1,
+      1
     ],
-    "Counter": 9,
-    "UrlCounter": 1
+    "Counter": 10,
+    "UrlCounter": 2
   },
   {
     "Id": "sailorhg-kit",
@@ -119,7 +127,7 @@
     "GitHub": "https://github.com/pinterest",
     "Url": "https://www.pinterest.com",
     "Title": "Pinterest",
-    "Description": "A visual discovery platform that allows users to find and save ideas for various projects and interests, from home decor to recipes. It acts as a digital pinboard for inspiration.",
+    "Description": "A visual discovery platform that allows users to find and save ideas for various projects and interests,from home decor to recipes. It acts as a digital pinboard for inspiration.",
     "Ratings": null,
     "Counter": 5,
     "UrlCounter": 1
@@ -176,12 +184,12 @@
     "Id": "f4a2631e-8d35-47ea-a4b2-b97c6aa17347",
     "Maker": null,
     "img": "https://localo.com/assets/img/definitions/what-is-bootstrap.webp",
-    "GitHub": "Enter Github URL",
+    "GitHub": "https://github.com/twbs/bootstrap",
     "Url": "https://getbootstrap.com/docs/5.0/forms/validation/",
-    "Title": "que pasa",
-    "Description": "hsdhflsdjl;",
+    "Title": "BootStrap",
+    "Description": "Bootstrap is a widely used open-source front-end framework that helps developers create responsive and mobile-first websites and web applications. It includes a comprehensive set of CSS and JavaScript components like navigation bars, modals, carousels, grids, and form controls, which simplify and standardize the development of complex user interfaces. Bootstrap\u0027s responsive grid system and pre-designed components make it easy to build layouts that adapt to different screen sizes without needing extensive custom CSS.;",
     "Ratings": null,
-    "Counter": 0,
-    "UrlCounter": 0
+    "Counter": 4,
+    "UrlCounter": 2
   }
 ]
