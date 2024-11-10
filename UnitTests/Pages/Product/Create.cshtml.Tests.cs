@@ -1,11 +1,19 @@
 ﻿using Microsoft.AspNetCore.Http;
+
 using Microsoft.AspNetCore.Mvc;
+
 using Microsoft.AspNetCore.Mvc.Routing;
+
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
+
 using Microsoft.AspNetCore.Mvc.RazorPages;
+
 using Microsoft.AspNetCore.Routing;
+
 using Microsoft.AspNetCore.Hosting;
+
 using Microsoft.Extensions.Logging;
 
 using Moq;
@@ -17,17 +25,27 @@ using ContosoCrafts.WebSite.Services;
 
 namespace UnitTests.Pages.Product.Create
 {
+
     public class CreateTests
     {
+
         #region TestSetup
         public static IUrlHelperFactory UrlHelperFactory;
+
         public static DefaultHttpContext HttpContextDefault;
+
         public static IWebHostEnvironment WebHostEnvironment;
+
         public static ModelStateDictionary ModelState;
+
         public static ActionContext ActionContext;
+
         public static EmptyModelMetadataProvider ModelMetadataProvider;
+
         public static ViewDataDictionary TestsViewData;
+
         public static TempDataDictionary TempData;
+
         public static PageContext PageContext;
 
         public static CreateModel PageModel;
@@ -35,9 +53,12 @@ namespace UnitTests.Pages.Product.Create
         [SetUp]
         public void TestInitialize()
         {
+
             HttpContextDefault = new DefaultHttpContext()
             {
+
                 //RequestServices = serviceProviderMock.Object,
+
             };
 
             ModelState = new ModelStateDictionary();
@@ -45,12 +66,16 @@ namespace UnitTests.Pages.Product.Create
             ActionContext = new ActionContext(HttpContextDefault, HttpContextDefault.GetRouteData(), new PageActionDescriptor(), ModelState);
 
             ModelMetadataProvider = new EmptyModelMetadataProvider();
+
             TestsViewData = new ViewDataDictionary(ModelMetadataProvider, ModelState);
+
             TempData = new TempDataDictionary(HttpContextDefault, Mock.Of<ITempDataProvider>());
 
             PageContext = new PageContext(ActionContext)
             {
+
                 ViewData = TestsViewData,
+
             };
 
             var mockWebHostEnvironment = new Mock<IWebHostEnvironment>();
@@ -65,7 +90,9 @@ namespace UnitTests.Pages.Product.Create
 
             PageModel = new CreateModel(productService)
             {
+
             };
+
         }
 
         #endregion TestSetup
@@ -74,6 +101,7 @@ namespace UnitTests.Pages.Product.Create
         [Test]
         public void OnGet_Valid_Should_Return_Valid_State()
         {
+
             // Arrange
             var data = TestHelper.ProductService.CreateData();
 
@@ -82,10 +110,12 @@ namespace UnitTests.Pages.Product.Create
 
             // Assert
             Assert.That(PageModel.ModelState.IsValid, Is.EqualTo(true));
+
         }
         [Test]
         public void OnGet_Should_Initialize_Product_Property()
         {
+
             // Arrange
             var expectedData = TestHelper.ProductService.CreateData();
 
@@ -94,6 +124,7 @@ namespace UnitTests.Pages.Product.Create
 
             // Assert
             Assert.That(PageModel.Product, Is.Not.Null);
+
         }
         #endregion OnGet
 
@@ -101,6 +132,7 @@ namespace UnitTests.Pages.Product.Create
         [Test]
         public void OnPost_InvalidModelState_Should_Return_PageResult()
         {
+
             // Arrange
             PageModel.ModelState.AddModelError("Product", "Invalid data"); 
 
@@ -109,11 +141,13 @@ namespace UnitTests.Pages.Product.Create
 
             // Assert
             Assert.That(result, Is.TypeOf<PageResult>(), "Expected PageResult when ModelState is invalid.");
+
         }
 
         [Test]
         public void OnPost_Should_Have_Product_Not_Null()
         {
+
             // Arrange
             PageModel.Product = TestHelper.ProductService.CreateData();
 
@@ -122,6 +156,7 @@ namespace UnitTests.Pages.Product.Create
 
             // Assert
             Assert.That(PageModel.Product, Is.Not.Null, "Product property should not be null when OnPost is executed.");
+
         }
         #endregion onPost
 
@@ -129,6 +164,7 @@ namespace UnitTests.Pages.Product.Create
         [Test]
         public void Constructor_WithNullProductService_Should_NotThrowException()
         {
+
             // Arrange
             JsonFileProductService productService = null;
 
@@ -137,7 +173,10 @@ namespace UnitTests.Pages.Product.Create
 
             // Assert
             Assert.That(pageModel.ProductService, Is.Null, "ProductService should be null when passed as null to the constructor.");
+
         }
         #endregion CreateModel
+
     }
+
 }
