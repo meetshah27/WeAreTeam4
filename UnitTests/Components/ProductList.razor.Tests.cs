@@ -1,11 +1,9 @@
-using System.Linq;
-
 using Microsoft.Extensions.DependencyInjection;
 
-using Bunit;
 using NUnit.Framework;
 
 using ContosoCrafts.WebSite.Components;
+
 using ContosoCrafts.WebSite.Services;
 
 namespace UnitTests.Components
@@ -17,6 +15,7 @@ namespace UnitTests.Components
         [SetUp]
         public void TestInitialize()
         {
+
         }
 
         #endregion TestSetup
@@ -24,6 +23,7 @@ namespace UnitTests.Components
         [Test]
         public void ProductList_Valid_Default_Should_Return_Content()
         {
+
             // Arrange
             Services.AddSingleton<JsonFileProductService>(TestHelper.ProductService);
 
@@ -35,6 +35,9 @@ namespace UnitTests.Components
 
             // Assert
             Assert.That(result.Contains("The Quantified Cactus: An Easy Plant Soil Moisture Sensor"), Is.EqualTo(false));
+
         }
+
     }
+
 }

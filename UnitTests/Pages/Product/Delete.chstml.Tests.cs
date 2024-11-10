@@ -1,10 +1,17 @@
 ﻿using Microsoft.AspNetCore.Http;
+
 using Microsoft.AspNetCore.Mvc;
+
 using Microsoft.AspNetCore.Mvc.RazorPages;
+
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
+
 using Microsoft.AspNetCore.Hosting;
+
 using Microsoft.AspNetCore.Routing;
+
 using Microsoft.Extensions.Logging;
 
 using Moq;
@@ -15,15 +22,23 @@ using ContosoCrafts.WebSite.Services;
 
 namespace UnitTests.Pages.Product
 {
+
     class DeleteTests
     {
+
         #region TestSetup
         public static DefaultHttpContext HttpContextDefault;
+
         public static ModelStateDictionary ModelState;
+
         public static ActionContext ActionContext;
+
         public static EmptyModelMetadataProvider ModelMetadataProvider;
+
         public static ViewDataDictionary TestsViewData;
+
         public static TempDataDictionary TempData;
+
         public static PageContext PageContext;
 
         public static DeleteModel PageModel;
@@ -31,6 +46,7 @@ namespace UnitTests.Pages.Product
         [SetUp]
         public void TestInitialize()
         {
+
             HttpContextDefault = new DefaultHttpContext();
 
             ModelState = new ModelStateDictionary();
@@ -38,12 +54,16 @@ namespace UnitTests.Pages.Product
             ActionContext = new ActionContext(HttpContextDefault, HttpContextDefault.GetRouteData(), new PageActionDescriptor(), ModelState);
             
             ModelMetadataProvider = new EmptyModelMetadataProvider();
+
             TestsViewData = new ViewDataDictionary(ModelMetadataProvider, ModelState);
+
             TempData = new TempDataDictionary(HttpContextDefault, Mock.Of<ITempDataProvider>());
 
             PageContext = new PageContext(ActionContext)
             {
+
                 ViewData = TestsViewData,
+
             };
 
             var mockWebHostEnvironment = new Mock<IWebHostEnvironment>();
@@ -56,9 +76,12 @@ namespace UnitTests.Pages.Product
 
             PageModel = new DeleteModel(productService)
             {
+
                 PageContext = PageContext,
                 TempData = TempData,
+
             };
+
         }
 
         #endregion TestSetup
@@ -67,6 +90,7 @@ namespace UnitTests.Pages.Product
         [Test]
         public void OnGet_Valid_Should_Return_Valid_State()
         {
+
             // Arrange
             var data = TestHelper.ProductService.CreateData();
 
@@ -76,6 +100,7 @@ namespace UnitTests.Pages.Product
             // Assert
             Assert.That(PageModel.ModelState.IsValid, Is.EqualTo(true));
             Assert.That(PageModel.ProductId, Is.EqualTo(data.Id));
+
         }
         #endregion OnGet
 
@@ -110,5 +135,7 @@ namespace UnitTests.Pages.Product
             Assert.That(PageModel.ModelState.IsValid, Is.True);
         }
         #endregion OnPost
+
     }
+
 }

@@ -1,7 +1,11 @@
 using System.Collections.Generic;
+
 using System.Data;
+
 using System.IO;
+
 using System.Linq;
+
 using System.Text.Json;
 
 using ContosoCrafts.WebSite.Models;
@@ -10,30 +14,42 @@ using Microsoft.AspNetCore.Hosting;
 
 namespace ContosoCrafts.WebSite.Services
 {
+
     public class JsonFileProductService
     {
+
         public JsonFileProductService(IWebHostEnvironment webHostEnvironment)
         {
+
             WebHostEnvironment = webHostEnvironment;
+
         }
 
         public IWebHostEnvironment WebHostEnvironment { get; }
 
         private string JsonFileName
         {
+
             get { return Path.Combine(WebHostEnvironment.WebRootPath, "data", "products.json"); }
+
         }
 
         public IEnumerable<ProductModel> GetAllData()
         {
+
             using (var jsonFileReader = File.OpenText(JsonFileName))
             {
+
                 return JsonSerializer.Deserialize<ProductModel[]>(jsonFileReader.ReadToEnd(),
                     new JsonSerializerOptions
                     {
+
                         PropertyNameCaseInsensitive = true
+
                     });
+
             }
+
         }
 
         /// <summary>
@@ -47,10 +63,13 @@ namespace ContosoCrafts.WebSite.Services
         /// <param name="rating"></param>
         public bool AddRating(string productId, int rating)
         {
+
             // If the ProductID is invalid, return
             if (string.IsNullOrEmpty(productId))
             {
+
                 return false;
+
             }
 
             var products = GetAllData();
@@ -59,25 +78,33 @@ namespace ContosoCrafts.WebSite.Services
             var data = products.FirstOrDefault(x => x.Id.Equals(productId));
             if (data == null)
             {
+
                 return false;
+
             }
 
             // Check Rating for boundaries, do not allow ratings below 0
             if (rating < 0)
             {
+
                 return false;
+
             }
 
             // Check Rating for boundaries, do not allow ratings above 5
             if (rating > 5)
             {
+
                 return false;
+
             }
 
             // Check to see if the rating exist, if there are none, then create the array
             if (data.Ratings == null)
             {
+
                 data.Ratings = new int[] { };
+
             }
 
             // Add the Rating to the Array
@@ -89,6 +116,7 @@ namespace ContosoCrafts.WebSite.Services
             SaveData(products);
 
             return true;
+
         }
 
         /// <summary>
@@ -99,11 +127,14 @@ namespace ContosoCrafts.WebSite.Services
         /// <param name="data"></param>
         public ProductModel UpdateData(ProductModel data)
         {
+
             var products = GetAllData();
             var productData = products.FirstOrDefault(x => x.Id.Equals(data.Id));
             if (productData == null)
             {
+
                 return null;
+
             }
 
             // Update the data to the new passed in values
@@ -115,6 +146,7 @@ namespace ContosoCrafts.WebSite.Services
             SaveData(products);
 
             return productData;
+
         }
 
         /// <summary>
@@ -125,15 +157,22 @@ namespace ContosoCrafts.WebSite.Services
 
             using (var outputStream = File.Create(JsonFileName))
             {
+
                 JsonSerializer.Serialize<IEnumerable<ProductModel>>(
                     new Utf8JsonWriter(outputStream, new JsonWriterOptions
                     {
+
                         SkipValidation = true,
                         Indented = true
+
                     }),
+
                     products
+
                 );
+
             }
+
         }
 
         /// <summary>
@@ -143,14 +182,17 @@ namespace ContosoCrafts.WebSite.Services
         /// <returns></returns>
         public ProductModel CreateData()
         {
+
             var data = new ProductModel()
             {
+
                 Id = System.Guid.NewGuid().ToString(),
                 Title = "",
                 Description = "",
                 Url = "",
                 Image = "",
                 GitHub=""
+
             };
 
             // Get the current set, and append the new record to it because IEnumerable does not have Add
@@ -160,6 +202,7 @@ namespace ContosoCrafts.WebSite.Services
             SaveData(dataSet);
 
             return data;
+
         }
 
         /// <summary>
@@ -177,46 +220,71 @@ namespace ContosoCrafts.WebSite.Services
             SaveData(newDataSet);
 
             return data;
+
         }
 
         public bool WebsiteCounter(string id)
         {
+
             var products = GetAllData();
             var data = products.FirstOrDefault(x => x.Id.Equals(id));
+
             if (string.IsNullOrEmpty(id))
             {
+
                 return false;
+
             }
+
             if (data == null)
             {
+
                 return false;
+
             }
+
             if (data.Counter >= 0)
             {
+
                 data.Counter += 1;
                 SaveData(products);
+
             }
+
             return true;
+
         }
 
         public bool UrlCounter(string id)
         {
+
             var products = GetAllData();
             var data = products.FirstOrDefault(x => x.Id.Equals(id));
+
             if (string.IsNullOrEmpty(id))
             {
+
                 return false;
+
             }
             if (data == null)
             {
+
                 return false;
+
             }
             if (data.UrlCounter >= 0)
             {
+
                 data.UrlCounter += 1;
                 SaveData(products);
+
             }
+
             return true;
+
         }
+
     }
+
 }
