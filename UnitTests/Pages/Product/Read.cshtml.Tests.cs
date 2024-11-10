@@ -1,11 +1,19 @@
 ﻿using Microsoft.AspNetCore.Http;
+
 using Microsoft.AspNetCore.Mvc;
+
 using Microsoft.AspNetCore.Mvc.Routing;
+
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
+
 using Microsoft.AspNetCore.Mvc.RazorPages;
+
 using Microsoft.AspNetCore.Routing;
+
 using Microsoft.AspNetCore.Hosting;
+
 using Microsoft.Extensions.Logging;
 
 using Moq;
@@ -16,17 +24,27 @@ using ContosoCrafts.WebSite.Services;
 
 namespace UnitTests.Pages.Product.Read
 {
+
     public class ReadTests
     {
+
         #region TestSetup
         public static IUrlHelperFactory UrlHelperFactory;
+
         public static DefaultHttpContext HttpContextDefault;
+
         public static IWebHostEnvironment WebHostEnvironment;
+
         public static ModelStateDictionary ModelState;
+
         public static ActionContext ActionContext;
+
         public static EmptyModelMetadataProvider ModelMetadataProvider;
+
         public static ViewDataDictionary TestsViewData;
+
         public static TempDataDictionary TempData;
+
         public static PageContext PageContext;
 
         public static ReadModel PageModel;
@@ -34,9 +52,12 @@ namespace UnitTests.Pages.Product.Read
         [SetUp]
         public void TestInitialize()
         {
+
             HttpContextDefault = new DefaultHttpContext()
             {
+
                 //RequestServices = serviceProviderMock.Object,
+
             };
 
             ModelState = new ModelStateDictionary();
@@ -44,12 +65,16 @@ namespace UnitTests.Pages.Product.Read
             ActionContext = new ActionContext(HttpContextDefault, HttpContextDefault.GetRouteData(), new PageActionDescriptor(), ModelState);
 
             ModelMetadataProvider = new EmptyModelMetadataProvider();
+
             TestsViewData = new ViewDataDictionary(ModelMetadataProvider, ModelState);
+
             TempData = new TempDataDictionary(HttpContextDefault, Mock.Of<ITempDataProvider>());
 
             PageContext = new PageContext(ActionContext)
             {
+
                 ViewData = TestsViewData,
+
             };
 
             var mockWebHostEnvironment = new Mock<IWebHostEnvironment>();
@@ -64,6 +89,7 @@ namespace UnitTests.Pages.Product.Read
 
             PageModel = new ReadModel(productService)
             {
+
             };
         }
         #endregion TestSetup
@@ -72,6 +98,7 @@ namespace UnitTests.Pages.Product.Read
         [Test]
         public void OnGet_Valid_Should_Return_Valid_State()
         {
+
             // Arrange
             var data = TestHelper.ProductService.CreateData();
 
@@ -80,7 +107,10 @@ namespace UnitTests.Pages.Product.Read
 
             // Assert
             Assert.That(PageModel.ModelState.IsValid, Is.EqualTo(true));
+
         }
         #endregion OnGet
+
     }
+
 }
