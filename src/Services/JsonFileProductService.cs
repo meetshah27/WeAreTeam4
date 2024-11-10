@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 using System.Data;
@@ -142,6 +143,7 @@ namespace ContosoCrafts.WebSite.Services
             productData.Description = data.Description.Trim();
             productData.Url = data.Url;
             productData.Image = data.Image;
+            productData.GitHub = data.GitHub;
 
             SaveData(products);
 
@@ -284,6 +286,15 @@ namespace ContosoCrafts.WebSite.Services
             return true;
 
         }
+        public ProductModel GetProductById(string id)
+        {
+            // Get the list of all products
+            var products = GetAllData();
+
+            // Search for the product with the specified ID (case-insensitive)
+            return products.FirstOrDefault(p => p.Id.Equals(id, StringComparison.OrdinalIgnoreCase));
+        }
+
 
     }
 
