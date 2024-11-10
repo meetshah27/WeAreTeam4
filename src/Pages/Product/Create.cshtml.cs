@@ -6,8 +6,29 @@ using Microsoft.AspNetCore.Mvc;        // Importing ASP.NET MVC components
 
 using Microsoft.AspNetCore.Mvc.RazorPages;  // Importing Razor Pages components
 
+using System.ComponentModel.DataAnnotations;
+
+
 public class CreateModel : PageModel
 {
+    [Required(ErrorMessage = "Title is required.")]
+    [StringLength(100, ErrorMessage = "Title cannot exceed 100 characters.")]
+    public string Title { get; set; }
+
+    [Required(ErrorMessage = "Description is required.")]
+    [StringLength(500, ErrorMessage = "Description cannot exceed 500 characters.")]
+    public string Description { get; set; }
+
+    [Required(ErrorMessage = "URL is required.")]
+    [Url(ErrorMessage = "Please enter a valid URL.")]
+    public string ProductUrl { get; set; }
+
+    [Required(ErrorMessage = "Image URL is required.")]
+    [Url(ErrorMessage = "Please enter a valid Image URL.")]
+    public string Image { get; set; }
+
+    [Range(0, int.MaxValue, ErrorMessage = "GitHub field cannot be negative.")]
+    public string GitHub { get; set; }
     // Data middle-tier service to interact with product data
     public JsonFileProductService ProductService { get; }
 
