@@ -1,26 +1,36 @@
-﻿using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
+
 using System.Linq;
+
 using Microsoft.AspNetCore.Hosting;
+
 using Microsoft.AspNetCore.Mvc;
+
 using Moq;
+
 using NUnit.Framework;
+
 using ContosoCrafts.WebSite.Controllers;
-using ContosoCrafts.WebSite.Models;
+
 using ContosoCrafts.WebSite.Services;
 
 namespace UnitTests.Controllers
 {
+
     [TestFixture]
     public class ProductsControllerTests
     {
+
         private ProductsController _controller;
+
         private JsonFileProductService _productService;
+
         private string _testWebRootPath;
 
         [SetUp]
         public void Setup()
         {
+
             // Create a temporary directory to act as WebRootPath
             _testWebRootPath = Path.Combine(Path.GetTempPath(), "TestWebRoot");
             Directory.CreateDirectory(_testWebRootPath);
@@ -57,6 +67,7 @@ namespace UnitTests.Controllers
                     ""Counter"": 0,
                     ""UrlCounter"": 0
                 }
+
             ]");
 
             // Mock IWebHostEnvironment to return the test WebRootPath
@@ -68,43 +79,55 @@ namespace UnitTests.Controllers
 
             // Initialize the controller with the product service
             _controller = new ProductsController(_productService);
+
         }
 
         [TearDown]
         public void TearDown()
         {
+
             // Clean up the temporary directory after the tests
             if (Directory.Exists(_testWebRootPath))
             {
+
                 Directory.Delete(_testWebRootPath, true);
+
             }
+
         }
 
         [Test]
         public void Constructor_Should_Initialize_ProductService()
         {
+
             // Assert
             Assert.That(_controller.ProductService, Is.EqualTo(_productService), "Expected ProductService to be initialized with the provided service.");
+
         }
 
         [Test]
         public void Get_Should_Return_All_Products()
         {
+
             // Act
             var result = _controller.Get();
 
             // Assert
             Assert.That(result.Count(), Is.EqualTo(2), "Expected Get() to return two products.");
+
         }
 
         [Test]
         public void Patch_Should_Add_Rating_To_Product_And_Return_Ok()
         {
+
             // Arrange
             var request = new ProductsController.RatingRequest
             {
+
                 ProductId = "jenlooper-light",
                 Rating = 10
+
             };
 
             // Act
@@ -125,6 +148,9 @@ namespace UnitTests.Controllers
 
             // Check if the Ratings array contains the new rating
             Assert.That(product.Ratings, Contains.Item(5), "Product Ratings should contain the new rating.");
+
         }
+
     }
+
 }
