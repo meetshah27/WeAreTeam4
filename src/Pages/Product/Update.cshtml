@@ -16,8 +16,8 @@
 
         <div class="form-group">
             <label asp-for="Product.Title" class="control-label"></label>
-            <input asp-for="Product.Title" class="form-control" placeholder="Enter Title" />
-            <span asp-validation-for="Product.Title" class="text-danger"></span>
+            <input asp-for="Product.Title" required data-val="true" data-val-required="Title is required." class="form-control" placeholder="Enter Title" />
+            <span asp-validation-for="Product.Title" class="text-danger field-validation-error"></span>
         </div>
 
         <div class="form-group">
