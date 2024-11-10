@@ -10,21 +10,27 @@ using ContosoCrafts.WebSite.Pages;
 
 namespace UnitTests.Pages.Error
 {
+
     public class ErrorTests
     {
+
         #region TestSetup
         public static ErrorModel PageModel;
 
         [SetUp]
         public void TestInitialize()
         {
+
             var MockLoggerDirect = Mock.Of<ILogger<ErrorModel>>();
 
             PageModel = new ErrorModel(MockLoggerDirect)
             {
+
                 PageContext = TestHelper.PageContext,
                 TempData = TestHelper.TempData,
+
             };
+
         }
 
         #endregion TestSetup
@@ -33,6 +39,7 @@ namespace UnitTests.Pages.Error
         [Test]
         public void OnGet_Valid_Activity_Set_Should_Return_RequestId()
         {
+
             // Arrange
 
             Activity activity = new Activity("activity");
@@ -65,5 +72,7 @@ namespace UnitTests.Pages.Error
             Assert.That(PageModel.ShowRequestId, Is.EqualTo(true));
         }
         #endregion OnGet
+
     }
+
 }
