@@ -1,3 +1,5 @@
+using System;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;                     // Importing LINQ for querying collections
 
 using ContosoCrafts.WebSite.Models;    // Importing models for product representation
@@ -10,8 +12,27 @@ using Microsoft.AspNetCore.Mvc.RazorPages;   // Importing Razor Pages components
 
 public class UpdateModel : PageModel
 {
+    [Required(ErrorMessage = "Title is required.")]
+    [StringLength(100, ErrorMessage = "Title cannot exceed 100 characters.")]
+    public string Title { get; set; }
 
-     // Data middle-tier service to manage product data
+    [Required(ErrorMessage = "Description is required.")]
+    [StringLength(1000, ErrorMessage = "Description cannot exceed 1000 characters.")]
+    public string Description { get; set; }
+
+    [Required(ErrorMessage = "URL is required.")]
+    [Url(ErrorMessage = "Please enter a valid URL.")]
+    public string ProductUrl { get; set; }
+
+    [Required(ErrorMessage = "Image URL is required.")]
+    [Url(ErrorMessage = "Please enter a valid Image URL.")]
+    public string Image { get; set; }
+
+    [Required(ErrorMessage = "GitHub URL is required.")]
+    [Url(ErrorMessage = "Please enter a valid GitHub URL.")]
+    public string GitHub { get; set; }
+
+    // Data middle-tier service to manage product data
     public JsonFileProductService ProductService { get; }
 
     /// <summary>  /// Default Constructor for UpdateModel.
@@ -43,7 +64,7 @@ public class UpdateModel : PageModel
         // Check if the model state is valid; if not, return to the same page to display errors
         if (ModelState.IsValid == false)
         {
-
+            
             return Page();
 
         }
