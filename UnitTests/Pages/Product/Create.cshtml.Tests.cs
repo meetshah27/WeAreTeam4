@@ -22,6 +22,10 @@ using NUnit.Framework;
 
 using ContosoCrafts.WebSite.Services;
 
+using System.Linq;
+
+
+
 
 namespace UnitTests.Pages.Product.Create
 {
@@ -50,7 +54,10 @@ namespace UnitTests.Pages.Product.Create
 
         public static CreateModel PageModel;
 
+        public JsonFileProductService ProductService;
+
         [SetUp]
+
         public void TestInitialize()
         {
 
@@ -70,7 +77,7 @@ namespace UnitTests.Pages.Product.Create
             TestsViewData = new ViewDataDictionary(ModelMetadataProvider, ModelState);
 
             TempData = new TempDataDictionary(HttpContextDefault, Mock.Of<ITempDataProvider>());
-
+           
             PageContext = new PageContext(ActionContext)
             {
 
@@ -176,6 +183,52 @@ namespace UnitTests.Pages.Product.Create
 
         }
         #endregion CreateModel
+        #region DeleteData Method Test Cases
+        [Test]
+        public void DeleteData_ShouldRemoveProduct_WhenProductExists()
+        {
+            // Arrange
+            var product = ProductService.CreateData(); // Create a new product
+            var productId = product.Id; // Get the ID of the product to delete
+            var initialCount = ProductService.GetAllData().Count();
+
+            // Act
+            var deletedProduct = ProductService.DeleteData(productId); // Delete the product
+            var resultCount = ProductService.GetAllData().Count(); // Get the count of products after deletion
+
+            // Assert
+            Assert.That(deletedProduct, Is.Not.Null, "Deleted product should not be null.");
+            Assert.That(resultCount, Is.EqualTo(initialCount - 1), "Product count should decrease by 1 after deletion.");
+            Assert.That(ProductService.GetAllData().Any(p => p.Id == productId), Is.False, "Deleted product should no longer exist in the data set.");
+        }
+
+        [Test]
+        public void DeleteData_ShouldReturnNull_WhenProductDoesNotExist()
+        {
+            // Act
+            var result = ProductService.DeleteData("NonExistentId"); // Try to delete a product that doesn't exist
+
+            // Assert
+            Assert.That(result, Is.Null, "DeleteData should return null when trying to delete a non-existent product.");
+        }
+
+        [Test]
+        public void DeleteData_ShouldNotAffectOtherProducts_WhenProductIsDeleted()
+        {
+            // Arrange
+            var product1 = ProductService.CreateData(); // Create product 1
+            var product2 = ProductService.CreateData(); // Create product 2
+            var initialCount = ProductService.GetAllData().Count();
+
+            // Act
+            ProductService.DeleteData(product1.Id); // Delete product 1
+            var resultCount = ProductService.GetAllData().Count(); // Get the count of products after deletion
+
+            // Assert
+            Assert.That(resultCount, Is.EqualTo(initialCount - 1), "Product count should decrease by 1.");
+            Assert.That(ProductService.GetAllData().Any(p => p.Id == product2.Id), Is.True, "Other products should not be affected by the deletion.");
+        }
+        #endregion DeleteData Method Test Cases
 
     }
 
