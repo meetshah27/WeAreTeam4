@@ -1,5 +1,5 @@
-using System;
 using System.ComponentModel.DataAnnotations;
+
 using System.Linq;                     // Importing LINQ for querying collections
 
 using ContosoCrafts.WebSite.Models;    // Importing models for product representation
