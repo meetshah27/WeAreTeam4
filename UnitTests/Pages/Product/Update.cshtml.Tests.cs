@@ -21,6 +21,7 @@ using NUnit.Framework;
 using ContosoCrafts.WebSite.Services;
 
 using ContosoCrafts.WebSite.Models;
+using System.Linq;
 
 namespace UnitTests.Pages.Product.Update
 
@@ -233,5 +234,56 @@ namespace UnitTests.Pages.Product.Update
             Assert.That(updateModel.ProductService, Is.EqualTo(mockProductService.Object), "ProductService should match the provided instance.");
 
         }
+        [Test]
+        public void DeleteData_ShouldRemoveProduct_WhenProductExists()
+        {
+            // Arrange
+            var mockProductService = new Mock<JsonFileProductService>(Mock.Of<IWebHostEnvironment>());
+            var productService = mockProductService.Object;
+            var productToDelete = productService.CreateData(); // Create a new product
+
+            // Act
+            var deletedProduct = productService.DeleteData(productToDelete.Id); // Delete the product
+            var productsAfterDeletion = productService.GetAllData(); // Get the list after deletion
+
+            // Assert
+            Assert.That(deletedProduct, Is.Not.Null, "The deleted product should not be null.");
+            Assert.That(productsAfterDeletion.Count(), Is.EqualTo(0), "The product count should decrease by 1 after deletion.");
+            Assert.That(productsAfterDeletion.Any(p => p.Id == productToDelete.Id), Is.False, "The deleted product should not exist in the data set.");
+        }
+        [Test]
+        public void DeleteData_ShouldReturnNull_WhenProductDoesNotExist()
+        {
+            // Arrange
+            var mockProductService = new Mock<JsonFileProductService>(Mock.Of<IWebHostEnvironment>());
+            var productService = mockProductService.Object;
+
+            // Act
+            var result = productService.DeleteData("NonExistentId"); // Try to delete a non-existent product
+            var productsAfterAttempt = productService.GetAllData(); // Verify product list remains unchanged
+
+            // Assert
+            Assert.That(result, Is.Null, "DeleteData should return null when trying to delete a non-existent product.");
+            Assert.That(productsAfterAttempt.Count(), Is.EqualTo(0), "The product list should remain unchanged when deleting a non-existent product.");
+        }
+        [Test]
+        public void DeleteData_ShouldNotAffectOtherProducts_WhenProductIsDeleted()
+        {
+            // Arrange
+            var mockProductService = new Mock<JsonFileProductService>(Mock.Of<IWebHostEnvironment>());
+            var productService = mockProductService.Object;
+            var product1 = productService.CreateData(); // Create product 1
+            var product2 = productService.CreateData(); // Create product 2
+
+            // Act
+            productService.DeleteData(product1.Id); // Delete product 1
+            var productsAfterDeletion = productService.GetAllData(); // Get products after deletion
+
+            // Assert
+            Assert.That(productsAfterDeletion.Count(), Is.EqualTo(1), "Only one product should remain after deletion.");
+            Assert.That(productsAfterDeletion.Any(p => p.Id == product2.Id), Is.True, "Other products should not be affected by the deletion.");
+        }
+
+
     }
 }
