@@ -114,7 +114,7 @@ namespace UnitTests.Pages.Product.Create
             PageModel.OnGet();
 
             // Assert
-            Assert.That(PageModel.ModelState.IsValid, Is.EqualTo(true));
+            Assert.That(PageModel.ModelState.IsValid, Is.EqualTo(true), "Valid input should return valid ModelState");
 
         }
         [Test]
@@ -128,7 +128,7 @@ namespace UnitTests.Pages.Product.Create
             PageModel.OnGet();
 
             // Assert
-            Assert.That(PageModel.Product, Is.Not.Null);
+            Assert.That(PageModel.Product, Is.Not.Null, "Valid input should result in a page with a non-null product");
 
         }
         #endregion OnGet
