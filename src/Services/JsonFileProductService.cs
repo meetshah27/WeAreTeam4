@@ -1,4 +1,4 @@
-using System;
+
 using System.Collections.Generic;
 
 using System.Data;
@@ -285,14 +285,6 @@ namespace ContosoCrafts.WebSite.Services
 
             return true;
 
-        }
-        public ProductModel GetProductById(string id)
-        {
-            // Get the list of all products
-            var products = GetAllData();
-
-            // Search for the product with the specified ID (case-insensitive)
-            return products.FirstOrDefault(p => p.Id.Equals(id, StringComparison.OrdinalIgnoreCase));
         }
 
 
