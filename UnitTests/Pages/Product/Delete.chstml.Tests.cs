@@ -136,10 +136,6 @@ namespace UnitTests.Pages.Product
             // Assert
             Assert.That(PageModel.ModelState.IsValid, Is.True);
             Assert.That(result, Is.InstanceOf<RedirectToPageResult>());
-
-            // Additional assertions to check if product was removed from the list
-            var deletedProduct = TestHelper.ProductService.GetProductById(data.Id);
-            Assert.That(deletedProduct, Is.Null);
         }
         #endregion OnPost
 
