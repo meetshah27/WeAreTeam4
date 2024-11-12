@@ -106,7 +106,7 @@ namespace UnitTests.Pages.Product.Read
             PageModel.OnGet(data.Id);
 
             // Assert
-            Assert.That(PageModel.ModelState.IsValid, Is.EqualTo(true));
+            Assert.That(PageModel.ModelState.IsValid, Is.EqualTo(true), "Read Page should return a valid state");
 
         }
         #endregion OnGet
