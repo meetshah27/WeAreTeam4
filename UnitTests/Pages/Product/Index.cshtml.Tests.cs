@@ -111,8 +111,8 @@ namespace UnitTests.Pages.Product.Index
             PageModel.OnGet();
 
             // Assert
-            Assert.That(PageModel.ModelState.IsValid, Is.EqualTo(true));
-            Assert.That(PageModel.Products.ToList().Any(), Is.EqualTo(true));
+            Assert.That(PageModel.ModelState.IsValid, Is.EqualTo(true), "Index page should return a valid state");
+            Assert.That(PageModel.Products.ToList().Any(), Is.EqualTo(true), "Index page's list of products should exist");
 
         }
         #endregion OnGet
