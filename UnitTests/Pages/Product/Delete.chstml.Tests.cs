@@ -117,9 +117,9 @@ namespace UnitTests.Pages.Product
             var result = PageModel.OnPost(null);
 
             // Assert
-            Assert.That(PageModel.ModelState.IsValid, Is.False);
-            Assert.That(result, Is.InstanceOf<PageResult>());  //Ensures that the result is a PageResult, indicating an error or invalid state.
-            Assert.That(PageModel.ProductId, Is.Null);        //Verifies that no product was loaded or deleted.
+            Assert.That(PageModel.ModelState.IsValid, Is.False, "PageModel should have invalid state when error exists.");
+            Assert.That(result, Is.InstanceOf<PageResult>(), "Should return PageResult in event of an error.");
+            Assert.That(PageModel.ProductId, Is.Null, "PageModel Product Id should be null.");
         }
 
 
@@ -134,8 +134,8 @@ namespace UnitTests.Pages.Product
             var result = PageModel.OnPost(data.Id);
 
             // Assert
-            Assert.That(PageModel.ModelState.IsValid, Is.True);
-            Assert.That(result, Is.InstanceOf<RedirectToPageResult>());
+            Assert.That(PageModel.ModelState.IsValid, Is.True, "Valid input should return valid ModelState.");
+            Assert.That(result, Is.InstanceOf<RedirectToPageResult>(), "Valid input should return a RedirectToPageResult, as the page is redirecting to a new page.");
         }
         #endregion OnPost
 
