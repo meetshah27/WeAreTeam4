@@ -123,8 +123,8 @@ namespace UnitTests.Pages.Product.Update
             var result = model.OnPost();
 
             // Assert
-            Assert.That(result, Is.TypeOf<PageResult>());
-            Assert.That(model.ModelState.IsValid, Is.False);
+            Assert.That(result, Is.TypeOf<PageResult>(), "Invalid URL input should result in returning the page.");
+            Assert.That(model.ModelState.IsValid, Is.False, "ModelState should be invalid for an invalid URL.");
         }
 
         /// <summary>
@@ -151,10 +151,10 @@ namespace UnitTests.Pages.Product.Update
             var result = model.OnPost() as PageResult;
 
             // Assert
-            Assert.That(result, Is.Not.Null);
-            Assert.That(model.ModelState.ErrorCount, Is.EqualTo(2));
-            Assert.That(model.ModelState.Keys, Does.Contain("Product.Title"));
-            Assert.That(model.ModelState.Keys, Does.Contain("Product.Description"));
+            Assert.That(result, Is.Not.Null, "Missing required fields should return the page.");
+            Assert.That(model.ModelState.ErrorCount, Is.EqualTo(2), "ModelState should capture two errors for missing fields.");
+            Assert.That(model.ModelState.Keys, Does.Contain("Product.Title"), "ModelState should capture an error for missing Product.Title.");
+            Assert.That(model.ModelState.Keys, Does.Contain("Product.Description"), "ModelState should capture an error for missing Product.Description.");
 
         }
 
@@ -189,7 +189,7 @@ namespace UnitTests.Pages.Product.Update
             PageModel.OnGet(id);
 
             // Assert
-            Assert.That(PageModel.ModelState.IsValid, Is.EqualTo(true));
+            Assert.That(PageModel.ModelState.IsValid, Is.EqualTo(true), "OnGet should result in a valid ModelState for a valid product ID.");
 
         }
 
@@ -209,8 +209,8 @@ namespace UnitTests.Pages.Product.Update
             var model = new UpdateModel(mockProductService.Object);
 
             // Assert
-            Assert.That(model.ProductService, Is.Not.Null);
-            Assert.That(model.ProductService, Is.EqualTo(mockProductService.Object));
+            Assert.That(model.ProductService, Is.Not.Null, "ProductService should be initialized and not null.");
+            Assert.That(model.ProductService, Is.EqualTo(mockProductService.Object), "ProductService should match the provided mock instance.");
 
         }
 
