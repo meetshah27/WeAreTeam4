@@ -126,7 +126,7 @@ namespace UnitTests.Controllers
             {
 
                 ProductId = "jenlooper-light",
-                Rating = 10
+                Rating = 4
 
             };
 
@@ -147,7 +147,7 @@ namespace UnitTests.Controllers
             Assert.That(product.Ratings, Is.Not.Null, "Product Ratings should not be.");
 
             // Check if the Ratings array contains the new rating
-            Assert.That(product.Ratings, Contains.Item(5), "Product Ratings should contain the new rating.");
+            Assert.That(product.Ratings, Contains.Item(4), "Product Ratings should contain the new rating.");
 
         }
 
