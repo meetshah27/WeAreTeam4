@@ -7,7 +7,10 @@
     "Url": "https://www.coursera.org",
     "Title": "Coursera123",
     "Description": "An online learning platform partnering with universities and organizations to offer courses \u0026 specializations. Users can access high-quality educational content across various fields.",
-    "Ratings": null,
+    "Ratings": [
+      1,
+      2
+    ],
     "Counter": 0,
     "UrlCounter": 0
   },
