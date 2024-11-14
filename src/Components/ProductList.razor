@@ -6,21 +6,21 @@
 <div class="card-columns">
     @foreach (var product in ProductService.GetAllData())
     {
-        <div class="card">
-            <div class="card-img" style="background-image: url('@product.Image');">
+        <a href="javascript:void(0);" @onclick="(e => { SelectProduct(product.Id); WebsiteCounter(); })"
+       data-toggle="modal" data-target="#productModal" class="card-link">
+            <div class="card">
+                <div class="card-img" style="background-image: url('@product.Image');">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">@product.Title</h5>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">
+                        <div class="btn btn-primary">More Info</div> <!-- Replaced button with div styled as a button -->
+                    </small>
+                </div>
             </div>
-            <div class="card-body">
-                <h5 class="card-title">@product.Title</h5>
-            </div>
-            <div class="card-footer">
-                <small class="text-muted">
-                    <button @onclick="(e => { SelectProduct(product.Id); WebsiteCounter(); })"
-                            data-toggle="modal" data-target="#productModal" class="btn btn-primary">
-                        More Info
-                    </button>
-                </small>
-            </div>
-        </div>
+        </a>
     }
 </div>
 
