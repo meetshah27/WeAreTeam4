@@ -64,9 +64,7 @@ public class UpdateModel : PageModel
         // Check if the model state is valid; if not, return to the same page to display errors
         if (ModelState.IsValid == false)
         {
-            
             return Page();
-
         }
 
         ProductService.UpdateData(Product);   // Update the product data in the service with the provided Product model
