@@ -16,7 +16,7 @@ public class CreateModel : PageModel
     public string Title { get; set; }
 
     [Required(ErrorMessage = "Description is required.")]
-    [StringLength(500, ErrorMessage = "Description cannot exceed 500 characters.")]
+    [StringLength(1000, ErrorMessage = "Description cannot exceed 500 characters.")]
     public string Description { get; set; }
 
     [Required(ErrorMessage = "URL is required.")]
@@ -27,8 +27,10 @@ public class CreateModel : PageModel
     [Url(ErrorMessage = "Please enter a valid Image URL.")]
     public string Image { get; set; }
 
-    [Range(0, int.MaxValue, ErrorMessage = "GitHub field cannot be negative.")]
+    [Required(ErrorMessage = "GitHub URL is required.")]
+    [Url(ErrorMessage = "Please enter a valid GitHub URL.")]
     public string GitHub { get; set; }
+
     // Data middle-tier service to interact with product data
     public JsonFileProductService ProductService { get; }
 
