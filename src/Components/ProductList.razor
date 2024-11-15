@@ -34,11 +34,39 @@
                         <a href="@selectedProduct.Url" target="_blank" @onclick="(e => UrlCounter())">@selectedProduct.Title</a>
                     </h5>
                     <span>
-                        <a href="@selectedProduct.GitHub" target="_blank" rel="noopener noreferrer" title="GitHub Repository">
+                        <a href="@selectedProduct.GitHub" target="_blank" rel="noopener noreferrer" title="GitHub Repository" class="github-link">
                             <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
-                             alt="GitHub" style="width:30px; height:30px;">
+                             alt="GitHub" class="github-icon">
                         </a>
                     </span>
+
+                    <style>
+                        /* Styling for GitHub link */
+                        .github-link {
+                            text-decoration: underline; /* Add underline to indicate it's clickable */
+                            color: #0366d6; /* Default color (GitHub blue) */
+                            transition: color 1s ease, transform 1s ease; /* Smooth transition for color and scaling */
+                        }
+
+                            /* Hover effect for GitHub link */
+                            .github-link:hover {
+                                color: #28a745; /* Change color to green on hover */
+                            }
+
+                        /* GitHub icon styling */
+                        .github-icon {
+                            width: 30px;
+                            height: 30px;
+                            transition: transform 1s ease; /* Smooth transition for scaling */
+                        }
+
+                        /* Hover effect for GitHub icon */
+                        .github-link:hover .github-icon {
+                            transform: scale(1.2); /* Slightly enlarges the icon */
+                        }
+                    </style>
+
+
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
