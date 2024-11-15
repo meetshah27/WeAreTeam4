@@ -109,6 +109,34 @@ namespace UnitTests.Pages.Product.Read
             Assert.That(PageModel.ModelState.IsValid, Is.EqualTo(true), "Read Page should return a valid state");
 
         }
+
+        [Test]
+        public void OnGet_Product_Null_Should_Redirect_To_Index()
+        {
+            // Arrange
+            var invalidId = "nonexistent-id"; // ID that doesn't match any product
+
+            // Act
+            var result = PageModel.OnGet(invalidId);
+
+            // Assert
+            Assert.That(result, Is.TypeOf<RedirectToPageResult>(), "Should redirect to the Index page");
+            var redirectResult = result as RedirectToPageResult;
+            Assert.That(redirectResult.PageName, Is.EqualTo("./Index"), "Redirect page should be './Index'");
+        }
+        [Test]
+        public void OnGet_Valid_Product_Should_Return_Page()
+        {
+            // Arrange
+            string Id= "sailorhg-corsage"; // Ensure the product has a valid title
+
+            // Act
+            var result = PageModel.OnGet(Id);
+
+            // Assert
+            Assert.That(result, Is.TypeOf<PageResult>(), "Should return the page when the product and title are valid");
+        }
+
         #endregion OnGet
 
     }
