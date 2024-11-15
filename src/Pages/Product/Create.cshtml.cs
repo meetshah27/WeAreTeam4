@@ -62,9 +62,7 @@ public class CreateModel : PageModel
         // Check if the model state is valid; if not, return to the same page
         if (ModelState.IsValid == false)
         {
-
             return Page();
-
         }
 
         // Update the data service with the new product information
