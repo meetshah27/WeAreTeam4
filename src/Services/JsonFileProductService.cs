@@ -73,9 +73,7 @@ namespace ContosoCrafts.WebSite.Services
             // Return false if product ID is invalid
             if (string.IsNullOrEmpty(productId))
             {
-
                 return false;
-
             }
 
             var products = GetAllData(); // Get all product data
@@ -85,33 +83,25 @@ namespace ContosoCrafts.WebSite.Services
             // Return false if the product is not found
             if (data == null)
             {
-
                 return false;
-
             }
 
             // Check Rating for boundaries, do not allow ratings below 0
             if (rating < 0)
             {
-
                 return false;
-
             }
 
             // Check if rating is within valid bounds (0-5)
             if (rating > 5)
             {
-
                 return false;
-
             }
 
             // If the product has no existing ratings, initialize an empty array
             if (data.Ratings == null)
             {
-
                 data.Ratings = new int[] { };
-
             }
 
             // Convert ratings array to a list to add the new rating
@@ -145,9 +135,7 @@ namespace ContosoCrafts.WebSite.Services
             // Return null if the product is not found
             if (productData == null)
             {
-
                 return null;
-
             }
 
             // Update product properties with new values
@@ -250,24 +238,18 @@ namespace ContosoCrafts.WebSite.Services
 
             if (string.IsNullOrEmpty(id))  // Return false if ID is invalid or product is not found
             {
-
                 return false;
-
             }
             // Check if the product data is not found(null)
             if (data == null) 
             {
-
                 return false; // Return false if the product does not exist
-
             }
             // Increment the visit counter if valid
             if (data.Counter >= 0)
             {
-
                 data.Counter += 1;
                 SaveData(products);  // Save the updated data
-
             }
 
             return true;
@@ -282,24 +264,18 @@ namespace ContosoCrafts.WebSite.Services
 
             if (string.IsNullOrEmpty(id)) // Return false if ID is invalid or product is not found
             {
-
                 return false;// Return false if the product does not exist
-
             }
             if (data == null)// Check if the product data is not found (null)
             {
-
                 return false;// Return false if the product does not exist
-
             }
             // Increment the URL click counter if valid
             if (data.UrlCounter >= 0)
             {
-
                 data.UrlCounter += 1;
                 // Save the updated data
                 SaveData(products);
-
             }
 
             return true;
