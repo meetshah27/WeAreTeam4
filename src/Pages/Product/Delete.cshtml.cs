@@ -40,9 +40,7 @@ public class DeleteModel : PageModel
         // Check if the model state is valid; if not, return to the same page
         if (ModelState.IsValid == false)
         {
-
             return Page();
-
         }
 
         // Delete the product with the given id
