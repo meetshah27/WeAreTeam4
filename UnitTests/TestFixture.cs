@@ -36,9 +36,7 @@ namespace UnitTests
             // Delete the Detination folder
             if (Directory.Exists(dataUTDirectory))
             {
-
                 Directory.Delete(dataUTDirectory, true);
-
             }
             
             // Make the directory
