@@ -7,7 +7,7 @@
     @foreach (var product in ProductService.GetAllData())
     {
         <a href="javascript:void(0);" @onclick="(e => { SelectProduct(product.Id); WebsiteCounter(); })"
-       data-toggle="modal" data-target="#productModal" class="card-link">
+       data-toggle="modal" data-target="#productModal" class="card-link" id="@(product.Id + "_MoreInfo")">
             <div class="card">
                 <div class="card-img" style="background-image: url('@product.Image');">
                 </div>
