@@ -103,5 +103,50 @@ namespace UnitTests.Components
             Assert.That(prePageMarkup.Contains("Be the first to vote!"), Is.EqualTo(true));
             Assert.That(postPageMarkup.Contains("1 Vote"), Is.EqualTo(true));
         }
+
+        [Test]
+        public void SubmitRating_Valid_ID_Click_Starred_Should_Uncheck_Higher_Stars_And_Increment_Count()
+        {
+            // Arrange
+            Services.AddSingleton<JsonFileProductService>(TestHelper.ProductService);
+            var id = "jenlooper-lightshow_MoreInfo";
+
+            var page = RenderComponent<ProductList>();
+
+            // Find product blocks
+            var buttonList = page.FindAll("A");
+
+            // Find the one that matches the ID looking for and click it
+            var button = buttonList.First(m => m.OuterHtml.Contains(id));
+            button.Click();
+
+            // Get star buttons
+            var starButtonList = page.FindAll("span");
+
+            // Get last star button from the list and click it
+            var starButton = starButtonList.Last(m => !string.IsNullOrEmpty(m.ClassName) && m.ClassName.Contains("fa fa-star"));
+            starButton.Click();
+
+            // Get the markup page pre-second-click
+            var prePageMarkup = page.Markup;
+
+            // Get updated star buttons
+            starButtonList = page.FindAll("span");
+
+            // Get the first clicked star button from the list
+            starButton = starButtonList.First(m => !string.IsNullOrEmpty(m.ClassName) && m.ClassName.Contains("fa fa-star checked"));
+
+            // Act
+            // Click the star button
+            starButton.Click();
+
+            // Get the markup page post-second-click
+            var postPageMarkup = page.Markup;
+
+            // Assert
+            // Confirm that the record has not changed
+            Assert.That(prePageMarkup.Contains("1 Vote"), Is.EqualTo(true));
+            Assert.That(postPageMarkup.Contains("2 Votes"), Is.EqualTo(true));
+        }
     }
 }
