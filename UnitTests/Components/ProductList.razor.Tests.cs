@@ -70,9 +70,11 @@ namespace UnitTests.Components
         public void SubmitRating_Valid_ID_Click_Unstarred_Should_Increment_Count_And_Check_Star()
         {
             // Arrange
-            Services.AddSingleton<JsonFileProductService>(TestHelper.ProductService);
-            var id = "jenlooper-lightshow_MoreInfo";
+            var data = TestHelper.ProductService.CreateData();
 
+            var id = data.Id + "_MoreInfo";
+
+            Services.AddSingleton<JsonFileProductService>(TestHelper.ProductService);
             var page = RenderComponent<ProductList>();
 
             // Find product blocks
@@ -108,9 +110,11 @@ namespace UnitTests.Components
         public void SubmitRating_Valid_ID_Click_Starred_Should_Uncheck_Higher_Stars_And_Increment_Count()
         {
             // Arrange
-            Services.AddSingleton<JsonFileProductService>(TestHelper.ProductService);
-            var id = "jenlooper-lightshow_MoreInfo";
+            var data = TestHelper.ProductService.CreateData();
 
+            var id = data.Id+"_MoreInfo";
+
+            Services.AddSingleton<JsonFileProductService>(TestHelper.ProductService);
             var page = RenderComponent<ProductList>();
 
             // Find product blocks
