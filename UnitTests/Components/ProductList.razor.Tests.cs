@@ -191,5 +191,46 @@ namespace UnitTests.Components
             Assert.That(prePageMarkup.Contains("0 %"), Is.EqualTo(true));
             Assert.That(postPageMarkup.Contains("100 %"), Is.EqualTo(true));
         }
+
+        [Test]
+        public void UrlCounter_Valid_ID_Percent_Should_Cap_At_100()
+        {
+            // Arrange
+            var data = TestHelper.ProductService.CreateData();
+
+            var id = data.Id + "_MoreInfo";
+
+            Services.AddSingleton<JsonFileProductService>(TestHelper.ProductService);
+            var page = RenderComponent<ProductList>();
+
+            // Find product blocks
+            var buttonList = page.FindAll("A");
+
+            // Find the one that matches the ID looking for and click it
+            var button = buttonList.First(m => m.OuterHtml.Contains(id));
+            button.Click();
+
+            // Find url
+            id = data.Id + "_Url";
+            buttonList = page.FindAll("A");
+            var url = buttonList.First(m => m.OuterHtml.Contains(id));
+
+            // Act
+            url.Click();
+
+            // Get the markup page before extra url click
+            var prePageMarkup = page.Markup;
+
+            // Click url again
+            url.Click();
+
+            // Get the markup page after extra url click
+            var postPageMarkup = page.Markup;
+
+
+            // Assert
+            Assert.That(prePageMarkup.Contains("100 %"), Is.EqualTo(true));
+            Assert.That(postPageMarkup.Contains("100 %"), Is.EqualTo(true));
+        }
     }
 }
