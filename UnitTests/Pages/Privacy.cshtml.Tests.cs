@@ -13,17 +13,18 @@ namespace UnitTests.Pages.Privacy
     {
 
         #region TestSetup
+        // Static instance of the PrivacyModel page model used for testing
         public static PrivacyModel PageModel;
 
         [SetUp]
         public void TestInitialize()
         {
 
-            var mockLoggerDirect = Mock.Of<ILogger<PrivacyModel>>();
+            var mockLoggerDirect = Mock.Of<ILogger<PrivacyModel>>(); // Mock the ILogger to simulate logging behavior
 
-            PageModel = new PrivacyModel(mockLoggerDirect)
+            PageModel = new PrivacyModel(mockLoggerDirect)// Initialize the PrivacyModel with the mocked logger
             {
-
+                // Set up the page context and temporary data using helper methods
                 PageContext = TestHelper.PageContext,
                 TempData = TestHelper.TempData,
 
@@ -39,13 +40,17 @@ namespace UnitTests.Pages.Privacy
         {
 
             // Arrange
+            // No additional setup is required as we're testing the default behavior
 
             // Act
+            // Call the OnGet method to simulate a GET request on the Privacy page
             PageModel.OnGet();
 
             // Reset
+            // No additional reset actions needed here
 
             // Assert
+            // Verify that the model state is valid after the OnGet call
             Assert.That(PageModel.ModelState.IsValid, Is.EqualTo(true));
 
         }
