@@ -15,17 +15,17 @@ namespace UnitTests.Pages.Index
     {
 
         #region TestSetup
-
+        // Static instance of the IndexModel page model used for testing
         public static IndexModel PageModel;
 
         [SetUp]
         public void TestInitialize()
         {
-            var mockLoggerDirect = Mock.Of<ILogger<IndexModel>>();
+            var mockLoggerDirect = Mock.Of<ILogger<IndexModel>>(); // Mock the ILogger to simulate logging behavior
 
-            PageModel = new IndexModel(mockLoggerDirect, TestHelper.ProductService)
+            PageModel = new IndexModel(mockLoggerDirect, TestHelper.ProductService)// Initialize the IndexModel with the mocked logger and ProductService
             {
-
+                // Additional setup can be added here if necessary
             };
 
         }
@@ -37,13 +37,15 @@ namespace UnitTests.Pages.Index
         public void OnGet_Valid_Should_Return_Products()
         {
             // Arrange
+            // No additional setup is required as we're testing the default behavior
 
             // Act
+            // Call the OnGet method to simulate a GET request on the Index page
             PageModel.OnGet();
 
             // Assert
-            Assert.That(PageModel.ModelState.IsValid, Is.EqualTo(true));
-            Assert.That(PageModel.Products.ToList().Any(), Is.EqualTo(true));
+            Assert.That(PageModel.ModelState.IsValid, Is.EqualTo(true));// Verify that the model state is valid after the OnGet call
+            Assert.That(PageModel.Products.ToList().Any(), Is.EqualTo(true));// Assert that the Products collection is not empty, indicating products were loaded
         }
         #endregion OnGet
 
