@@ -176,6 +176,19 @@ ul {
     background: -moz-linear-gradient(110deg, #252152 60%, #e9a8a6 60%);
     background: linear-gradient(110deg, #69225b 50%, #795ca3 60%);
 }
+
+.btn-secondary {
+    margin-left: 10px;
+    color: #fff;
+    background-color: #9B86BD;
+    border-color: #9B86BD;
+}
+    .btn-secondary:hover {
+        color: #fff;
+        background-color: #A65470;
+        border-color: #A65470;
+    }
+
 /*Action Buttons*/
 .btn-read {
     color: #fff;
@@ -206,3 +219,4 @@ ul {
         font-size: 1.2em;
         flex-wrap: wrap;
     }
+
