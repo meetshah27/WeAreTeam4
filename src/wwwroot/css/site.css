@@ -211,6 +211,54 @@ ul {
         background-color: #A65470;
         border-color: #A65470;
     }
+/* Styling for GitHub link */
+.github-link {
+    text-decoration: underline; /* Add underline to indicate it's clickable */
+    color: #0366d6; /* Default color (GitHub blue) */
+    transition: color 1s ease, transform 1s ease; /* Smooth transition for color and scaling */
+}
+
+    /* Hover effect for GitHub link */
+    .github-link:hover {
+        color: #28a745; /* Change color to green on hover */
+    }
+
+/* GitHub icon styling. */
+.github-icon {
+    width: 30px;
+    height: 30px;
+    transition: transform 1s ease; /* Smooth transition for scaling */
+}
+
+/* Hover effect for GitHub icon */
+.github-link:hover .github-icon {
+    transform: scale(1.2); /* Slightly enlarges the icon */
+}
+
+
+/* Styling for GitHub link */
+.github-link {
+    text-decoration: underline; /* Add underline to indicate it's clickable */
+    color: #0366d6; /* Default color (GitHub blue) */
+    transition: color 1s ease, transform 1s ease; /* Smooth transition for color and scaling */
+}
+
+/* Hover effect for GitHub link */
+.github-link:hover {
+    color: #28a745; /* Change color to green on hover */
+}
+
+/* GitHub icon styling. */
+.github-icon {
+    width: 30px;
+    height: 30px;
+    transition: transform 1s ease; /* Smooth transition for scaling */
+}
+
+/* Hover effect for GitHub icon */
+.github-link:hover .github-icon {
+    transform: scale(1.2); /* Slightly enlarges the icon */
+}
 /*Resposinve*/
 @media (max-width: 768px) {
     .navbar-nav {
@@ -218,5 +266,6 @@ ul {
         text-align: center;
         font-size: 1.2em;
         flex-wrap: wrap;
-    }
+    }  
+}
 
