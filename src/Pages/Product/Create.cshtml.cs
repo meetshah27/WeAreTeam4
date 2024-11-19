@@ -52,5 +52,17 @@ public class CreateModel : PageModel
         return RedirectToPage("./Index");
 
     }
+    public IActionResult OnPostCancel()
+    {
+        // Logic to delete the product
+        if (Product != null)
+        {
+            ProductService.DeleteData(Product.Id); // Ensure Product.Id exists and is valid
+        }
+
+        // Redirect to the Index page or another appropriate page
+        return RedirectToPage("./Index");
+    }
+
 
 }
