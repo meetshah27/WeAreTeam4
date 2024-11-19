@@ -46,7 +46,7 @@
 
         <div class="form-group">
             <input type="submit" value="Submit" class="btn btn-primary" />
-            <a asp-page="/Index" class="btn btn-secondary" onclick="return confirm('Are you sure you want to discard changes?');">Cancel</a>
+            <input type="submit" value="Cancel" class="btn btn-secondary" asp-page-handler="Cancel" formnovalidate />
         </div>
 
     </form>
