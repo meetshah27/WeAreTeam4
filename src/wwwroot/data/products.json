@@ -23,7 +23,7 @@
     "Title": "Flipkart",
     "Description": "Flipkart offers a wide range of products across categories such as electronics, home appliances, and fashion. This platform has a user-friendly interface, easy checkout process, and a variety of payment options.",
     "Ratings": null,
-    "Counter": 0,
+    "Counter": 2,
     "UrlCounter": 0
   },
   {
@@ -81,7 +81,7 @@
     "Title": "BharatPe",
     "Description": "BharatPe is an Indian fintech company that offers digital payment and financial services to small and medium-sized businesses, including offline merchants and kirana store owners.",
     "Ratings": null,
-    "Counter": 0,
+    "Counter": 2,
     "UrlCounter": 0
   },
   {
@@ -96,7 +96,7 @@
       1,
       2
     ],
-    "Counter": 8,
+    "Counter": 9,
     "UrlCounter": 1
   },
   {
