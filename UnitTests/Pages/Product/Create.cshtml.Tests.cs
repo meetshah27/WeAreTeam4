@@ -21,6 +21,7 @@ using Moq;
 using NUnit.Framework;
 
 using ContosoCrafts.WebSite.Services;
+using System.Linq;
 
 
 
@@ -207,7 +208,29 @@ namespace UnitTests.Pages.Product.Create
 
         }
         #endregion CreateModel
-        
+
+
+        /// <summary>
+        /// Tests that the product being created is not acually added to the overall list of products in the event that the user cancels the creation process
+        /// </summary>
+        #region OnPostCancel
+        [Test]
+        public void OnPostCancel_Should_Delete_Product_In_Progress()
+        {
+
+            // Arrange
+            var expectedData = TestHelper.ProductService.CreateData();// Expected data for validation
+            PageModel.OnGet(); // Calls the OnGet method to ensure product property is initialized
+
+            // Act
+            PageModel.OnPostCancel(); // Calls the OnPostCancel method to simulate cancelling the creation process
+
+            // Assert
+            Assert.That(TestHelper.ProductService.GetAllData().Any(m => m.Id == PageModel.Product.Id), Is.EqualTo(false), "Product should not exist after OnGetCancel() has been called");// Checks that product is properly deleted after OnPostCancel() is called
+
+        }
+        #endregion OnPostCancel
+
     }
 
 }
