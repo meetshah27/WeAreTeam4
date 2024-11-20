@@ -52,6 +52,10 @@ public class CreateModel : PageModel
         return RedirectToPage("./Index");
 
     }
+
+    /// <summary>
+    /// Delete the product being created and redirect the user back to the index page
+    /// </summary>
     public IActionResult OnPostCancel()
     {
         // Logic to delete the product
