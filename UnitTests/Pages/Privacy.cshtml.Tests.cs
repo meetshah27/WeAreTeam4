@@ -8,7 +8,10 @@ using ContosoCrafts.WebSite.Pages;
 
 namespace UnitTests.Pages.Privacy
 {
-
+    /// <summary>
+    /// Unit test class for the PrivacyModel page in the Privacy namespace.
+    /// This class contains test methods for verifying the behavior of the OnGet method in PrivacyModel.
+    /// </summary>
     public class PrivacyTests
     {
 
@@ -16,6 +19,10 @@ namespace UnitTests.Pages.Privacy
         // Static instance of the PrivacyModel page model used for testing
         public static PrivacyModel PageModel;
 
+        /// <summary>
+        /// Sets up the test environment by initializing the PrivacyModel with a mocked ILogger.
+        /// Configures the PageContext and TempData for the PrivacyModel.
+        /// </summary>
         [SetUp]
         public void TestInitialize()
         {
@@ -33,7 +40,10 @@ namespace UnitTests.Pages.Privacy
         }
 
         #endregion TestSetup
-
+        /// <summary>
+        /// Tests the OnGet method's behavior in the PrivacyModel.
+        /// Verifies that when OnGet is called, the ModelState remains valid, indicating successful page setup.
+        /// </summary>
         #region OnGet
         [Test]
         public void OnGet_Valid_Activity_Set_Should_Return_RequestId()
