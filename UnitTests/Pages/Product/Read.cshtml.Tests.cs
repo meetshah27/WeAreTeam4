@@ -24,11 +24,15 @@ using ContosoCrafts.WebSite.Services;
 
 namespace UnitTests.Pages.Product.Read
 {
-
+    /// <summary>
+    /// Unit test class for the ReadModel page in the Product namespace.
+    /// This class contains test methods for verifying the behavior of the OnGet method in ReadModel.
+    /// </summary>
     public class ReadTests
     {
 
         #region TestSetup
+   
         // Required dependencies and services for setting up the test environment.
         public static IUrlHelperFactory UrlHelperFactory;
 
@@ -95,7 +99,9 @@ namespace UnitTests.Pages.Product.Read
             };
         }
         #endregion TestSetup
-
+        /// <summary>
+        /// Test to verify that the OnGet method returns a valid model state when a valid product ID is provided.
+        /// </summary>
         #region OnGet
         [Test]
         public void OnGet_Valid_Should_Return_Valid_State()
@@ -111,7 +117,9 @@ namespace UnitTests.Pages.Product.Read
             Assert.That(PageModel.ModelState.IsValid, Is.EqualTo(true), "Read Page should return a valid state");
 
         }
-
+        /// <summary>
+        /// Test to verify that the OnGet method redirects to the Index page when a non-existent product ID is provided.
+        /// </summary>
         [Test]
         public void OnGet_Product_Null_Should_Redirect_To_Index()
         {
@@ -127,6 +135,9 @@ namespace UnitTests.Pages.Product.Read
             var redirectResult = result as RedirectToPageResult;
             Assert.That(redirectResult.PageName, Is.EqualTo("./Index"), "Redirect page should be './Index'");
         }
+        /// <summary>
+        /// Test to verify that the OnGet method successfully returns the page when a valid product ID is provided.
+        /// </summary>
         [Test]
         public void OnGet_Valid_Product_Should_Return_Page()
         {
