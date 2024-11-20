@@ -28,7 +28,10 @@ using ContosoCrafts.WebSite.Services;
 
 namespace UnitTests.Pages.Product.Create
 {
-
+    /// <summary>
+    /// Unit test class for the CreateModel page in the Product namespace.
+    /// Contains test methods to verify the behavior of the OnGet, OnPost methods, and the constructor.
+    /// </summary>
     public class CreateTests
     {
 
@@ -56,7 +59,10 @@ namespace UnitTests.Pages.Product.Create
 
 
         [SetUp]
-
+        /// <summary>
+        /// Initializes the setup for tests, creating mock dependencies and configuring the CreateModel
+        /// with necessary contexts such as HTTP context, ModelState, TempData, and PageContext.
+        /// </summary>
         public void TestInitialize()
         {
 
@@ -104,6 +110,10 @@ namespace UnitTests.Pages.Product.Create
         #endregion TestSetup
 
         #region OnGet
+        /// <summary>
+        /// Verifies that OnGet initializes with a valid ModelState.
+        /// Ensures that the ModelState is valid after calling OnGet.
+        /// </summary>
         [Test]
         public void OnGet_Valid_Should_Return_Valid_State()
         {
@@ -118,6 +128,10 @@ namespace UnitTests.Pages.Product.Create
             Assert.That(PageModel.ModelState.IsValid, Is.EqualTo(true), "Valid input should return valid ModelState");// Verifies that ModelState is valid after OnGet is called
 
         }
+        /// <summary>
+        /// Verifies that the OnGet method initializes the Product property.
+        /// Ensures that Product is not null after calling OnGet.
+        /// </summary>
         [Test]
         public void OnGet_Should_Initialize_Product_Property()
         {
@@ -135,6 +149,10 @@ namespace UnitTests.Pages.Product.Create
         #endregion OnGet
 
         #region onPost
+        /// <summary>
+        /// Verifies that OnPost with an invalid ModelState returns a PageResult.
+        /// Introduces a model state error to simulate invalid input and checks for PageResult return.
+        /// </summary>
         [Test]
         public void OnPost_InvalidModelState_Should_Return_PageResult()
         {
@@ -149,7 +167,10 @@ namespace UnitTests.Pages.Product.Create
             Assert.That(result, Is.TypeOf<PageResult>(), "Expected PageResult when ModelState is invalid."); // Ensures that OnPost returns a PageResult when ModelState is invalid
 
         }
-
+        /// <summary>
+        /// Verifies that OnPost maintains a non-null Product property.
+        /// Confirms that Product is not null after executing OnPost.
+        /// </summary>
         [Test]
         public void OnPost_Should_Have_Product_Not_Null()
         {
@@ -167,6 +188,10 @@ namespace UnitTests.Pages.Product.Create
         #endregion onPost
 
         #region CreateModel
+        /// <summary>
+        /// Tests that the constructor of CreateModel does not throw an exception when given a null ProductService.
+        /// Verifies that ProductService remains null when passed as null in the constructor.
+        /// </summary>
         [Test]
         public void Constructor_WithNullProductService_Should_NotThrowException()
         {
