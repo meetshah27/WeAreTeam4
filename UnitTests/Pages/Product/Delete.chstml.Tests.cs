@@ -22,7 +22,10 @@ using ContosoCrafts.WebSite.Services;
 
 namespace UnitTests.Pages.Product
 {
-
+    /// <summary>
+    /// Unit test class for the DeleteModel page in the Product namespace.
+    /// Contains test methods to verify the behavior of the OnGet and OnPost methods.
+    /// </summary>
     class DeleteTests
     {
 
@@ -45,6 +48,10 @@ namespace UnitTests.Pages.Product
         public static DeleteModel PageModel;
 
         [SetUp]
+        /// <summary>
+        /// Initializes the setup for tests, creating mock dependencies and configuring the DeleteModel
+        /// with necessary contexts such as HTTP context, ModelState, TempData, and PageContext.
+        /// </summary>
         public void TestInitialize()
         {
 
@@ -89,6 +96,10 @@ namespace UnitTests.Pages.Product
         #endregion TestSetup
 
         #region OnGet
+        /// <summary>
+        /// Verifies that OnGet with a valid product ID loads the Delete page with a valid ModelState
+        /// and the specified product ID. Confirms that the ModelState is valid, the ProductId is set correctly, and is not null.
+        /// </summary>
         [Test]
         public void OnGet_Valid_Should_Return_Valid_State()
         {
@@ -107,7 +118,10 @@ namespace UnitTests.Pages.Product
         #endregion OnGet
 
         #region OnPost
-
+        /// <summary>
+        /// Verifies that OnPost with an invalid (null) ProductId returns an invalid ModelState,
+        /// sets an error message in ModelState, and returns a PageResult. Confirms that the ProductId remains null.
+        /// </summary>
         [Test]
         public void OnPost_Invalid_Id_Should_Return_Invalid_State()
         {
@@ -124,7 +138,10 @@ namespace UnitTests.Pages.Product
             Assert.That(PageModel.ProductId, Is.Null, "PageModel Product Id should be null.");// Confirms ProductId is null
         }
 
-
+        /// <summary>
+        /// Verifies that OnPost with a valid product ID redirects to another page, indicating successful deletion.
+        /// Ensures ModelState is valid and that the result is a RedirectToPageResult, confirming the redirect behavior.
+        /// </summary>
         [Test]
         public void OnPost_Valid_Id_Should_Return_Valid_Id()
         {
