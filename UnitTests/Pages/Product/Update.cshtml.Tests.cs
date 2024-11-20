@@ -26,7 +26,10 @@ using System.Linq;
 namespace UnitTests.Pages.Product.Update
 
 {
-
+    /// <summary>
+    /// Unit test class for the UpdateModel page in the Update namespace.
+    /// Contains test methods to verify the behavior of OnGet and OnPost methods, as well as constructor validation.
+    /// </summary>
     public class UpdateTests
     {
         #region TestSetup
@@ -163,7 +166,10 @@ namespace UnitTests.Pages.Product.Update
             Assert.That(model.ModelState.Keys, Does.Contain("Product.Description"), "ModelState should capture an error for missing Product.Description.");// Verifies that the ModelState includes an error for the missing "Description" field.
 
         }
-
+        /// <summary>
+        /// Tests that OnPost redirects to the Index page when the model is valid.
+        /// Verifies that the Product property is set and not null after a valid post.
+        /// </summary>
         [Test]
         public void OnPost_ValidModel_ShouldRedirectToIndex()
         {
@@ -182,8 +188,9 @@ namespace UnitTests.Pages.Product.Update
 
         #endregion OnPost
 
-        /// <summary>
-        /// Verifies that OnGet correctly initializes a valid model state when provided with a valid product ID.
+        //// <summary>
+        /// Tests that OnGet initializes a valid model state when provided with a valid product ID.
+        /// Verifies that the ModelState is valid and data is correctly loaded.
         /// </summary>
 
         [Test]
@@ -204,8 +211,8 @@ namespace UnitTests.Pages.Product.Update
         }
 
         /// <summary>
-        /// Verifies that the constructor correctly assigns the ProductService
-        /// when provided with a valid instance.
+        /// Tests that the constructor assigns the ProductService when a valid instance is provided.
+        /// Verifies that ProductService is initialized and matches the provided mock instance.
         /// </summary>
 
         [Test]
