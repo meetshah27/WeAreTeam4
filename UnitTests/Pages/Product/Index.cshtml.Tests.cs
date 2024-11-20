@@ -28,8 +28,10 @@ using ContosoCrafts.WebSite.Services;
 
 namespace UnitTests.Pages.Product.Index
 {
-
-
+    /// <summary>
+    /// Unit test class for the IndexModel page in the Product namespace.
+    /// Contains test methods to verify the behavior of the OnGet method.
+    /// </summary>
     public class IndexTests
     {
 
@@ -56,6 +58,10 @@ namespace UnitTests.Pages.Product.Index
         public static IndexModel PageModel;
 
         [SetUp]
+        /// <summary>
+        /// Initializes the test setup by creating mock dependencies and configuring the PageModel
+        /// with a default HTTP context, ModelState, TempData, and other required components.
+        /// </summary>
         public void TestInitialize()
         {
 
@@ -103,6 +109,10 @@ namespace UnitTests.Pages.Product.Index
         #endregion TestSetup
 
         #region OnGet
+        /// <summary>
+        /// Verifies that OnGet loads the Index page with a valid ModelState and a populated list of products.
+        /// Confirms that the ModelState is valid and that Products are correctly loaded.
+        /// </summary>
         [Test]
         public void OnGet_Valid_Should_Return_Products()
         {
