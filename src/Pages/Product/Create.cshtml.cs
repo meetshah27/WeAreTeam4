@@ -7,9 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 // Importing Razor Pages components
 using Microsoft.AspNetCore.Mvc.RazorPages;  
 
-using System.ComponentModel.DataAnnotations;
-
-// PageModel for the "Create" page, handling the product creation process
+// PageModel for the "Create" page, handling the product creation process.
 public class CreateModel : PageModel
 {
     // Data middle-tier service to interact with product data
