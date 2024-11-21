@@ -17,10 +17,10 @@ using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace ContosoCrafts.WebSite.Services
 {
-
-    public class JsonFileProductService   // Service class for handling product data in JSON file
+    // Service class for handling CRUD operations and rating functionality for product data stored in a JSON file
+    public class JsonFileProductService
     {
-        // Constructor that initializes IWebHostEnvironment to access web root path
+        // Constructor that initializes IWebHostEnvironment to access the web root path
         public JsonFileProductService(IWebHostEnvironment webHostEnvironment)
         {
 
@@ -28,7 +28,7 @@ namespace ContosoCrafts.WebSite.Services
 
         }
 
-        // Property to get IWebHostEnvironment, which gives us access to web root path
+        // Property to access IWebHostEnvironment, which provides the root path for the application
         public IWebHostEnvironment WebHostEnvironment { get; }
 
         // Property to get the full path of the products JSON file in the "data" folder under web root
@@ -38,11 +38,11 @@ namespace ContosoCrafts.WebSite.Services
             get { return Path.Combine(WebHostEnvironment.WebRootPath, "data", "products.json"); }
 
         }
-
-        public IEnumerable<ProductModel> GetAllData()  // Method to get all product data from the JSON file
+        // Method to get all product data from the JSON file
+        public IEnumerable<ProductModel> GetAllData() 
         {
-
-            using (var jsonFileReader = File.OpenText(JsonFileName)) // Open and read the JSON file
+            // Open and read the JSON file
+            using (var jsonFileReader = File.OpenText(JsonFileName)) 
             {
 
                 // Deserialize the JSON data into an array of ProductModel objects
@@ -58,15 +58,13 @@ namespace ContosoCrafts.WebSite.Services
 
         }
 
+
         /// <summary>
-        /// Add Rating
-        /// 
-        /// Take in the product ID and the rating
-        /// If the rating does not exist, add it
-        /// Save the update
+        /// Adds a rating to a product identified by its ID.
         /// </summary>
-        /// <param name="productId"></param>
-        /// <param name="rating"></param>
+        /// <param name="productId">The ID of the product to be rated.</param>
+        /// <param name="rating">The rating value to add, expected between 0 and 5.</param>
+        /// <returns>True if the rating was successfully added; otherwise, false.</returns>
         public bool AddRating(string productId, int rating)
         {
 
@@ -75,8 +73,8 @@ namespace ContosoCrafts.WebSite.Services
             {
                 return false;
             }
-
-            var products = GetAllData(); // Get all product data
+            // Get all product data
+            var products = GetAllData(); 
 
             // Find the product by its ID
             var data = products.FirstOrDefault(x => x.Id.Equals(productId));
@@ -135,6 +133,7 @@ namespace ContosoCrafts.WebSite.Services
             // Return null if the product is not found
             if (productData == null)
             {
+                // Return null if the product is not found
                 return null;
             }
 
@@ -145,15 +144,17 @@ namespace ContosoCrafts.WebSite.Services
             productData.Image = data.Image;
             productData.GitHub = data.GitHub;
 
-            SaveData(products);// Save the updated data back to the JSON file
+            // Save the updated data back to the JSON file
+            SaveData(products);
 
             return productData;
 
         }
 
         /// <summary>
-        /// Save All products data to storage
+        /// Saves all products data to the JSON file.
         /// </summary>
+        /// <param name="products">The updated list of products to save.</param>
         private void SaveData(IEnumerable<ProductModel> products)
         {
             // Create the JSON file and write updated data to it
@@ -163,9 +164,10 @@ namespace ContosoCrafts.WebSite.Services
                 JsonSerializer.Serialize<IEnumerable<ProductModel>>(
                     new Utf8JsonWriter(outputStream, new JsonWriterOptions
                     {
-
-                        SkipValidation = true,// Skip validation for JSON formatting
-                        Indented = true       // Enable indentation for readability
+                        // Skip validation for JSON formatting
+                        SkipValidation = true,
+                        // Enable indentation for readability
+                        Indented = true       
 
                     }),
 
@@ -178,10 +180,9 @@ namespace ContosoCrafts.WebSite.Services
         }
 
         /// <summary>
-        /// Create a new product using default values
-        /// After create the user can update to set values
+        /// Creates a new product with default values and saves it.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The newly created product model.</returns>
         public ProductModel CreateData()
         {
             // Create a new product with default values
@@ -201,16 +202,18 @@ namespace ContosoCrafts.WebSite.Services
             var dataSet = GetAllData();
             dataSet = dataSet.Append(data);
 
-            SaveData(dataSet); // Save the updated data back to the JSON file
+            // Save the updated data back to the JSON file
+            SaveData(dataSet); 
 
             return data;
 
         }
 
         /// <summary>
-        /// Remove the item from the system
+        /// Removes a product from the JSON file by its ID.
         /// </summary>
-        /// <returns></returns>
+        /// <param name="id">The ID of the product to remove.</param>
+        /// <returns>The deleted product model if successful; otherwise, null.</returns>
         public ProductModel DeleteData(string id)
         {
             // Get all product data
@@ -222,12 +225,17 @@ namespace ContosoCrafts.WebSite.Services
             // Create a new dataset by filtering out the product with the specified ID
             var newDataSet = GetAllData().Where(m => m.Id.Equals(id) == false);
 
-            SaveData(newDataSet); // Save the updated data back to the JSON file
+            // Save the updated data back to the JSON file
+            SaveData(newDataSet); 
 
             return data;
 
         }
-
+        /// <summary>
+        /// Increments the visit counter for a product by its ID.
+        /// </summary>
+        /// <param name="id">The ID of the product to increment the counter for.</param>
+        /// <returns>True if the counter was incremented; otherwise, false.</returns>
         public bool WebsiteCounter(string id)
         {
             // Get all product data
@@ -236,39 +244,51 @@ namespace ContosoCrafts.WebSite.Services
             // Find the product by its ID
             var data = products.FirstOrDefault(x => x.Id.Equals(id));
 
-            if (string.IsNullOrEmpty(id))  // Return false if ID is invalid or product is not found
+            // Return false if ID is invalid or product is not found
+            if (string.IsNullOrEmpty(id)) 
             {
                 return false;
             }
             // Check if the product data is not found(null)
             if (data == null) 
             {
-                return false; // Return false if the product does not exist
+                // Return false if the product does not exist
+                return false; 
             }
             // Increment the visit counter if valid
             if (data.Counter >= 0)
             {
                 data.Counter += 1;
-                SaveData(products);  // Save the updated data
+                // Save the updated data
+                SaveData(products); 
             }
 
             return true;
 
         }
-
+        /// <summary>
+        /// Increments the URL click counter for a product by its ID.
+        /// </summary>
+        /// <param name="id">The ID of the product to increment the URL counter for.</param>
+        /// <returns>True if the counter was incremented; otherwise, false.</returns>
         public bool UrlCounter(string id)
         {
+            // Get all product data
+            var products = GetAllData();
+            // Find the product by its ID
+            var data = products.FirstOrDefault(x => x.Id.Equals(id));    
 
-            var products = GetAllData(); // Get all product data
-            var data = products.FirstOrDefault(x => x.Id.Equals(id));    // Find the product by its ID
-
-            if (string.IsNullOrEmpty(id)) // Return false if ID is invalid or product is not found
+            // Return false if ID is invalid or product is not found
+            if (string.IsNullOrEmpty(id)) 
             {
-                return false;// Return false if the product does not exist
+                // Return false if the product does not exist
+                return false;
             }
-            if (data == null)// Check if the product data is not found (null)
+            // Check if the product data is not found (null)
+            if (data == null)
             {
-                return false;// Return false if the product does not exist
+                // Return false if the product does not exist
+                return false;
             }
             // Increment the URL click counter if valid
             if (data.UrlCounter >= 0)
