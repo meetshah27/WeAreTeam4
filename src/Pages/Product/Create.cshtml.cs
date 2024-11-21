@@ -1,21 +1,24 @@
-using ContosoCrafts.WebSite.Models; // Importing models for product representation
-
-using ContosoCrafts.WebSite.Services;  // Importing services for data handling
-
-using Microsoft.AspNetCore.Mvc;        // Importing ASP.NET MVC components
-
-using Microsoft.AspNetCore.Mvc.RazorPages;  // Importing Razor Pages components
+// Importing models for product representation
+using ContosoCrafts.WebSite.Models; 
+// Importing services for data handling
+using ContosoCrafts.WebSite.Services;  
+// Importing ASP.NET MVC components
+using Microsoft.AspNetCore.Mvc;        
+// Importing Razor Pages components
+using Microsoft.AspNetCore.Mvc.RazorPages;  
 
 using System.ComponentModel.DataAnnotations;
 
-
+// PageModel for the "Create" page, handling the product creation process
 public class CreateModel : PageModel
 {
     // Data middle-tier service to interact with product data
     public JsonFileProductService ProductService { get; }
 
-    /// <summary>  /// Default Constructor that initializes the CreateModel
-    /// with a specified product service. </summary>
+    /// <summary>  
+    /// Handles the GET request for the Create page.
+    /// Loads an empty product model for user input.
+    /// </summary>
     public CreateModel(JsonFileProductService productService)
     {
 
@@ -31,7 +34,7 @@ public class CreateModel : PageModel
     /// Loads an empty product model for user input.</summary>
     public void OnGet()
     {
-        // Initialize a new ProductModel instance for the creation form
+        // Initialize a new ProductModel instance to prepare for product creation
         Product = ProductService.CreateData();
 
     }
