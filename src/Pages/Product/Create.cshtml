@@ -4,46 +4,55 @@
 @model CreateModel
 
 @{
-    ViewData["Title"] = "Create page";
+    ViewData["Title"] = "Create New Product";
 }
 
 <h1>Create New Product</h1>
 
 <div class="container">
     <form method="post">
+        <!-- Validation summary to display model validation errors -->
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <!-- Hidden field for product ID -->
         @Html.HiddenFor(x => x.Product.Id)
 
+        <!-- Title input field -->
         <div class="form-group">
             <label asp-for="Product.Title" class="control-label"></label>
             <input asp-for="Product.Title" required data-val="true" data-val-required="Title is required." class="form-control" placeholder="Enter Title" />
             <span asp-validation-for="Product.Title" class="text-danger field-validation-error"></span>
         </div>
 
+        <!-- Description input field -->
         <div class="form-group">
             <label asp-for="Product.Description" class="control-label"></label>
             <input asp-for="Product.Description" required data-val="true" data-val-required="Description is required. Please provide a detailed description of the product, including its features and specifications." class="form-control" placeholder="Enter Description" />
             <span asp-validation-for="Product.Description" class="text-danger field-validation-error"></span>
         </div>
 
+        <!-- URL input field -->
         <div class="form-group">
             <label asp-for="Product.Url" class="control-label"></label>
             <input asp-for="Product.Url" type="url" required data-val="true" data-val-required="URL is required." class="form-control" placeholder="Enter Website URL" />
             <span asp-validation-for="Product.Url" class="text-danger field-validation-error"></span>
         </div>
 
+        <!-- Image URL input field -->
         <div class="form-group">
             <label asp-for="Product.Image" class="control-label"></label>
             <input asp-for="Product.Image" type="url" required data-val="true" data-val-required="Image URL is required." class="form-control" placeholder="Enter Image URL" />
             <span asp-validation-for="Product.Image" class="text-danger field-validation-error"></span>
         </div>
 
+        <!-- GitHub URL input field -->
         <div class="form-group">
             <label asp-for="Product.GitHub" class="control-label"></label>
-            <input asp-for="Product.GitHub" type="url" required data-val="true" data-val-required="GitHub URL is required." class="form-control" placeholder="Enter Github URL" />
+            <input asp-for="Product.GitHub" type="url" required data-val="true" data-val-required="GitHub URL is required." class="form-control" placeholder="Enter GitHub URL" />
             <span asp-validation-for="Product.GitHub" class="text-danger field-validation-error"></span>
         </div>
 
+        <!-- Submit and Cancel buttons -->
         <div class="form-group">
             <input type="submit" value="Submit" class="btn btn-primary" />
             <input type="submit" value="Cancel" class="btn btn-secondary" asp-page-handler="Cancel" formnovalidate />
@@ -53,7 +62,8 @@
 </div>
 
 @section Scripts
-{
+    {
+    <!-- Validation scripts for client-side validation -->
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
