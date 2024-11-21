@@ -1,55 +1,61 @@
-using System.ComponentModel.DataAnnotations;
-
-using System.Linq;                     // Importing LINQ for querying collections
-
-using ContosoCrafts.WebSite.Models;    // Importing models for product representation
-
-using ContosoCrafts.WebSite.Services;  // Importing services for data handling
-
-using Microsoft.AspNetCore.Mvc;         // Importing ASP.NET MVC components
-
-using Microsoft.AspNetCore.Mvc.RazorPages;   // Importing Razor Pages components
+// Importing LINQ to enable querying and filtering on collections
+using System.Linq;
+// Importing models to represent product data
+using ContosoCrafts.WebSite.Models;
+// Importing services for handling product data operations
+using ContosoCrafts.WebSite.Services;
+// Importing ASP.NET Core MVC components for controller and view functionality
+using Microsoft.AspNetCore.Mvc;
+// Importing Razor Pages components to build and manage page models
+using Microsoft.AspNetCore.Mvc.RazorPages;   
 
 public class UpdateModel : PageModel
 {
-    // Data middle-tier service to manage product data
+    // Service for managing product data interactions
     public JsonFileProductService ProductService { get; }
 
-    /// <summary>  /// Default Constructor for UpdateModel.
-    /// Initializes the model with the specified product service. </summary>
+    /// <summary>
+    /// Constructor to initialize the UpdateModel with the specified product service.
+    /// </summary>
+    /// <param name="productService">The service for managing product data.</param>
     public UpdateModel(JsonFileProductService productService)
     {
-
-        ProductService = productService;   // Assigning the product service to the model
+        // Assigns the provided product service to the ProductService property
+        ProductService = productService;   
 
     }
 
-    // The product data to display and bind for form submission
+    // Property to hold the product data for display and binding during form submission
     [BindProperty]
     public ProductModel Product { get; set; }
 
-    /// <summary>   /// Handles the GET request to load the product data for editing.
-    /// Retrieves the product based on the provided ID. </summary>
+    /// <summary>
+    /// Handles the HTTP GET request to load product data for editing.
+    /// Retrieves the product based on the provided product ID.
+    /// </summary>
+    /// <param name="id">The ID of the product to retrieve for editing.</param>
     public void OnGet(string id)
     {
-        // Fetch all product data and find the first product that matches the given ID
+        // Fetch all products and find the one with a matching ID
         Product = ProductService.GetAllData().FirstOrDefault(m => m.Id.Equals(id));
 
     }
 
-    /// <summary> /// Handles the POST request to update the product data.
-    /// Validates the model state and updates the product if valid. </summary>
+    /// <summary>
+    /// Handles the HTTP POST request to update product data.
+    /// Validates the model state and, if valid, updates the product data.
+    /// </summary>
     public IActionResult OnPost()
     {
-        // Check if the model state is valid; if not, return to the same page to display errors
+        // Check if the model state is valid; if not, return to the same page to display validation errors
         if (ModelState.IsValid == false)
         {
             return Page();
         }
-
-        ProductService.UpdateData(Product);   // Update the product data in the service with the provided Product model
-
-        return RedirectToPage("./Index");     // Redirect to the Index page after successful update
+        // Update the product data in the service using the modified Product model
+        ProductService.UpdateData(Product);   
+        // Redirect to the Index page after a successful update
+        return RedirectToPage("./Index");    
 
     }
 
