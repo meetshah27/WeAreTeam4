@@ -1,24 +1,28 @@
+// For dependency injection services
 using Microsoft.Extensions.DependencyInjection;
-
+// For unit testing attributes and assertions
 using NUnit.Framework;
-
+// For accessing components from the ContosoCrafts website project
 using ContosoCrafts.WebSite.Components;
-
+// For accessing services from the ContosoCrafts website project
 using ContosoCrafts.WebSite.Services;
+// For Blazor component testing
 using Bunit;
+// For LINQ operations on collections
 using System.Linq;
-using Microsoft.AspNetCore.SignalR.Protocol;
 
+// Define a namespace for unit tests related to components
 namespace UnitTests.Components
 {
+    // Test class for the ProductList component
     public class ProductListTests : BunitTestContext
     {
         #region TestSetup
-
+        // Method to set up any necessary data or services before each test
         [SetUp]
         public void TestInitialize()
         {
-
+            // This can be used to initialize values or set up mocks if required
         }
 
         #endregion TestSetup
@@ -28,15 +32,18 @@ namespace UnitTests.Components
         {
 
             // Arrange
+            // Register ProductService as a singleton in the service collection for testing
             Services.AddSingleton<JsonFileProductService>(TestHelper.ProductService);
 
             // Act
+            // Render the ProductList component
             var page = RenderComponent<ProductList>();
 
             // Get the Cards retrned
             var result = page.Markup;
 
             // Assert
+            // Verify that the rendered markup contains the expected text ("Coursera123")
             Assert.That(result.Contains("Coursera123"), Is.EqualTo(true));
 
         }
@@ -45,9 +52,11 @@ namespace UnitTests.Components
         public void SelectProduct_Valid_ID_Should_Return_Content()
         {
             // Arrange
+            // Register ProductService as a singleton in the service collection for testing
             Services.AddSingleton<JsonFileProductService>(TestHelper.ProductService);
+            // Specify the ID of the product to select
             var id = "jenlooper-light_MoreInfo";
-
+            // Render the ProductList component
             var page = RenderComponent<ProductList>();
 
             // Find product blocks
@@ -57,12 +66,14 @@ namespace UnitTests.Components
             var button = buttonList.First(m => m.OuterHtml.Contains(id));
 
             // Act
+            // Simulate a click on the found anchor tag to select the product
             button.Click();
 
             // Get the markup page for the assert
             var pageMarkup = page.Markup;
 
             // Assert
+            // Verify that the product's specific description appears in the markup after selection
             Assert.That(pageMarkup.Contains("An online learning platform partnering with universities and organizations to offer courses &amp; specializations. Users can access high-quality educational content across various fields."), Is.EqualTo(true));
             
         }
@@ -71,11 +82,13 @@ namespace UnitTests.Components
         public void SubmitRating_Valid_ID_Click_Unstarred_Should_Increment_Count_And_Check_Star()
         {
             // Arrange
+            // Create a new product for testing with a unique ID
             var data = TestHelper.ProductService.CreateData();
 
             var id = data.Id + "_MoreInfo";
-
+            // Register ProductService as a singleton in the service collection for testing
             Services.AddSingleton<JsonFileProductService>(TestHelper.ProductService);
+            // Render the ProductList component
             var page = RenderComponent<ProductList>();
 
             // Find product blocks
@@ -188,6 +201,7 @@ namespace UnitTests.Components
 
 
             // Assert
+            // Confirm the counter changed from 0% to 100%
             Assert.That(prePageMarkup.Contains("0 %"), Is.EqualTo(true));
             Assert.That(postPageMarkup.Contains("100 %"), Is.EqualTo(true));
         }
@@ -229,6 +243,7 @@ namespace UnitTests.Components
 
 
             // Assert
+            // Confirm that the counter caps at 100%
             Assert.That(prePageMarkup.Contains("100 %"), Is.EqualTo(true));
             Assert.That(postPageMarkup.Contains("100 %"), Is.EqualTo(true));
         }
