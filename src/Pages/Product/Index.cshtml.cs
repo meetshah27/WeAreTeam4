@@ -1,42 +1,46 @@
-using System.Collections.Generic;  // Importing collections for managing lists
-
-using Microsoft.AspNetCore.Mvc.RazorPages;   // Importing Razor Pages components
-
-using ContosoCrafts.WebSite.Models;          // Importing models for product representation
-using ContosoCrafts.WebSite.Services;        // Importing services for data handling
+// Importing collections for managing lists
+using System.Collections.Generic;  
+// Importing Razor Pages components
+using Microsoft.AspNetCore.Mvc.RazorPages;   
+// Importing models for product representation
+using ContosoCrafts.WebSite.Models;
+// Importing services for data handling
+using ContosoCrafts.WebSite.Services;    
 
 
 namespace ContosoCrafts.WebSite.Pages.Product
 {
     /// <summary>
     /// Index Page Model for displaying a list of products.
-    /// This page will return all the data to show to the user
+    /// This model handles requests to display all product data to the user
+    /// on the main Index page.
     /// </summary>
     public class IndexModel : PageModel
     {
         /// <summary>
-        /// Default Constructor
+        /// Constructor to initialize the IndexModel with the specified product service.
         /// </summary>
-        /// <param name="productService"></param>
+        /// <param name="productService">The service for managing product data.</param>
         public IndexModel(JsonFileProductService productService)
         {
-            ProductService = productService;  // Assigning the product service to the model
+            // Assigns the provided product service to the ProductService property
+            ProductService = productService;  
         }
 
-        // / Data service to handle product operations
+        // Property to hold the product service for interacting with product data
         public JsonFileProductService ProductService { get; }
 
-        // // Collection to hold the product data retrieved from the service
+        // Property to store the collection of products retrieved from the data service
         public IEnumerable<ProductModel> Products { get; private set; }
 
         /// <summary>
-        /// REST OnGet
-        ///  Handles the GET request for the Index page.
-        /// Retrieves all product data and stores it in the Products collection.
+        /// Handles the HTTP GET request for the Index page.
+        /// Retrieves all product data from the ProductService and stores it
+        /// in the Products property to display on the page.
         /// </summary>
         public void OnGet()
         {
-            // Fetch all product data from the service and assign it to the Products property
+            // Fetch all products using the service and assign them to the Products collection.
             Products = ProductService.GetAllData();
         }
     }
