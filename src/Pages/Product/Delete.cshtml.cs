@@ -1,52 +1,61 @@
-using ContosoCrafts.WebSite.Services;  // Importing services for data handling
-
-using Microsoft.AspNetCore.Mvc;        // Importing ASP.NET MVC components
-
-using Microsoft.AspNetCore.Mvc.RazorPages;  // Importing Razor Pages components
+// Importing services for data handling
+using ContosoCrafts.WebSite.Services;  
+// Importing ASP.NET MVC components
+using Microsoft.AspNetCore.Mvc;
+// Importing Razor Pages components                                                                                 
+using Microsoft.AspNetCore.Mvc.RazorPages;
 
 
 public class DeleteModel : PageModel
 {
 
-    // Data middle-tier service to interact with product data
+    // Property for injecting the product service to interact with product data
     public JsonFileProductService ProductService { get; }
 
-    /// <summary>  /// Default Constructor that initializes the DeleteModel
-    /// with a specified product service. </summary>
+    /// <summary>
+    /// Default constructor that initializes the DeleteModel
+    /// with the specified product service.
+    /// </summary>
     public DeleteModel(JsonFileProductService productService)
     {
-
+        // Assign the provided product service to the ProductService property
         ProductService = productService;
 
     }
 
-    // The data model for a product, bound for form submission
+    // Bound property for capturing the product ID from form submissions
     [BindProperty]
     public string ProductId { get; set; }
 
-    /// <summary> Save the product id for the product so it can be used later</summary>
-    /// <param name="id"></param>
+    /// <summary> 
+    /// HTTP GET method to retrieve the product ID from the URL 
+    /// and store it in the ProductId property.
+    /// </summary>
+    /// <param name="id">The ID of the product to be deleted.</param>
     public void OnGet(string id)
     {
-
-        // Fetch all product data and find the first product that matches the given ID
+        // Assign the received ID to the ProductId property for later use
         ProductId = id;
 
     }
 
-    /// <summary> Delete the product with the saved id </summary>
+    /// <summary> 
+    /// HTTP POST method to delete the product with the specified ID 
+    /// if the model state is valid.
+    /// </summary>
+    /// <param name="id">The ID of the product to delete.</param>
     public IActionResult OnPost(string id)
     {
-        // Check if the model state is valid; if not, return to the same page
+        // Validate the model state; if invalid, return to the same page
         if (ModelState.IsValid == false)
         {
             return Page();
         }
 
-        // Delete the product with the given id
+        // Call the ProductService to delete the product with the provided ID
         ProductService.DeleteData(id);
 
-        // Redirect to the Index page after deletion
+        // Redirect to the Index page after a successful deletion
         return RedirectToPage("./Index");
 
     }
