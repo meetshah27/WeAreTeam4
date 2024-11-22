@@ -8,15 +8,14 @@
 @model ReadModel
 
 @{
-
-    ViewData["Title"] = "Read page";
-
+    ViewData["Title"] = "Read Page";
 }
 
-<h1>Read</h1>
+<h1>Product Details</h1>
 
 <div class="container">
-   <h5 class="title" id="productTitle">
+    <!-- Display product title and GitHub link if available -->
+    <h5 class="title" id="productTitle">
         @Model.Product.Title
         @if (!string.IsNullOrEmpty(Model.Product.GitHub))
         {
@@ -27,16 +26,19 @@
         }
     </h5>
 
-    <img class="card-img" src="@Model.Product.Image" alt='Image for @Model.Product.Title'>
+    <!-- Display product image and description -->
+    <img class="card-img" src="@Model.Product.Image" alt="Image for @Model.Product.Title">
     <p class="card-text">@Model.Product.Description</p>
 </div>
 
 <br />
 
 <div class="row">
+    <!-- Action buttons for updating and deleting the product -->
     <a asp-page="Update" asp-route-id="@Model.Product.Id" class="btn btn-info" onclick="window.location.href='@Url.Page("Update", new { id = @Model.Product.Id})'">Update</a> &nbsp; &nbsp;
     <a asp-page="Delete" asp-route-id="@Model.Product.Id" class="btn btn-danger" onclick="window.location.href='@Url.Page("Delete", new { id = @Model.Product.Id})'">Delete</a> &nbsp; &nbsp;
 </div>
+
 
 <script src="_framework/blazor.server.js"></script>
 
