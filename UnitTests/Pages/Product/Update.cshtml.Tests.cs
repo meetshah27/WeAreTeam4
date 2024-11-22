@@ -21,7 +21,6 @@ using NUnit.Framework;
 using ContosoCrafts.WebSite.Services;
 
 using ContosoCrafts.WebSite.Models;
-using System.Linq;
 
 namespace UnitTests.Pages.Product.Update
 
@@ -35,21 +34,29 @@ namespace UnitTests.Pages.Product.Update
         #region TestSetup
         // Define dependencies and properties needed for setting up the PageModel and context in tests
 
-        public static DefaultHttpContext HttpContextDefault; // Mock HTTP context for the test
+        // Mock HTTP context for the test
+        public static DefaultHttpContext HttpContextDefault;
 
-        public static ModelStateDictionary ModelState;// Dictionary to hold model state for validation
+        // Dictionary to hold model state for validation
+        public static ModelStateDictionary ModelState;
 
-        public static ActionContext ActionContext;// Action context representing HTTP and routing details for the Razor Page
+        // Action context representing HTTP and routing details for the Razor Page
+        public static ActionContext ActionContext;
 
-        public static EmptyModelMetadataProvider ModelMetadataProvider;// Provider for model metadata, used to generate ViewData
+        // Provider for model metadata, used to generate ViewData
+        public static EmptyModelMetadataProvider ModelMetadataProvider;
 
-        public static ViewDataDictionary TestsViewData;// Dictionary to hold view-specific data
+        // Dictionary to hold view-specific data
+        public static ViewDataDictionary TestsViewData;
 
-        public static TempDataDictionary TempData; // Dictionary to hold temporary data (TempData)
+        // Dictionary to hold temporary data (TempData)
+        public static TempDataDictionary TempData;
 
-        public static PageContext PageContext;// Context for the PageModel, including ViewData and TempData
+        // Context for the PageModel, including ViewData and TempData
+        public static PageContext PageContext;
 
-        public static UpdateModel PageModel; // Instance of the UpdateModel (page) to be tested
+        // Instance of the UpdateModel (page) to be tested
+        public static UpdateModel PageModel; 
 
         [SetUp]
 
@@ -60,19 +67,26 @@ namespace UnitTests.Pages.Product.Update
 
         public void TestInitialize()
         {
-            HttpContextDefault = new DefaultHttpContext();// Set up the default HTTP context, used to simulate an HTTP request
+            // Set up the default HTTP context, used to simulate an HTTP request
+            HttpContextDefault = new DefaultHttpContext();
 
-            ModelState = new ModelStateDictionary();// Initialize ModelState to track validation states
+            // Initialize ModelState to track validation states
+            ModelState = new ModelStateDictionary();
 
-            ActionContext = new ActionContext(HttpContextDefault, HttpContextDefault.GetRouteData(), new PageActionDescriptor(), ModelState);// Create ActionContext, linking HTTP context and route data for Razor Page testing
+            // Create ActionContext, linking HTTP context and route data for Razor Page testing
+            ActionContext = new ActionContext(HttpContextDefault, HttpContextDefault.GetRouteData(), new PageActionDescriptor(), ModelState);
 
-            ModelMetadataProvider = new EmptyModelMetadataProvider(); // Set up ModelMetadataProvider, used to create ViewData
+            // Set up ModelMetadataProvider, used to create ViewData
+            ModelMetadataProvider = new EmptyModelMetadataProvider();
 
-            TestsViewData = new ViewDataDictionary(ModelMetadataProvider, ModelState); // Initialize ViewData with ModelState and ModelMetadataProvider
+            // Initialize ViewData with ModelState and ModelMetadataProvider
+            TestsViewData = new ViewDataDictionary(ModelMetadataProvider, ModelState);
 
-            TempData = new TempDataDictionary(HttpContextDefault, Mock.Of<ITempDataProvider>());// Set up TempData, used to pass data between requests
+            // Set up TempData, used to pass data between requests
+            TempData = new TempDataDictionary(HttpContextDefault, Mock.Of<ITempDataProvider>());
 
-            PageContext = new PageContext(ActionContext) // Initialize PageContext, setting ViewData for the page
+            // Initialize PageContext, setting ViewData for the page
+            PageContext = new PageContext(ActionContext) 
             {
 
                 ViewData = TestsViewData,
@@ -83,11 +97,15 @@ namespace UnitTests.Pages.Product.Update
             mockWebHostEnvironment.Setup(m => m.EnvironmentName).Returns("Hosting:UnitTestEnvironment");
             mockWebHostEnvironment.Setup(m => m.WebRootPath).Returns("../../../../src/bin/Debug/net7.0/wwwroot");
             mockWebHostEnvironment.Setup(m => m.ContentRootPath).Returns("./data/");
-            
-            var mockLoggerDirect = Mock.Of<ILogger<UpdateModel>>(); // Create a mocked logger for the UpdateModel
-            JsonFileProductService productService = new JsonFileProductService(mockWebHostEnvironment.Object);// Initialize the product service with the mock environment
 
-            PageModel = new UpdateModel(productService) // Instantiate the PageModel with the configured ProductService and context
+            // Create a mocked logger for the UpdateModel
+            var mockLoggerDirect = Mock.Of<ILogger<UpdateModel>>();
+
+            // Initialize the product service with the mock environment
+            JsonFileProductService productService = new JsonFileProductService(mockWebHostEnvironment.Object);
+
+            // Instantiate the PageModel with the configured ProductService and context
+            PageModel = new UpdateModel(productService) 
             {
 
                 PageContext = PageContext,
@@ -119,7 +137,7 @@ namespace UnitTests.Pages.Product.Update
                     Id = "test-id",
                     Title = "Test Title",
                     Description = "Test Description",
-                    Url = "invalid-url", // Invalid URL format for testing
+                    Url = "invalid-url",
                     Image = "Image"
                 }
             };
@@ -130,8 +148,11 @@ namespace UnitTests.Pages.Product.Update
             var result = model.OnPost();
 
             // Assert
-            Assert.That(result, Is.TypeOf<PageResult>(), "Invalid URL input should result in returning the page.");// Checks that when the URL format is invalid, OnPost() should return a PageResult (i.e., stay on the same page).
-            Assert.That(model.ModelState.IsValid, Is.False, "ModelState should be invalid for an invalid URL."); // Ensures ModelState is marked as invalid due to the URL format error in the ModelState.
+            // Checks that when the URL format is invalid, OnPost() should return a PageResult (i.e., stay on the same page).
+            Assert.That(result, Is.TypeOf<PageResult>(), "Invalid URL input should result in returning the page.");
+
+            // Ensures ModelState is marked as invalid due to the URL format error in the ModelState.
+            Assert.That(model.ModelState.IsValid, Is.False, "ModelState should be invalid for an invalid URL."); 
         }
 
         /// <summary>
@@ -147,12 +168,13 @@ namespace UnitTests.Pages.Product.Update
             var mockProductService = new Mock<JsonFileProductService>(Mock.Of<IWebHostEnvironment>());
             var model = new UpdateModel(mockProductService.Object)
             {
-
-                Product = new ProductModel { Id = "test-id" }// Only Id is set, other fields are missing
+                // Only Id is set, other fields are missing
+                Product = new ProductModel { Id = "test-id" }
 
             };
 
             model.ModelState.AddModelError("Product.Title", "Title is required");
+
             model.ModelState.AddModelError("Product.Description", "Description is required");
 
             // Act
@@ -160,10 +182,17 @@ namespace UnitTests.Pages.Product.Update
             var result = model.OnPost() as PageResult;
 
             // Assert
-            Assert.That(result, Is.Not.Null, "Missing required fields should return the page.");// Checks that when required fields are missing, the OnPost() method should return a PageResult, remaining on the same page.
-            Assert.That(model.ModelState.ErrorCount, Is.EqualTo(2), "ModelState should capture two errors for missing fields.");     // Confirms that ModelState contains exactly two errors related to missing fields.
-            Assert.That(model.ModelState.Keys, Does.Contain("Product.Title"), "ModelState should capture an error for missing Product.Title.");// Verifies that the ModelState includes an error for the missing "Title" field.
-            Assert.That(model.ModelState.Keys, Does.Contain("Product.Description"), "ModelState should capture an error for missing Product.Description.");// Verifies that the ModelState includes an error for the missing "Description" field.
+            // Checks that when required fields are missing, the OnPost() method should return a PageResult, remaining on the same page.
+            Assert.That(result, Is.Not.Null, "Missing required fields should return the page.");
+
+            // Confirms that ModelState contains exactly two errors related to missing fields.
+            Assert.That(model.ModelState.ErrorCount, Is.EqualTo(2), "ModelState should capture two errors for missing fields.");
+
+            // Verifies that the ModelState includes an error for the missing "Title" field.
+            Assert.That(model.ModelState.Keys, Does.Contain("Product.Title"), "ModelState should capture an error for missing Product.Title.");
+
+            // Verifies that the ModelState includes an error for the missing "Description" field.
+            Assert.That(model.ModelState.Keys, Does.Contain("Product.Description"), "ModelState should capture an error for missing Product.Description.");
 
         }
         /// <summary>
@@ -251,8 +280,11 @@ namespace UnitTests.Pages.Product.Update
             var updateModel = new UpdateModel(mockProductService.Object);
 
             // Assert
-            Assert.That(updateModel.ProductService, Is.Not.Null, "ProductService should be initialized.");  // Checks that ProductService is properly initialized in the constructor.
-            Assert.That(updateModel.ProductService, Is.EqualTo(mockProductService.Object), "ProductService should match the provided instance."); // Confirms that the ProductService instance in the UpdateModel matches the mock instance passed in.
+            // Checks that ProductService is properly initialized in the constructor.
+            Assert.That(updateModel.ProductService, Is.Not.Null, "ProductService should be initialized.");
+
+            // Confirms that the ProductService instance in the UpdateModel matches the mock instance passed in.
+            Assert.That(updateModel.ProductService, Is.EqualTo(mockProductService.Object), "ProductService should match the provided instance."); 
 
         }
     }
