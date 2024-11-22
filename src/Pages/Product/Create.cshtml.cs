@@ -1,10 +1,9 @@
-// Importing models for product representation
 using ContosoCrafts.WebSite.Models;
-// Importing services for data handling
+
 using ContosoCrafts.WebSite.Services;
-// Importing ASP.NET MVC components
+
 using Microsoft.AspNetCore.Mvc;
-// Importing Razor Pages components
+
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 /// <summary>
