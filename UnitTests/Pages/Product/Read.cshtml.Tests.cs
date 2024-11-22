@@ -57,8 +57,8 @@ namespace UnitTests.Pages.Product.Read
         [SetUp]
         public void TestInitialize()
         {
-
-            HttpContextDefault = new DefaultHttpContext()// Initializing HttpContext with default values
+            // Initializing HttpContext with default values
+            HttpContextDefault = new DefaultHttpContext()
             {
 
                 //RequestServices = serviceProviderMock.Object,
@@ -68,15 +68,20 @@ namespace UnitTests.Pages.Product.Read
             // Setting up ModelState and ActionContext to capture state and context for tests
             ModelState = new ModelStateDictionary();
 
-            ActionContext = new ActionContext(HttpContextDefault, HttpContextDefault.GetRouteData(), new PageActionDescriptor(), ModelState);// Configures the action context using the default HTTP context, route data, and page action descriptor
+            // Configures the action context using the default HTTP context, route data, and page action descriptor
+            ActionContext = new ActionContext(HttpContextDefault, HttpContextDefault.GetRouteData(), new PageActionDescriptor(), ModelState);
 
-            ModelMetadataProvider = new EmptyModelMetadataProvider();// Sets up metadata provider for the view
+            // Sets up metadata provider for the view
+            ModelMetadataProvider = new EmptyModelMetadataProvider();
 
-            TestsViewData = new ViewDataDictionary(ModelMetadataProvider, ModelState); // Configures view data with model metadata and model state
+            // Configures view data with model metadata and model state
+            TestsViewData = new ViewDataDictionary(ModelMetadataProvider, ModelState);
 
-            TempData = new TempDataDictionary(HttpContextDefault, Mock.Of<ITempDataProvider>());// Configures TempData dictionary for temporary data storage
+            // Configures TempData dictionary for temporary data storage
+            TempData = new TempDataDictionary(HttpContextDefault, Mock.Of<ITempDataProvider>());
 
-            PageContext = new PageContext(ActionContext)// Configures PageContext using action context and view data
+            // Configures PageContext using action context and view data
+            PageContext = new PageContext(ActionContext)
             {
 
                 ViewData = TestsViewData,
@@ -84,16 +89,21 @@ namespace UnitTests.Pages.Product.Read
             };
             // Mocks IWebHostEnvironment for testing environment setup without real file dependency
             var mockWebHostEnvironment = new Mock<IWebHostEnvironment>();
-            mockWebHostEnvironment.Setup(m => m.EnvironmentName).Returns("Hosting:UnitTestEnvironment");// Sets the mock environment name
-            mockWebHostEnvironment.Setup(m => m.WebRootPath).Returns("../../../../src/bin/Debug/net7.0/wwwroot");// Sets a mock web root path
-            mockWebHostEnvironment.Setup(m => m.ContentRootPath).Returns("./data/");// Sets a mock content root path
+            // Sets the mock environment name
+            mockWebHostEnvironment.Setup(m => m.EnvironmentName).Returns("Hosting:UnitTestEnvironment");
+            // Sets a mock web root path
+            mockWebHostEnvironment.Setup(m => m.WebRootPath).Returns("../../../../src/bin/Debug/net7.0/wwwroot");
+            // Sets a mock content root path
+            mockWebHostEnvironment.Setup(m => m.ContentRootPath).Returns("./data/");
 
             var mockLoggerDirect = Mock.Of<ILogger<ReadModel>>();
             JsonFileProductService productService;
 
-            productService = new JsonFileProductService(mockWebHostEnvironment.Object);// Initializes the JsonFileProductService with the mocked web host environment
+            // Initializes the JsonFileProductService with the mocked web host environment
+            productService = new JsonFileProductService(mockWebHostEnvironment.Object);
 
-            PageModel = new ReadModel(productService)// Initializes the PageModel (ReadModel) with the product service
+            // Initializes the PageModel (ReadModel) with the product service
+            PageModel = new ReadModel(productService)
             {
 
             };
@@ -131,8 +141,11 @@ namespace UnitTests.Pages.Product.Read
 
             // Assert: verifies that the result is a redirect to Index if the product ID is invalid
             Assert.That(result, Is.TypeOf<RedirectToPageResult>(), "Should redirect to the Index page");
+
             // Further Assert: confirms that the redirect target page is Index
             var redirectResult = result as RedirectToPageResult;
+
+            // Verifies that the target page of the redirect result is './Index',
             Assert.That(redirectResult.PageName, Is.EqualTo("./Index"), "Redirect page should be './Index'");
         }
         /// <summary>
