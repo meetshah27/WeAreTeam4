@@ -26,10 +26,11 @@ namespace UnitTests.Pages.Privacy
         [SetUp]
         public void TestInitialize()
         {
+            // Mock the ILogger to simulate logging behavior
+            var mockLoggerDirect = Mock.Of<ILogger<PrivacyModel>>();
 
-            var mockLoggerDirect = Mock.Of<ILogger<PrivacyModel>>(); // Mock the ILogger to simulate logging behavior
-
-            PageModel = new PrivacyModel(mockLoggerDirect)// Initialize the PrivacyModel with the mocked logger
+            // Initialize the PrivacyModel with the mocked logger
+            PageModel = new PrivacyModel(mockLoggerDirect)
             {
                 // Set up the page context and temporary data using helper methods
                 PageContext = TestHelper.PageContext,
