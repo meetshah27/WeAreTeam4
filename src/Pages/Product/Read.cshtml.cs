@@ -1,61 +1,63 @@
-// Importing models for defining the structure of product data
+// Importing models to define the structure of product data
 using ContosoCrafts.WebSite.Models;
-//Importing services to handle data operations for products
+// Importing services to manage data operations for products
 using ContosoCrafts.WebSite.Services;
-// Importing ASP.NET Core MVC components for controller functionality
+// Importing ASP.NET Core MVC for controller functionality
 using Microsoft.AspNetCore.Mvc;
-// Importing Razor Pages components for building page models
+// Importing Razor Pages components for page model functionality
 using Microsoft.AspNetCore.Mvc.RazorPages;
-// Importing LINQ to support data querying functionality
-using System.Linq;                         
+// Importing LINQ for data querying capabilities
+using System.Linq;
 
-public class ReadModel : PageModel
-
+namespace ContosoCrafts.WebSite.Pages.Product
 {
-
-    // Property for the data service that interacts with product data
-    public JsonFileProductService ProductService { get; }
-
     /// <summary>
-    /// Constructor to initialize the ReadModel with the specified product service.
+    /// Page model for reading a specific product's details.
+    /// Handles HTTP GET requests to retrieve and display product information.
     /// </summary>
-    /// <param name="productService">The service for managing product data.</param>
-  
-    public ReadModel(JsonFileProductService productService)
-
+    public class ReadModel : PageModel
     {
-        // Assigns the provided product service to the ProductService property
-        ProductService = productService;  
-    }
-
-    // Property to hold a single product's data to be displayed on the page
-
-    public ProductModel Product;
-
-    /// <summary>
-
-    /// <summary>
-    /// Handles the HTTP GET request for reading a specific product.
-    /// Retrieves the product data based on the provided product ID.
-    /// </summary>
-    /// <param name="id">The ID of the product to retrieve.</param>
-
-    public IActionResult OnGet(string id)
-    {
-        // Fetch all products and find the first one that matches the given ID
-        Product = ProductService.GetAllData().FirstOrDefault(m => m.Id.Equals(id));
-
-        // If no product is found or its title is null, redirect to the Index page
-        if (Product == null || string.IsNullOrEmpty(Product.Title))
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ReadModel"/> class with the specified product service.
+        /// </summary>
+        /// <param name="productService">Service for managing product data.</param>
+        public ReadModel(JsonFileProductService productService)
         {
-            // Redirect to the Index page if product is missing
-            return RedirectToPage("./Index"); 
+            ProductService = productService;
         }
-        // Load the page to display the found product
-        return Page(); 
+
+        /// <summary>
+        /// Gets the product service instance for interacting with product data.
+        /// </summary>
+        public JsonFileProductService ProductService { get; }
+
+        /// <summary>
+        /// Gets or sets the product to be displayed on the page.
+        /// </summary>
+        public ProductModel Product { get; private set; }
+
+        /// <summary>
+        /// Handles the HTTP GET request for a specific product.
+        /// Retrieves the product data based on the provided product ID.
+        /// </summary>
+        /// <param name="id">The ID of the product to retrieve.</param>
+        /// <returns>The page displaying the product or a redirect to the Index page if not found.</returns>
+        public IActionResult OnGet(string id)
+        {
+            // Retrieves all products and finds the first one matching the provided ID
+            Product = ProductService.GetAllData().FirstOrDefault(m => m.Id == id);
+
+            // Redirects to Index if product is not found or its title is missing
+            if (Product == null || string.IsNullOrEmpty(Product.Title))
+            {
+                return RedirectToPage("./Index");
+            }
+
+            // Renders the page displaying the retrieved product
+            return Page();
+        }
     }
-
-
 }
+
 
 
