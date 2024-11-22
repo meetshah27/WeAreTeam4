@@ -1,17 +1,20 @@
 ﻿@page
 @model ContosoCrafts.WebSite.Pages.Product.IndexModel
 @{
-    ViewData["Title"] = "Index page";
+    ViewData["Title"] = "Index Page";
 }
 
 <div class="container">
-    <button type="button" class="btn-read" onclick="window.location.href='@Url.Page("Create")'">Host Website!</button>
-    <br><br>
+    <!-- Host Website Button -->
+    <button type="button" class="btn btn-primary" onclick="location.href='@Url.Page("Create")'">Host Website!</button>
+    <br /><br />
+
+    <!-- Product Table -->
     <table class="table table-bordered table-striped">
         <thead>
             <tr>
                 <th>Title</th>
-                <th>Details</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -20,9 +23,10 @@
                 <tr>
                     <td>@product.Title</td>
                     <td>
-                        <button class="btn-read" onclick="window.location.href='@Url.Page("Read", new { id = product.Id })'">Read</button>&nbsp; &nbsp;
-                        <a asp-page="Update" asp-route-id="@product.Id" class="btn btn-info" onclick="window.location.href='@Url.Page("Update", new { id = @product.Id})'">Update</a> &nbsp; &nbsp;
-                        <a asp-page="Delete" asp-route-id="@product.Id" class="btn btn-danger" onclick="window.location.href='@Url.Page("Delete", new { id = @product.Id})'">Delete</a> &nbsp; &nbsp;
+                        <!-- Action Buttons -->
+                        <button class="btn-read" onclick="window.location.href='@Url.Page("Read", new { id = product.Id })'">Read</button>
+                        <a asp-page="Update" asp-route-id="@product.Id" class="btn btn-info">Update</a>
+                        <a asp-page="Delete" asp-route-id="@product.Id" class="btn btn-danger">Delete</a>
                     </td>
                 </tr>
             }
