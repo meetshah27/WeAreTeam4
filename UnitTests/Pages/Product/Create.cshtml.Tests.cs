@@ -21,8 +21,8 @@ using Moq;
 using NUnit.Framework;
 
 using ContosoCrafts.WebSite.Services;
-using System.Linq;
 
+using System.Linq;
 
 
 
@@ -37,25 +37,34 @@ namespace UnitTests.Pages.Product.Create
     {
 
         #region TestSetup
-        // Declares necessary properties for testing
+        /// Declares necessary properties for testing
         public static IUrlHelperFactory UrlHelperFactory;
 
+        /// Simulates HTTP requests and responses for testing purposes.
         public static DefaultHttpContext HttpContextDefault;
 
+        /// Mocked web hosting environment providing simulated environment details, such as paths and environment names.
         public static IWebHostEnvironment WebHostEnvironment;
 
+        /// Represents the state and validation errors of the model in Razor Pages during testing.
         public static ModelStateDictionary ModelState;
 
+        /// Provides the context for executing Razor Page actions, including HTTP request, route data, and model state.
         public static ActionContext ActionContext;
 
+        /// Supplies metadata about models used in Razor Pages for testing purposes.
         public static EmptyModelMetadataProvider ModelMetadataProvider;
 
+        /// Contains view data for rendering Razor Pages, mimicking the ViewData functionality in tests.
         public static ViewDataDictionary TestsViewData;
 
+        /// Temporary data storage for passing information between page requests in a Razor Page during tests.
         public static TempDataDictionary TempData;
 
+        /// Represents the context of a Razor Page during execution, including action context and view data.
         public static PageContext PageContext;
 
+        /// Instance of the CreateModel page being tested, initialized with required dependencies and services.
         public static CreateModel PageModel;
 
 
@@ -66,25 +75,31 @@ namespace UnitTests.Pages.Product.Create
         /// </summary>
         public void TestInitialize()
         {
-
-            HttpContextDefault = new DefaultHttpContext() // Sets up an HTTP context for the page model
+            // Sets up an HTTP context for the page model
+            HttpContextDefault = new DefaultHttpContext() 
             {
 
                 //RequestServices = serviceProviderMock.Object,
 
             };
-           
-            ModelState = new ModelStateDictionary();// Initializes ModelState for model validation
-                                                    
-            ActionContext = new ActionContext(HttpContextDefault, HttpContextDefault.GetRouteData(), new PageActionDescriptor(), ModelState);// Sets up the ActionContext for the PageContext (used in Razor Pages)
-           
-            ModelMetadataProvider = new EmptyModelMetadataProvider(); // Configures ModelMetadataProvider for view data
 
-            TestsViewData = new ViewDataDictionary(ModelMetadataProvider, ModelState);// Sets up ViewData with the ModelMetadataProvider and ModelState
+            // Initializes ModelState for model validation
+            ModelState = new ModelStateDictionary();
 
-            TempData = new TempDataDictionary(HttpContextDefault, Mock.Of<ITempDataProvider>());  // Configures TempData (temporary data storage for views)
+            // Sets up the ActionContext for the PageContext (used in Razor Pages)                                        
+            ActionContext = new ActionContext(HttpContextDefault, HttpContextDefault.GetRouteData(), new PageActionDescriptor(), ModelState);
 
-            PageContext = new PageContext(ActionContext) // Initializes PageContext for the page model
+            // Configures ModelMetadataProvider for view data
+            ModelMetadataProvider = new EmptyModelMetadataProvider();
+
+            // Sets up ViewData with the ModelMetadataProvider and ModelState
+            TestsViewData = new ViewDataDictionary(ModelMetadataProvider, ModelState);
+
+            // Configures TempData (temporary data storage for views)
+            TempData = new TempDataDictionary(HttpContextDefault, Mock.Of<ITempDataProvider>());
+
+            // Initializes PageContext for the page model
+            PageContext = new PageContext(ActionContext) 
             {
 
                 ViewData = TestsViewData,
@@ -96,12 +111,15 @@ namespace UnitTests.Pages.Product.Create
             mockWebHostEnvironment.Setup(m => m.WebRootPath).Returns("../../../../src/bin/Debug/net7.0/wwwroot");
             mockWebHostEnvironment.Setup(m => m.ContentRootPath).Returns("./data/");
 
-            var mockLoggerDirect = Mock.Of<ILogger<CreateModel>>();// Mocks the logger to avoid real logging during testing
+            // Mocks the logger to avoid real logging during testing
+            var mockLoggerDirect = Mock.Of<ILogger<CreateModel>>();
             JsonFileProductService productService;
 
-            productService = new JsonFileProductService(mockWebHostEnvironment.Object);// Creates an instance of the ProductService with the mocked environment
+            // Creates an instance of the ProductService with the mocked environment
+            productService = new JsonFileProductService(mockWebHostEnvironment.Object);
 
-            PageModel = new CreateModel(productService)// Initializes the CreateModel page model with the mocked ProductService
+            // Initializes the CreateModel page model with the mocked ProductService
+            PageModel = new CreateModel(productService)
             {
 
             };
@@ -120,13 +138,16 @@ namespace UnitTests.Pages.Product.Create
         {
 
             // Arrange
-            var data = TestHelper.ProductService.CreateData();// Setup any necessary data
+            // Setup any necessary data
+            var data = TestHelper.ProductService.CreateData();
 
             // Act
-            PageModel.OnGet(); // Calls the OnGet method to test its behavior
+            // Calls the OnGet method to test its behavior
+            PageModel.OnGet();
 
             // Assert
-            Assert.That(PageModel.ModelState.IsValid, Is.EqualTo(true), "Valid input should return valid ModelState");// Verifies that ModelState is valid after OnGet is called
+            // Verifies that ModelState is valid after OnGet is called
+            Assert.That(PageModel.ModelState.IsValid, Is.EqualTo(true), "Valid input should return valid ModelState");
 
         }
         /// <summary>
@@ -138,13 +159,16 @@ namespace UnitTests.Pages.Product.Create
         {
 
             // Arrange
-            var expectedData = TestHelper.ProductService.CreateData();// Expected data for validation
+            // Expected data for validation
+            var expectedData = TestHelper.ProductService.CreateData();
 
             // Act
-            PageModel.OnGet();// Calls the OnGet method to ensure product property is initialized
+            // Calls the OnGet method to ensure product property is initialized
+            PageModel.OnGet();
 
             // Assert
-            Assert.That(PageModel.Product, Is.Not.Null, "Valid input should result in a page with a non-null product");// Checks that the Product property is not null after OnGet is executed
+            // Checks that the Product property is not null after OnGet is executed
+            Assert.That(PageModel.Product, Is.Not.Null, "Valid input should result in a page with a non-null product");
 
         }
         #endregion OnGet
@@ -159,13 +183,16 @@ namespace UnitTests.Pages.Product.Create
         {
 
             // Arrange
-            PageModel.ModelState.AddModelError("Product", "Invalid data");  // Introduces a model state error to simulate invalid input
+            // Introduces a model state error to simulate invalid input
+            PageModel.ModelState.AddModelError("Product", "Invalid data");
 
             // Act
-            var result = PageModel.OnPost();// Calls the OnPost method to check the behavior with invalid model state
+            // Calls the OnPost method to check the behavior with invalid model state
+            var result = PageModel.OnPost();
 
             // Assert
-            Assert.That(result, Is.TypeOf<PageResult>(), "Expected PageResult when ModelState is invalid."); // Ensures that OnPost returns a PageResult when ModelState is invalid
+            // Ensures that OnPost returns a PageResult when ModelState is invalid
+            Assert.That(result, Is.TypeOf<PageResult>(), "Expected PageResult when ModelState is invalid."); 
 
         }
         /// <summary>
@@ -177,13 +204,16 @@ namespace UnitTests.Pages.Product.Create
         {
 
             // Arrange
-            PageModel.Product = TestHelper.ProductService.CreateData(); // Sets a product object for the test
+            // Sets a product object for the test
+            PageModel.Product = TestHelper.ProductService.CreateData();
 
             // Act
-            PageModel.OnPost();// Calls the OnPost method to check if product is retained
+            // Calls the OnPost method to check if product is retained
+            PageModel.OnPost();
 
             // Assert
-            Assert.That(PageModel.Product, Is.Not.Null, "Product property should not be null when OnPost is executed.");// Confirms that the Product property is not null after OnPost
+            // Confirms that the Product property is not null after OnPost
+            Assert.That(PageModel.Product, Is.Not.Null, "Product property should not be null when OnPost is executed.");
 
         }
         #endregion onPost
@@ -198,13 +228,16 @@ namespace UnitTests.Pages.Product.Create
         {
 
             // Arrange
-            JsonFileProductService productService = null; // Null ProductService to test handling in constructor
+            // Null ProductService to test handling in constructor
+            JsonFileProductService productService = null;
 
             // Act
-            var pageModel = new CreateModel(productService);// Creates a page model instance with a null ProductService
+            // Creates a page model instance with a null ProductService
+            var pageModel = new CreateModel(productService);
 
             // Assert
-            Assert.That(pageModel.ProductService, Is.Null, "ProductService should be null when passed as null to the constructor.");// Checks that ProductService is null when passed null in constructor
+            // Checks that ProductService is null when passed null in constructor
+            Assert.That(pageModel.ProductService, Is.Null, "ProductService should be null when passed as null to the constructor.");
 
         }
         #endregion CreateModel
@@ -219,14 +252,18 @@ namespace UnitTests.Pages.Product.Create
         {
 
             // Arrange
-            var expectedData = TestHelper.ProductService.CreateData();// Expected data for validation
-            PageModel.OnGet(); // Calls the OnGet method to ensure product property is initialized
+            // Expected data for validation
+            var expectedData = TestHelper.ProductService.CreateData();
+            // Calls the OnGet method to ensure product property is initialized
+            PageModel.OnGet(); 
 
             // Act
-            PageModel.OnPostCancel(); // Calls the OnPostCancel method to simulate cancelling the creation process
+            // Calls the OnPostCancel method to simulate cancelling the creation process
+            PageModel.OnPostCancel();
 
             // Assert
-            Assert.That(TestHelper.ProductService.GetAllData().Any(m => m.Id == PageModel.Product.Id), Is.EqualTo(false), "Product should not exist after OnGetCancel() has been called");// Checks that product is properly deleted after OnPostCancel() is called
+            // Checks that product is properly deleted after OnPostCancel() is called
+            Assert.That(TestHelper.ProductService.GetAllData().Any(m => m.Id == PageModel.Product.Id), Is.EqualTo(false), "Product should not exist after OnGetCancel() has been called");
 
         }
         #endregion OnPostCancel
