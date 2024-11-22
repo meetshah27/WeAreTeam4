@@ -7,7 +7,9 @@ namespace UnitTests.Pages.Product.AddRating
     public class JsonFileProductServiceTests
     {
         #region TestSetup
-
+        /// <summary>
+        /// Setup Initialization for the Test file of JsonFileProductService
+        /// </summary>
         [SetUp]
         public void TestInitialize()
         {
@@ -16,20 +18,10 @@ namespace UnitTests.Pages.Product.AddRating
         #endregion TestSetup
 
         #region AddRating
-        //[Test]
-        //public void AddRating_InValid_....()
-        //{
-        //    // Arrange
-
-        //    // Act
-        //    //var result = TestHelper.ProductService.AddRating(null, 1);
-
-        //    // Assert
-        //    //Assert.AreEqual(false, result);
-        //}
-
-        // ....
-
+        /// <summary>
+        /// validation on Addrating method for the product when it is null,
+        /// it should return False
+        /// </summary>
         [Test]
         public void AddRating_Invalid_Product_Null_Should_Return_False()
         {
@@ -41,7 +33,10 @@ namespace UnitTests.Pages.Product.AddRating
             // Assert
             Assert.That(result, Is.EqualTo(false));
         }
-
+        /// <summary>
+        /// validation on Addrating method for the product when it is Empty,
+        /// it should return False
+        /// </summary>
         [Test]
         public void AddRating_Invalid_Product_Empty_Should_Return_False()
         {
@@ -53,7 +48,10 @@ namespace UnitTests.Pages.Product.AddRating
             // Assert
             Assert.That(result, Is.EqualTo(false));
         }
-
+        /// <summary>
+        /// Validation on AddRating method for the product when rated 5
+        /// return True
+        /// </summary>
         [Test]
         public void AddRating_Valid_Product_Rating_5_Should_Return_True()
         {
@@ -77,7 +75,10 @@ namespace UnitTests.Pages.Product.AddRating
             Assert.That(dataNewList.Ratings.Length, Is.EqualTo(countOriginal + 1));
             Assert.That(dataNewList.Ratings.Last(), Is.EqualTo(5));
         }
-
+        /// <summary>
+        /// Validation on the AddRating method for the Nonexistent product
+        /// Return False
+        /// </summary>
         [Test]
         public void AddRating_Invalid_Product_Nonexistent_Should_Return_False()
         {
@@ -89,7 +90,10 @@ namespace UnitTests.Pages.Product.AddRating
             // Assert
             Assert.That(result, Is.EqualTo(false));
         }
-
+        /// <summary>
+        /// Validation on the AddRating method for rating going greater than 5 for any product
+        /// Return False
+        /// </summary>
         [Test]
         public void AddRating_Invalid_Product_Rating_Greater_Than_5_Should_Return_False()
         {
@@ -104,7 +108,10 @@ namespace UnitTests.Pages.Product.AddRating
             // Assert
             Assert.That(result, Is.EqualTo(false));
         }
-
+        /// <summary>
+        /// Validation on the AddRating method for rating going less than 0 for any product
+        /// Return False
+        /// </summary>
         [Test]
         public void AddRating_Invalid_Product_Rating_Less_Than_0_Should_Return_False()
         {
@@ -119,7 +126,10 @@ namespace UnitTests.Pages.Product.AddRating
             // Assert
             Assert.That(result, Is.EqualTo(false));
         }
-
+        /// <summary>
+        /// Validation on the AddRating method for rating going having no rating to any product
+        /// Return False
+        /// </summary>
         [Test]
         public void AddRating_Valid_Product_No_Ratings_Create_Array()
         {
@@ -138,7 +148,12 @@ namespace UnitTests.Pages.Product.AddRating
         }
         #endregion AddRating
 
+   
         #region WebsiteCounter
+        /// <summary>
+        /// Validation on the WebsiteCounter method having null product id 
+        /// return False
+        /// </summary>
         [Test]
         public void WebsiteCounter_Invalid_ProductId_Null_Should_Return_False()
         {
@@ -148,7 +163,10 @@ namespace UnitTests.Pages.Product.AddRating
             // Assert
             Assert.That(result, Is.EqualTo(false));
         }
-
+        /// <summary>
+        /// Validation on the WebsiteCounter method having invalid product id 
+        /// return False
+        /// </summary>
         [Test]
         public void WebsiteCounter_Invalid_ProductId_Not_Valid_Should_Return_False()
         {
@@ -162,6 +180,10 @@ namespace UnitTests.Pages.Product.AddRating
             // Assert
             Assert.That(result, Is.EqualTo(false));
         }
+        /// <summary>
+        /// Validation on the WebsiteCounter method having valid product id 
+        /// return True
+        /// </summary>
         [Test]
         public void WebsiteCounter_Valid_ProductId_Valid_Should_Return_True()
         {
@@ -174,7 +196,10 @@ namespace UnitTests.Pages.Product.AddRating
             // Assert
             Assert.That(result, Is.EqualTo(true));
         }
-
+        /// <summary>
+        /// Validation on the WebsiteCounter method having counter greater than 0
+        /// return True
+        /// </summary>
         [Test]
         public void WebsiteCounter_Valid_Counter_Greater_Than_Zero_Should_Return_True()
         {
@@ -190,7 +215,10 @@ namespace UnitTests.Pages.Product.AddRating
         #endregion WebsiteCounter
 
         #region UrlCounter
-
+        /// <summary>
+        /// Validation on the UrlCounter method having null product id 
+        /// return False
+        /// </summary>
         [Test]
         public void UrlCounter_Invalid_ProductId_Null_Should_Return_False()
         {
@@ -200,7 +228,10 @@ namespace UnitTests.Pages.Product.AddRating
             // Assert
             Assert.That(result, Is.EqualTo(false));
         }
-
+        /// <summary>
+        /// Validation on the UrlCounter method having invalid product id 
+        /// return False
+        /// </summary>
         [Test]
         public void UrlCounter_Invalid_ProductId_Not_Valid_Should_Return_False()
         {
@@ -214,6 +245,10 @@ namespace UnitTests.Pages.Product.AddRating
             // Assert
             Assert.That(result, Is.EqualTo(false));
         }
+        /// <summary>
+        /// Validation on the UrlCounter method having valid product id 
+        /// return True
+        /// </summary>
         [Test]
         public void UrlCounter_Valid_ProductId_Valid_Should_Return_True()
         {
@@ -226,7 +261,10 @@ namespace UnitTests.Pages.Product.AddRating
             // Assert
             Assert.That(result, Is.EqualTo(true));
         }
-
+        /// <summary>
+        /// Validation on the UrlCounter method having counter greater than 0
+        /// return True
+        /// </summary>
         [Test]
         public void UrlCounter_Valid_Counter_Greater_Than_Zero_Should_Return_True()
         {
@@ -242,7 +280,10 @@ namespace UnitTests.Pages.Product.AddRating
         #endregion UrlCounter
 
         #region UpdateData
-
+        /// <summary>
+        /// Validation on the UpdateData method having non existence product id 
+        /// return False
+        /// </summary>
         [Test]
         public void UpdateData_Invalid_Product_Nonexistent_Should_Return_Null()
         {
@@ -256,7 +297,10 @@ namespace UnitTests.Pages.Product.AddRating
             // Assert
             Assert.That(result, Is.Null);
         }
-
+        /// <summary>
+        /// Validation on the UpdateData method having valid product id 
+        /// return Updated Value
+        /// </summary>
         [Test]
         public void UpdateData_Valid_Product_Should_Return_Updated_Product()
         {
@@ -277,6 +321,10 @@ namespace UnitTests.Pages.Product.AddRating
         #endregion UpdateData
 
         #region CreateData
+        /// <summary>
+        /// Validation on the CreateData method having product added 
+        /// return product added to the set
+        /// </summary>
         [Test]
         public void CreateData_Should_Add_Product_To_Array()
         {
@@ -293,6 +341,10 @@ namespace UnitTests.Pages.Product.AddRating
         #endregion CreateData
 
         #region DeleteData
+        /// <summary>
+        /// Validation on the DeleteData method having valid product id 
+        /// return deleted product
+        /// </summary>
         [Test]
         public void DeleteData_Should_Remove_Product_From_Array()
         {
