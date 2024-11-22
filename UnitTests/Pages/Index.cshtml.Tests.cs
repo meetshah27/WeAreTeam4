@@ -29,9 +29,11 @@ namespace UnitTests.Pages.Index
         [SetUp]
         public void TestInitialize()
         {
-            var mockLoggerDirect = Mock.Of<ILogger<IndexModel>>(); // Mock the ILogger to simulate logging behavior
+            // Mock the ILogger to simulate logging behavior
+            var mockLoggerDirect = Mock.Of<ILogger<IndexModel>>();
 
-            PageModel = new IndexModel(mockLoggerDirect, TestHelper.ProductService)// Initialize the IndexModel with the mocked logger and ProductService
+            // Initialize the IndexModel with the mocked logger and ProductService
+            PageModel = new IndexModel(mockLoggerDirect, TestHelper.ProductService)
             {
                 // Additional setup can be added here if necessary
             };
@@ -55,8 +57,11 @@ namespace UnitTests.Pages.Index
             PageModel.OnGet();
 
             // Assert
-            Assert.That(PageModel.ModelState.IsValid, Is.EqualTo(true));// Verify that the model state is valid after the OnGet call
-            Assert.That(PageModel.Products.ToList().Any(), Is.EqualTo(true));// Assert that the Products collection is not empty, indicating products were loaded
+            // Verify that the model state is valid after the OnGet call
+            Assert.That(PageModel.ModelState.IsValid, Is.EqualTo(true));
+
+            // Assert that the Products collection is not empty, indicating products were loaded
+            Assert.That(PageModel.Products.ToList().Any(), Is.EqualTo(true));
         }
         #endregion OnGet
 
