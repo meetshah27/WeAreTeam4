@@ -36,22 +36,31 @@ namespace UnitTests.Pages.Product.Read
         // Required dependencies and services for setting up the test environment.
         public static IUrlHelperFactory UrlHelperFactory;
 
+        // Simulates HTTP requests and responses for testing purposes.
         public static DefaultHttpContext HttpContextDefault;
 
+        // Mocked web hosting environment providing simulated environment details.
         public static IWebHostEnvironment WebHostEnvironment;
 
+        // Tracks the state and validation errors of the model in Razor Pages.
         public static ModelStateDictionary ModelState;
 
+        // Encapsulates HTTP request, route data, and model state for executing Razor Pages.
         public static ActionContext ActionContext;
 
+        // Provides metadata about models in Razor Pages during testing.
         public static EmptyModelMetadataProvider ModelMetadataProvider;
 
+        // Holds view data, simulating the ViewData functionality in Razor Pages.
         public static ViewDataDictionary TestsViewData;
 
+        // Temporary data storage for passing data between requests in Razor Pages.
         public static TempDataDictionary TempData;
 
+        // Represents the context of a Razor Page, including action context and view data.
         public static PageContext PageContext;
 
+        // Instance of the ReadModel page being tested, initialized with necessary dependencies
         public static ReadModel PageModel;
 
         [SetUp]
