@@ -13,7 +13,10 @@
     <table class="table table-bordered table-striped">
         <thead>
             <tr>
-                <th>Title</th>
+                <th>
+                    <!-- Title Column with Sorting -->
+                    <button class="btn btn-link" onclick="sortTable('Title')">Title</button>
+                </th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -33,3 +36,28 @@
         </tbody>
     </table>
 </div>
+
+<script>
+    // JavaScript function to handle sorting
+    function sortTable(column)
+    {
+        var currentUrl = window.location.href;
+        var url = new URL(currentUrl);
+
+        // Get existing query parameters
+        var sortOrder = url.searchParams.get("sortOrder") || "asc"; // default to ascending
+        var sortBy = url.searchParams.get("sortBy") || column;
+
+        // Toggle sortOrder if the same column is clicked again
+        if (column === sortBy) {
+            sortOrder = sortOrder === "asc" ? "desc" : "asc";
+        }
+
+        // Update URL with sort parameters
+        url.searchParams.set("sortBy", column);
+        url.searchParams.set("sortOrder", sortOrder);
+
+        // Reload page with updated sort query
+        window.location.href = url.toString();
+    }
+</script>
