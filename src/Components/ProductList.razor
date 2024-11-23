@@ -1,13 +1,25 @@
 @using ContosoCrafts.WebSite.Models
+
 @using ContosoCrafts.WebSite.Services
+
 @using Microsoft.AspNetCore.Components.Web
+
 @inject JsonFileProductService ProductService
 
+<div class="search-container">
+    <div class="row align-items-center">
+        <input class="search-input form-control me-4" placeholder="Search Project" @bind="SearchString" />
+        <button class="btn btn-primary btn-search" type="submit" @onclick="SearchProducts">Search</button>
+        <button class="btn btn-secondary btn-reset" type="submit" @onclick="ResetSearch">Reset</button>
+    </div>
+</div>
+
 <div class="card-columns">
-    @foreach (var product in ProductService.GetAllData())
+    @foreach (var product in FilteredProducts)
+
     {
         <a href="javascript:void(0);" @onclick="(e => { SelectProduct(product.Id); WebsiteCounter(); })"
-       data-toggle="modal" data-target="#productModal" class="card-link" id="@(product.Id + "_MoreInfo")">
+           data-toggle="modal" data-target="#productModal" class="card-link" id="@(product.Id + "_MoreInfo")">
             <div class="card">
                 <div class="card-img" style="background-image: url('@product.Image');">
                 </div>
@@ -20,6 +32,7 @@
 </div>
 
 @if (selectedProduct is object)
+
 {
     <div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="productTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -31,7 +44,7 @@
                     <span>
                         <a href="@selectedProduct.GitHub" target="_blank" rel="noopener noreferrer" title="GitHub Repository" class="github-link">
                             <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
-                             alt="GitHub" class="github-icon">
+                                 alt="GitHub" class="github-icon">
                         </a>
                     </span>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="Close">
@@ -64,14 +77,21 @@
 
                     @for (int i = 1; i < 6; i++)
                     {
+
                         var currentStar = i;
 
+
+
                         if (i <= currentRating)
+
                         {
                             <span class="fa fa-star checked" @onclick="(e => SubmitRating(currentStar))"></span>
                         }
 
+
+
                         if (i > currentRating)
+
                         {
                             <span class="fa fa-star" @onclick="(e => SubmitRating(currentStar))"></span>
                         }
@@ -84,75 +104,183 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-@code
-{
-    ProductModel selectedProduct = new ProductModel();
-    string selectedProductId;
+@code {
+    string SearchString { get; set; } = string.Empty;
 
-    // Selects the product and updates relevant data
-    void SelectProduct(string productId)
+    List<ProductModel> FilteredProducts { get; set; } = new List<ProductModel>();
+
+
+
+    // Initialize products on page load
+
+    protected override void OnInitialized()
+
     {
-        selectedProductId = productId;
-        selectedProduct = ProductService.GetAllData().First(x => x.Id == productId);
-        GetCurrentRating();
-        CalculateUrlClickPercentage();
+
+        FilteredProducts = ProductService.GetAllData().ToList();
+
     }
 
+
+
+    // Filters products by Title
+
+    void SearchProducts()
+
+    {
+
+        if (!string.IsNullOrEmpty(SearchString))
+        {
+
+            FilteredProducts = ProductService.GetAllData()
+
+                .Where(product => product.Title.Contains(SearchString, StringComparison.OrdinalIgnoreCase))
+
+                .ToList();
+        }
+
+    }
+
+
+
+    // Resets the search and shows all products
+
+    void ResetSearch()
+
+    {
+
+        SearchString = string.Empty;
+
+        FilteredProducts = ProductService.GetAllData().ToList();
+
+    }
+
+
+
+    ProductModel selectedProduct = new ProductModel();
+
+    string selectedProductId;
+
+
+
+    // Selects the product and updates relevant data
+
+    void SelectProduct(string productId)
+
+    {
+
+        selectedProductId = productId;
+
+        selectedProduct = ProductService.GetAllData().First(x => x.Id == productId);
+
+        GetCurrentRating();
+
+        CalculateUrlClickPercentage();
+
+    }
+
+
+
     int currentRating = 0;
+
     int voteCount = 0;
+
     string voteLabel;
+
     decimal urlClickPercentage = 0;
 
+
+
     // Retrieves and calculates the current rating and vote count
+
     void GetCurrentRating()
+
     {
+
         if (selectedProduct.Ratings == null)
+
         {
             currentRating = 0;
+
             voteCount = 0;
+
             return;
         }
 
+
+
         if (selectedProduct.Ratings is object)
+
         {
             voteCount = selectedProduct.Ratings.Count();
+
             voteLabel = voteCount > 1 ? "Votes" : "Vote";
+
             currentRating = selectedProduct.Ratings.Sum() / voteCount;
         }
+
     }
+
+
 
     // Submits the rating for the selected product
+
     void SubmitRating(int rating)
+
     {
+
         ProductService.AddRating(selectedProductId, rating);
+
         SelectProduct(selectedProductId);
+
     }
+
+
 
     // Increments the website counter for the selected product
+
     void WebsiteCounter()
+
     {
+
         ProductService.WebsiteCounter(selectedProductId);
+
     }
+
+
 
     // Increments the URL counter for the selected product
+
     void UrlCounter()
+
     {
+
         ProductService.UrlCounter(selectedProductId);
+
         SelectProduct(selectedProductId);
+
     }
 
+
+
     // Calculates the percentage of URL clicks based on the counters
+
     void CalculateUrlClickPercentage()
+
     {
+
         if (selectedProduct.Counter > 0)
         {
             urlClickPercentage = (decimal)selectedProduct.UrlCounter / selectedProduct.Counter * 100;
         }
 
+
+
         if (selectedProduct.Counter < selectedProduct.UrlCounter)
         {
             urlClickPercentage = 100;
         }
+
 
         if (selectedProduct.Counter <= 0)
         {
@@ -160,4 +288,3 @@
         }
     }
 }
-
