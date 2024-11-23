@@ -1,11 +1,14 @@
-// Import collections for managing lists
 using System.Collections.Generic;
-// Import Razor Pages components
+
 using Microsoft.AspNetCore.Mvc.RazorPages;
-// Import models for product representation
+
 using ContosoCrafts.WebSite.Models;
-// Import services for data handling
+
 using ContosoCrafts.WebSite.Services;
+
+using System.Linq;
+
+using System;
 
 namespace ContosoCrafts.WebSite.Pages.Product
 {
@@ -38,9 +41,25 @@ namespace ContosoCrafts.WebSite.Pages.Product
         /// Handles the HTTP GET request for the Index page by retrieving all products
         /// from the <see cref="ProductService"/> and storing them in the <see cref="Products"/> property.
         /// </summary>
-        public void OnGet()
+        public void OnGet(string sortBy, string sortOrder)
         {
+            // Get all products
             Products = ProductService.GetAllData();
+
+            // Default values for sorting parameters if not provided
+            sortBy = sortBy ?? "Title";  // Default to "Title" if no sortBy parameter is passed
+            sortOrder = sortOrder ?? "asc";  // Default to "asc" if no sortOrder parameter is passed
+
+            // Sorting logic based on the sortBy and sortOrder parameters
+            if (sortBy.Equals("Title", StringComparison.OrdinalIgnoreCase))
+            {
+                // Sorting by Title
+                Products = sortOrder == "asc"
+                    ? Products.OrderBy(p => p.Title).ToList()
+                    : Products.OrderByDescending(p => p.Title).ToList();
+            }
+            // You can add more sorting conditions for other fields here if needed
         }
+
     }
 }
