@@ -118,10 +118,10 @@ namespace UnitTests.Pages.Product.Index
         {
 
             // Arrange
-            // (No specific arrangement needed as we are testing a general page load)
-
+            var sortBy = "title";
+            var sortOrder = "asc";
             // Act
-            PageModel.OnGet();// Calls the OnGet method to test page load functionality
+            PageModel.OnGet(sortBy, sortOrder);// Calls the OnGet method to test page load functionality
 
             // Assert
             Assert.That(PageModel.ModelState.IsValid, Is.EqualTo(true), "Index page should return a valid state");// Ensures ModelState is valid after OnGet
