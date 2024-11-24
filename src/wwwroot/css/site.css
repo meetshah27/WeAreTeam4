@@ -259,6 +259,99 @@ ul {
 .github-link:hover .github-icon {
     transform: scale(1.2); /* Slightly enlarges the icon */
 }
+
+/*About us Style */
+.about-us-container {
+    overflow: hidden; /* Clear the floats */
+}
+
+.about-us-image {
+    float: left;
+    margin-right: 20px; /* Space between image and text */
+    max-width: 300px;
+    height: auto;
+    border-radius: 10px; /* Optional: Rounded corners */
+}
+
+.card-about {
+    overflow: hidden; /* Ensure text wraps around the floated image */
+}
+
+.goal-section {
+    display: flex;
+    align-items: center; /* Vertically align text and image */
+  
+    gap: 20px; /* Add space between the text and the image */
+    margin-top: 40px; /* Add some space from the previous section */
+}
+
+.goal-text {
+    flex: 1; /* Allow the text to take up the remaining space */
+}
+
+.goal-image {
+    flex: 0 0 300px; /* Fix the image width */
+}
+
+    .goal-image img {
+        max-width: 100%; /* Ensure the image scales properly */
+        height: auto; /* Maintain aspect ratio */
+        border-radius: 10px; /* Optional: Add rounded corners */
+    }
+
+.vision-image {
+    float: left; /* Position the image to the left */
+    margin-right: 20px; /* Add space between the image and text */
+    max-width: 300px; /* Set a maximum width for the image */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 10px; /* Optional: Rounded corners */
+}
+
+.vision-text {
+    overflow: hidden; /* Ensure the text wraps around the floated image */
+}
+.vision-section {
+    display: flex; /* Use flexbox for horizontal alignment */
+    align-items: center; /* Vertically align the image and text */
+    gap: 20px; /* Space between the image and text */
+    margin-top: 40px; /* Add spacing from previous sections */
+}
+
+.vision-image {
+    flex: 0 0 300px; /* Fix the image width to 300px */
+}
+
+    .vision-image img {
+        max-width: 100%; /* Scale the image within its container */
+        height: auto; /* Maintain aspect ratio */
+        border-radius: 10px; /* Optional: Add rounded corners */
+    }
+
+.Team-section {
+    text-align: center; /* Center-align the text */
+    margin-top: 20px; /* Add spacing above the section */
+}
+
+.Team-image img {
+    width: 100%; /* Make the image cover the full horizontal space */
+    height: 200px; /* Set the vertical height */
+    object-fit: cover; /* Crop the image to fit the area */
+    border-radius: 10px; /* Optional: Add rounded corners */
+    margin-bottom: 20px; /* Add space below the image */
+}
+
+.Team-links h5 a {
+    color: #0073e6; /* Set the color for the email links */
+    text-decoration: underline; /* Add underline to the links */
+    font-weight: normal; /* Optional: Adjust font weight */
+}
+
+    .Team-links h5 a:hover {
+        text-decoration: underline; /* Ensure underline stays on hover */
+        color: #0056b3; /* Optional: Change color on hover */
+    }
+
+
 /*Resposinve*/
 @media (max-width: 768px) {
     .navbar-nav {
