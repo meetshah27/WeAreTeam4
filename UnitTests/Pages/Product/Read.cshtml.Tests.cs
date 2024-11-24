@@ -21,6 +21,7 @@ using Moq;
 using NUnit.Framework;
 
 using ContosoCrafts.WebSite.Services;
+using ContosoCrafts.WebSite.Pages.Product;
 
 namespace UnitTests.Pages.Product.Read
 {
