@@ -36,25 +36,25 @@ namespace UnitTests.Pages.Product.Index
     {
 
         #region TestSetup
-        // Declares necessary properties for testing
+        // Factory for creating URL helpers, used to test URL generation within the page model
         public static IUrlHelperFactory UrlHelperFactory;
-
+        // Default HTTP context, simulating HTTP request/response properties in tests
         public static DefaultHttpContext HttpContextDefault;
-
+        // Mocked web hosting environment, allows configuring paths and environment settings in tests
         public static IWebHostEnvironment WebHostEnvironment;
-
+        // Dictionary to manage validation state for testing model binding and validation
         public static ModelStateDictionary ModelState;
-
+        // Provides context about the current HTTP request, enabling testing of request-specific actions
         public static ActionContext ActionContext;
-
+        // Metadata provider for model validation, used to simulate metadata for model properties in tests
         public static EmptyModelMetadataProvider ModelMetadataProvider;
-
+        // Stores view-specific data passed from controllers to views in tests
         public static ViewDataDictionary TestsViewData;
-
+        // Temporary data dictionary for holding short-lived data between requests
         public static TempDataDictionary TempData;
-
+        // Context for a Razor Page, containing request information, user data, and view data
         public static PageContext PageContext;
-
+        // The page model instance of IndexModel, representing the page logic to be tested
         public static IndexModel PageModel;
 
         [SetUp]
@@ -64,25 +64,25 @@ namespace UnitTests.Pages.Product.Index
         /// </summary>
         public void TestInitialize()
         {
-
-            HttpContextDefault = new DefaultHttpContext()// Sets up a default HTTP context for the page model
+            // Sets up a default HTTP context for the page model
+            HttpContextDefault = new DefaultHttpContext()
             {
 
                 //RequestServices = serviceProviderMock.Object,
 
             };
-
-            ModelState = new ModelStateDictionary();// Initializes ModelState to enable validation within tests
-
-            ActionContext = new ActionContext(HttpContextDefault, HttpContextDefault.GetRouteData(), new PageActionDescriptor(), ModelState);// Sets up ActionContext for Razor Page testing, linking HTTP context and route data
-
-            ModelMetadataProvider = new EmptyModelMetadataProvider();// Initializes ModelMetadataProvider for providing metadata to ViewData
-
-            TestsViewData = new ViewDataDictionary(ModelMetadataProvider, ModelState);// Configures ViewData with the ModelMetadataProvider and ModelState
-
-            TempData = new TempDataDictionary(HttpContextDefault, Mock.Of<ITempDataProvider>());// Configures TempData, used for temporary data storage in Razor Pages
-
-            PageContext = new PageContext(ActionContext)// Initializes PageContext with the ActionContext and ViewData for the page model
+            // Initializes ModelState to enable validation within tests
+            ModelState = new ModelStateDictionary();
+            // Sets up ActionContext for Razor Page testing, linking HTTP context and route data
+            ActionContext = new ActionContext(HttpContextDefault, HttpContextDefault.GetRouteData(), new PageActionDescriptor(), ModelState);
+            // Initializes ModelMetadataProvider for providing metadata to ViewData
+            ModelMetadataProvider = new EmptyModelMetadataProvider();
+            // Configures ViewData with the ModelMetadataProvider and ModelState
+            TestsViewData = new ViewDataDictionary(ModelMetadataProvider, ModelState);
+            // Configures TempData, used for temporary data storage in Razor Pages
+            TempData = new TempDataDictionary(HttpContextDefault, Mock.Of<ITempDataProvider>());
+            // Initializes PageContext with the ActionContext and ViewData for the page model
+            PageContext = new PageContext(ActionContext)
             {
 
                 ViewData = TestsViewData,
@@ -93,13 +93,13 @@ namespace UnitTests.Pages.Product.Index
             mockWebHostEnvironment.Setup(m => m.EnvironmentName).Returns("Hosting:UnitTestEnvironment");
             mockWebHostEnvironment.Setup(m => m.WebRootPath).Returns("../../../../src/bin/Debug/net7.0/wwwroot");
             mockWebHostEnvironment.Setup(m => m.ContentRootPath).Returns("./data/");
-
-            var mockLoggerDirect = Mock.Of<ILogger<IndexModel>>(); // Mocks the logger to prevent actual logging in test environment
+            // Mocks the logger to prevent actual logging in test environment
+            var mockLoggerDirect = Mock.Of<ILogger<IndexModel>>(); 
             JsonFileProductService productService;
-
-            productService = new JsonFileProductService(mockWebHostEnvironment.Object);// Creates an instance of JsonFileProductService with mocked environment settings
-
-            PageModel = new IndexModel(productService) // Initializes the IndexModel page model with the ProductService and other mock dependencies
+            // Creates an instance of JsonFileProductService with mocked environment settings
+            productService = new JsonFileProductService(mockWebHostEnvironment.Object);
+            // Initializes the IndexModel page model with the ProductService and other mock dependencies
+            PageModel = new IndexModel(productService) 
             {
 
             };
@@ -121,11 +121,14 @@ namespace UnitTests.Pages.Product.Index
             var sortBy = "title";
             var sortOrder = "asc";
             // Act
-            PageModel.OnGet(sortBy, sortOrder);// Calls the OnGet method to test page load functionality
+            // Calls the OnGet method to test page load functionality
+            PageModel.OnGet(sortBy, sortOrder);
 
             // Assert
-            Assert.That(PageModel.ModelState.IsValid, Is.EqualTo(true), "Index page should return a valid state");// Ensures ModelState is valid after OnGet
-            Assert.That(PageModel.Products.ToList().Any(), Is.EqualTo(true), "Index page's list of products should exist");// Verifies that products are loaded and non-empty
+            // Ensures ModelState is valid after OnGet
+            Assert.That(PageModel.ModelState.IsValid, Is.EqualTo(true), "Index page should return a valid state");
+            // Verifies that products are loaded and non-empty.
+            Assert.That(PageModel.Products.ToList().Any(), Is.EqualTo(true), "Index page's list of products should exist");
 
         }
         #endregion OnGet
