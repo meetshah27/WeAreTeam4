@@ -1,25 +1,26 @@
-﻿using Microsoft.AspNetCore.Http;
-
+﻿// Provides classes for handling HTTP requests and responses.
+using Microsoft.AspNetCore.Http;
+// Includes functionality for MVC pattern, used for controllers and views.
 using Microsoft.AspNetCore.Mvc;
-
+// Supports Razor Pages for building page-based web applications.
 using Microsoft.AspNetCore.Mvc.RazorPages;
-
+// Provides functionality for binding model data from HTTP requests.
 using Microsoft.AspNetCore.Mvc.ModelBinding;
-
+// Contains features for working with HTML helpers, views, and view data.
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
-
+// Provides hosting environment-related functionality for ASP.NET Core applications.
 using Microsoft.AspNetCore.Hosting;
-
+// Enables routing capabilities, which map URLs to controller actions or Razor Pages.
 using Microsoft.AspNetCore.Routing;
-
+// Contains classes for logging within the application.
 using Microsoft.Extensions.Logging;
-
+// A mocking library used in unit tests to simulate objects for testing purposes.
 using Moq;
-
+// Testing framework for writing and running unit tests. Used for assertions and test structure.
 using NUnit.Framework;
-
+// Includes services related to the ContosoCrafts website (likely business logic or data access).
 using ContosoCrafts.WebSite.Services;
-
+// Contains the models used in the ContosoCrafts website (e.g., data structures for products).
 using ContosoCrafts.WebSite.Models;
 
 namespace UnitTests.Pages.Product.Update
@@ -172,7 +173,7 @@ namespace UnitTests.Pages.Product.Update
                 Product = new ProductModel { Id = "test-id" }
 
             };
-
+            // Simulate errors for missing required fields
             model.ModelState.AddModelError("Product.Title", "Title is required");
 
             model.ModelState.AddModelError("Product.Description", "Description is required");
