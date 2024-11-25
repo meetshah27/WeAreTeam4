@@ -1,29 +1,30 @@
-﻿using System.Linq;
-
+﻿// Provides LINQ methods for querying collections (used for querying lists, etc.)
+using System.Linq;
+// ASP.NET Core namespaces for HTTP-related features, like handling HTTP requests and responses
 using Microsoft.AspNetCore.Http;
-
+// ASP.NET Core namespace for MVC-related functionality, such as controllers and action results
 using Microsoft.AspNetCore.Mvc;
-
+// Namespace for routing within the ASP.NET Core MVC framework, handling route mapping and URL generation
 using Microsoft.AspNetCore.Mvc.Routing;
-
+// Provides model binding and validation functionality for ASP.NET Core, helping to bind incoming request data to models
 using Microsoft.AspNetCore.Mvc.ModelBinding;
-
+// Allows access to ViewData and TempData dictionaries, used to store data passed between the controller and view
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
-
+// Namespace for Razor Pages, part of ASP.NET Core used for page-based routing and handling HTTP requests for pages
 using Microsoft.AspNetCore.Mvc.RazorPages;
-
+// ASP.NET Core routing namespace, used for defining and working with URL routes in the application
 using Microsoft.AspNetCore.Routing;
-
+// Namespace for accessing environment information, such as content and web root paths, necessary for file handling and configuration
 using Microsoft.AspNetCore.Hosting;
-
+// ASP.NET Core's logging library, providing structured logging for monitoring and troubleshooting
 using Microsoft.Extensions.Logging;
-
+// Moq framework for creating mock objects used in unit tests, allowing you to simulate behavior of dependencies
 using Moq;
-
+// NUnit framework for writing and running unit tests, providing attributes like [Test] and assertions
 using NUnit.Framework;
-
+// Namespace containing the `IndexModel` page and services used within the Product section of the website
 using ContosoCrafts.WebSite.Pages.Product;
-
+// Namespace containing the services, like `JsonFileProductService`, that manage data and business logic in the web application
 using ContosoCrafts.WebSite.Services;
 
 namespace UnitTests.Pages.Product.Index
