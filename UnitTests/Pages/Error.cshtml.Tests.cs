@@ -1,11 +1,12 @@
+// System namespace for diagnostics
 using System.Diagnostics;
-
+// Microsoft.Extensions.Logging namespace for logging functionality
 using Microsoft.Extensions.Logging;
-
+// NUnit framework for unit testing
 using NUnit.Framework;
-
+// Moq library for mocking dependencies in unit tests
 using Moq;
-
+// ContosoCrafts.WebSite.Pages namespace for the pages in the website
 using ContosoCrafts.WebSite.Pages;
 
 namespace UnitTests.Pages.Error
@@ -28,10 +29,10 @@ namespace UnitTests.Pages.Error
         [SetUp]
         public void TestInitialize()
         {
-
-            var MockLoggerDirect = Mock.Of<ILogger<ErrorModel>>();// Mock the ILogger to simulate the logging behavior
-
-            PageModel = new ErrorModel(MockLoggerDirect)// Initialize the ErrorModel with the mocked logger
+            // Mock the ILogger to simulate the logging behavior
+            var MockLoggerDirect = Mock.Of<ILogger<ErrorModel>>();
+            // Initialize the ErrorModel with the mocked logger
+            PageModel = new ErrorModel(MockLoggerDirect)
             {
                 // Set up context and temporary data for the page model using helper methods
                 PageContext = TestHelper.PageContext,
@@ -65,8 +66,10 @@ namespace UnitTests.Pages.Error
             activity.Stop();
 
             // Assert
-            Assert.That(PageModel.ModelState.IsValid, Is.EqualTo(true));// Verify that the model state is valid
-            Assert.That(PageModel.RequestId, Is.EqualTo(activity.Id));// Assert that the RequestId matches the activity ID
+            // Verify that the model state is valid
+            Assert.That(PageModel.ModelState.IsValid, Is.EqualTo(true));
+            // Assert that the RequestId matches the activity ID
+            Assert.That(PageModel.RequestId, Is.EqualTo(activity.Id));
         }
         /// <summary>
         /// Tests the OnGet method's behavior in the ErrorModel when no Activity is set (null Activity scenario).
@@ -88,8 +91,10 @@ namespace UnitTests.Pages.Error
             // Assert
             // Verify that the model state is valid
             Assert.That(PageModel.ModelState.IsValid, Is.EqualTo(true));
-            Assert.That(PageModel.RequestId, Is.EqualTo("trace")); // Assert that the RequestId is set to "trace" (a default identifier)
-            Assert.That(PageModel.ShowRequestId, Is.EqualTo(true));// Verify that ShowRequestId is true, indicating the request ID should be displayed
+            // Assert that the RequestId is set to "trace" (a default identifier)
+            Assert.That(PageModel.RequestId, Is.EqualTo("trace"));
+            // Verify that ShowRequestId is true, indicating the request ID should be displayed
+            Assert.That(PageModel.ShowRequestId, Is.EqualTo(true));
         }
         #endregion OnGet
 
