@@ -8,7 +8,8 @@ namespace UnitTests.Pages.Product.AddRating
     {
         #region TestSetup
         /// <summary>
-        /// Setup Initialization for the Test file of JsonFileProductService
+        /// Setup Initialization for the Test file of JsonFileProductService.
+        /// This method will be called before each test to prepare the necessary test environment.
         /// </summary>
         [SetUp]
         public void TestInitialize()
@@ -19,8 +20,8 @@ namespace UnitTests.Pages.Product.AddRating
 
         #region AddRating
         /// <summary>
-        /// validation on Addrating method for the product when it is null,
-        /// it should return False
+        /// Validation on AddRating method for the product when it is null.
+        /// It should return False since the product is invalid.
         /// </summary>
         [Test]
         public void AddRating_Invalid_Product_Null_Should_Return_False()
@@ -28,6 +29,7 @@ namespace UnitTests.Pages.Product.AddRating
             // Arrange
 
             // Act
+
             var result = TestHelper.ProductService.AddRating(null, 1);
 
             // Assert
