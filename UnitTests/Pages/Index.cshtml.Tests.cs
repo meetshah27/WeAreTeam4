@@ -1,11 +1,12 @@
+// System namespace for LINQ functionality
 using System.Linq;
-
+// Microsoft.Extensions.Logging namespace for logging functionality
 using Microsoft.Extensions.Logging;
-
+// A mocking framework used in unit tests to create mock objects that simulate the behavior of real dependencies.
 using Moq;
-
+// The NUnit testing framework, used to define unit tests, assertions, and test structures.
 using NUnit.Framework;
-
+// Contains the page classes (likely Razor Pages) for the ContosoCrafts website, including the logic for handling page interactions.
 using ContosoCrafts.WebSite.Pages;
 
 namespace UnitTests.Pages.Index
