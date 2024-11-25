@@ -1,27 +1,28 @@
-﻿using Microsoft.AspNetCore.Http;
-
+﻿// Provides classes and interfaces to work with HTTP context, requests, and responses in ASP.NET Core
+using Microsoft.AspNetCore.Http;
+// Provides attributes and classes to define MVC controllers and actions in ASP.NET Core
 using Microsoft.AspNetCore.Mvc;
-
+// Provides classes for building URLs in ASP.NET Core applications
 using Microsoft.AspNetCore.Mvc.Routing;
-
+// Provides classes for handling model binding, allowing data from HTTP requests to be bound to action parameters
 using Microsoft.AspNetCore.Mvc.ModelBinding;
-
+// Provides classes for managing view data, temp data, and other view-related properties
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
-
+// Provides classes and features for building Razor Pages in ASP.NET Core
 using Microsoft.AspNetCore.Mvc.RazorPages;
-
+// Provides classes and interfaces for handling routing in ASP.NET Core applications
 using Microsoft.AspNetCore.Routing;
-
+// Provides classes and interfaces for web hosting, including environment-related functionality
 using Microsoft.AspNetCore.Hosting;
-
+// Provides logging functionality, allowing applications to log information, warnings, errors, etc.
 using Microsoft.Extensions.Logging;
-
+// Provides classes from Moq, a popular mocking library for .NET, used in unit testing
 using Moq;
-
+// Provides NUnit attributes and classes for writing and running tests in .NET applications
 using NUnit.Framework;
-
+// Provides access to the application's services, such as data retrieval and manipulation
 using ContosoCrafts.WebSite.Services;
-
+// Provides classes and extension methods for querying and manipulating collections using LINQ (Language-Integrated Query)
 using System.Linq;
 
 
@@ -262,7 +263,7 @@ namespace UnitTests.Pages.Product.Create
             PageModel.OnPostCancel();
 
             // Assert
-            // Checks that product is properly deleted after OnPostCancel() is called
+            // Checks that product is properly deleted after OnPostCancel() is called.
             Assert.That(TestHelper.ProductService.GetAllData().Any(m => m.Id == PageModel.Product.Id), Is.EqualTo(false), "Product should not exist after OnGetCancel() has been called");
 
         }
