@@ -1,26 +1,28 @@
-﻿using Microsoft.AspNetCore.Http;
-
+﻿// Namespace for handling HTTP-related functionalities like requests and responses
+using Microsoft.AspNetCore.Http;
+// Namespace for MVC-related functionality, including controllers, action results, and API responses
 using Microsoft.AspNetCore.Mvc;
-
+// Provides classes for working with routes, including URL generation and route mapping
 using Microsoft.AspNetCore.Mvc.Routing;
-
+// Namespace for model binding and validation, which is used to bind request data to models and perform validation
 using Microsoft.AspNetCore.Mvc.ModelBinding;
-
+// Provides functionality for passing data between controllers and views (ViewData, TempData)
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
-
+// Namespace for Razor Pages, enabling page-based routing in ASP.NET Core for handling HTTP requests and responses for pages
 using Microsoft.AspNetCore.Mvc.RazorPages;
-
+// Namespace for routing functionality, useful for defining routes and handling URL parameters
 using Microsoft.AspNetCore.Routing;
-
+// Provides access to environment-specific information, such as content and web root paths, needed for file management and application configuration
 using Microsoft.AspNetCore.Hosting;
-
+// ASP.NET Core's logging framework to log messages and track application behavior (for debugging, performance monitoring, etc.)
 using Microsoft.Extensions.Logging;
-
+// Moq is a mocking library for creating mock objects in unit tests, enabling the simulation of dependencies without needing their actual implementations
 using Moq;
-
+// NUnit is a unit testing framework that provides a structure for writing and running unit tests. It includes test attributes like [Test] and asserts
 using NUnit.Framework;
-
+// Namespace for services that contain business logic or data handling functionality (like JsonFileProductService)
 using ContosoCrafts.WebSite.Services;
+// Namespace for the Product Pages (Razor Pages) related to the web application, specifically the Read page in this case
 using ContosoCrafts.WebSite.Pages.Product;
 
 namespace UnitTests.Pages.Product.Read
