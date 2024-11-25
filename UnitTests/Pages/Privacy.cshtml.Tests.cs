@@ -1,9 +1,10 @@
+// Microsoft.Extensions.Logging namespace for logging functionality
 using Microsoft.Extensions.Logging;
-
+// NUnit framework for unit testing
 using NUnit.Framework;
-
+// Moq library for creating mock objects in unit tests
 using Moq;
-
+// ContosoCrafts.WebSite.Pages namespace for the pages in the website
 using ContosoCrafts.WebSite.Pages;
 
 namespace UnitTests.Pages.Privacy
