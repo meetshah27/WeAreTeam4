@@ -16,7 +16,9 @@ using ContosoCrafts.WebSite.Services;
 
 namespace UnitTests.Controllers
 {
-
+    /// <summary>
+    /// Test Cases for the Product Controller.
+    /// </summary>
     [TestFixture]
     public class ProductsControllerTests
     {
@@ -26,7 +28,9 @@ namespace UnitTests.Controllers
         private JsonFileProductService _productService;
 
         private string _testWebRootPath;
-
+        /// <summary>
+        /// Data directory to check the controller for the Tests
+        /// </summary>
         [SetUp]
         public void Setup()
         {
@@ -81,7 +85,9 @@ namespace UnitTests.Controllers
             _controller = new ProductsController(_productService);
 
         }
-
+        /// <summary>
+        /// Clean the Directory after the test cases
+        /// </summary>
         [TearDown]
         public void TearDown()
         {
@@ -96,6 +102,9 @@ namespace UnitTests.Controllers
 
         }
 
+        /// <summary>
+        /// Product Service should be initialized with the contructor.
+        /// </summary>
         [Test]
         public void Constructor_Should_Initialize_ProductService()
         {
@@ -105,6 +114,9 @@ namespace UnitTests.Controllers
 
         }
 
+        /// <summary>
+        /// Get the count and the products. Return all the products
+        /// </summary>
         [Test]
         public void Get_Should_Return_All_Products()
         {
@@ -117,6 +129,9 @@ namespace UnitTests.Controllers
 
         }
 
+        /// <summary>
+        /// Patch method adding rating to the product and returning the value that are given
+        /// </summary>
         [Test]
         public void Patch_Should_Add_Rating_To_Product_And_Return_Ok()
         {
