@@ -44,7 +44,9 @@ namespace UnitTests.Pages.Index
         #endregion TestSetup
         /// <summary>
         /// Tests the OnGet method's behavior in the IndexModel.
-        /// Verifies that when OnGet is called, the ModelState is valid and the Products list is populated, indicating that products were successfully loaded.
+        /// Verifies that when OnGet is called, 
+        /// the ModelState is valid and the Products list is populated, 
+        /// indicating that products were successfully loaded.
         /// </summary>
         #region OnGet
         [Test]
