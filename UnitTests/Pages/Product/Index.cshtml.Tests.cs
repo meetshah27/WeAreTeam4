@@ -132,6 +132,29 @@ namespace UnitTests.Pages.Product.Index
             Assert.That(PageModel.Products.ToList().Any(), Is.EqualTo(true), "Index page's list of products should exist");
 
         }
+
+        /// <summary>
+        /// Verifies that OnGet loads the Index page with a valid ModelState and a populated list of products.
+        /// Confirms that the ModelState is valid and that Products are correctly loaded.
+        /// </summary>
+        [Test]
+        public void OnGet_Valid_for_sortOrder_desc_Should_Return_Products()
+        {
+
+            // Arrange
+            var sortBy = "title";
+            var sortOrder = "desc";
+            // Act
+            // Calls the OnGet method to test page load functionality
+            PageModel.OnGet(sortBy, sortOrder);
+
+            // Assert
+            // Ensures ModelState is valid after OnGet
+            Assert.That(PageModel.ModelState.IsValid, Is.EqualTo(true), "Index page should return a valid state");
+            // Verifies that products are loaded and non-empty.
+            Assert.That(PageModel.Products.ToList().Any(), Is.EqualTo(true), "Index page's list of products should exist");
+
+        }
         #endregion OnGet
 
     }
