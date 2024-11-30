@@ -195,7 +195,8 @@ namespace ContosoCrafts.WebSite.Services
                 Description = "",
                 Url = "",
                 Image = "",
-                GitHub=""
+                GitHub = "",
+                ProductType = ProductTypeEnum.undefined,
 
             };
 
