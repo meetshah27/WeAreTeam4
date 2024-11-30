@@ -1,4 +1,6 @@
+// Importing namespace for data annotations to validate properties of the model.
 using System.ComponentModel.DataAnnotations;
+// Importing namespace for JSON serialization and deserialization attributes.
 using System.Text.Json.Serialization;
 
 namespace ContosoCrafts.WebSite.Models
