@@ -6,65 +6,82 @@
 
 @inject JsonFileProductService ProductService
 
+<!-- Search bar container -->
 <div class="search-container">
     <div class="row align-items-center">
+        <!-- Input field for searching products -->
         <input class="search-input form-control col-3" placeholder="Search Project" @bind="SearchString" />
+        <!-- Button to initiate search -->
         <button class="btn btn-primary btn-search" type="submit" @onclick="SearchProducts">Search</button>
+        <!-- Button to reset the search filter -->
         <button class="btn btn-secondary btn-reset" type="submit" @onclick="ResetSearch">Reset</button>
     </div>
 </div>
 
+<!-- Displaying filtered products as cards -->
 <div class="card-columns">
     @foreach (var product in FilteredProducts)
 
     {
+        <!-- Card link wraps around each product card -->
         <a href="javascript:void(0);" @onclick="(e => { SelectProduct(product.Id); WebsiteCounter(); })"
            data-toggle="modal" data-target="#productModal" class="card-link" id="@(product.Id + "_MoreInfo")">
+            <!-- Card structure -->
             <div class="card">
+                    <!-- Display product image as card background -->
                 <div class="card-img" style="background-image: url('@product.Image');">
                 </div>
                 <div class="card-body">
+                    <!-- Display product title -->
                     <h5 class="card-title">@product.Title</h5>
                 </div>
             </div>
         </a>
     }
 </div>
-
+<!-- Modal for displaying detailed product information -->
 @if (selectedProduct is object)
 
 {
     <div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="productTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
+                <!-- Modal header displaying the product title -->
                 <div class="modal-header">
                     <h5 class="modal-title" id="productTitle">
+                        <!-- Link to product URL -->
                         <a href="@selectedProduct.Url" id="@(selectedProduct.Id + "_Url")" target="_blank" @onclick="(e => UrlCounter())">@selectedProduct.Title</a>
                     </h5>
+                    <!-- Link to GitHub repository -->
                     <span>
                         <a href="@selectedProduct.GitHub" target="_blank" rel="noopener noreferrer" title="GitHub Repository" class="github-link">
                             <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
                                  alt="GitHub" class="github-icon">
                         </a>
                     </span>
+                    <!-- Close button for modal -->
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
+                    <!-- Product image -->
                     <div class="card">
                         <div class="card-img" style="background-image: url('@selectedProduct.Image');">
                         </div>
                         <div class="card-body">
+                            <!-- Product description -->
                             <p class="card-text">@selectedProduct.Description</p>
                         </div>
                         <div class="card-body">
+                            <!-- Engagement metrics -->
                             <p class="card-text">Total Engagements : @selectedProduct.Counter</p>
                             <p class="card-text">Engagement Rate (%) : @urlClickPercentage %</p>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
+                        <!-- Voting feedback -->
                     @if (voteCount == 0)
                     {
                         <span>Be the first to vote!</span>
@@ -74,7 +91,7 @@
                     {
                         <span>@voteCount @voteLabel</span>
                     }
-
+                    <!-- Star rating system -->
                     @for (int i = 1; i < 6; i++)
                     {
 
@@ -101,6 +118,7 @@
         </div>
     </div>
 }
+<!-- Font Awesome stylesheet for star icons -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
