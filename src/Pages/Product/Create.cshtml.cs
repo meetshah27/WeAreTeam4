@@ -1,9 +1,10 @@
+// Importing the namespace for the Product model class.
 using ContosoCrafts.WebSite.Models;
-
+// Importing the namespace for the service class handling product-related operations.
 using ContosoCrafts.WebSite.Services;
-
+// Importing the namespace for ASP.NET Core MVC functionalities.
 using Microsoft.AspNetCore.Mvc;
-
+// Importing the namespace for ASP.NET Core Razor Pages functionality.
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 /// <summary>
@@ -65,7 +66,8 @@ public class CreateModel : PageModel
         // Check if the product exists and delete it
         if (Product != null)
         {
-            ProductService.DeleteData(Product.Id); // Ensure Product.Id exists and is valid
+            // Ensure Product.Id exists and is valid
+            ProductService.DeleteData(Product.Id); 
         }
 
         // Redirect to the Index page after cancellation
