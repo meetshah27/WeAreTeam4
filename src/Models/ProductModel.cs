@@ -42,6 +42,7 @@ namespace ContosoCrafts.WebSite.Models
                 ProductTypeEnum.transport => "Transport & Travel",
                 ProductTypeEnum.food_delivery => "Food Delivery",
                 ProductTypeEnum.software_development => "Software Development",
+                ProductTypeEnum.other => "Other",
 
 
                 // Default, Unknown
