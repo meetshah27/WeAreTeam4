@@ -1,5 +1,6 @@
 ﻿@page
 @using ContosoCrafts.WebSite.Services
+@using ContosoCrafts.WebSite.Models
 @inject JsonFileProductService ProductService
 @model CreateModel
 
@@ -50,6 +51,15 @@
             <label asp-for="Product.GitHub" class="control-label"></label>
             <input asp-for="Product.GitHub" type="url" required data-val="true" data-val-required="GitHub URL is required." class="form-control" placeholder="Enter GitHub URL" />
             <span asp-validation-for="Product.GitHub" class="text-danger field-validation-error"></span>
+        </div>
+
+        <!-- Product Type (enum) input field-->
+        <div class="form-group">
+            <label asp-for="Product.ProductType" class="control-label"></label>
+            <select class="form-control" asp-for="Product.ProductType" asp-items="Html.GetEnumSelectList<ProductTypeEnum>()">
+                <option selected="selected" value="">Please Select </option>
+            </select>
+            <span asp-validation-for="Product.ProductType" class="text-danger"></span>
         </div>
 
         <!-- Submit and Cancel buttons -->
