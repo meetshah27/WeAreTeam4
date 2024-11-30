@@ -143,6 +143,7 @@ namespace ContosoCrafts.WebSite.Services
             productData.Url = data.Url;
             productData.Image = data.Image;
             productData.GitHub = data.GitHub;
+            productData.ProductType = data.ProductType;
 
             // Save the updated data back to the JSON file
             SaveData(products);
