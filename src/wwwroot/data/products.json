@@ -12,7 +12,8 @@
       2
     ],
     "Counter": 1,
-    "UrlCounter": 0
+    "UrlCounter": 0,
+    "ProductType": 1
   },
   {
     "Id": "jenlooper-lightshow",
@@ -24,7 +25,8 @@
     "Description": "Flipkart offers a wide range of products across categories such as electronics, home appliances, and fashion. This platform has a user-friendly interface, easy checkout process, and a variety of payment options.",
     "Ratings": null,
     "Counter": 3,
-    "UrlCounter": 0
+    "UrlCounter": 0,
+    "ProductType": 7
   },
   {
     "Id": "jenlooper-survival",
@@ -36,7 +38,8 @@
     "Description": "PhonePe is a mobile payment platform which you can use to transfer money using UPI, recharge phone numbers, pay utility bills, etc.",
     "Ratings": null,
     "Counter": 0,
-    "UrlCounter": 0
+    "UrlCounter": 0,
+    "ProductType": 3
   },
   {
     "Id": "sailorhg-bubblesortpic",
@@ -44,7 +47,7 @@
     "img": "https://www.eklavvya.com/blog/wp-content/uploads/2022/03/Zerodha-Logo.png",
     "GitHub": "https://github.com/zerodhatech",
     "Url": "https://zerodha.com",
-    "Title": "zerodha",
+    "Title": "Zerodha",
     "Description": "A stock broker and financial services company. It offers institutional \u0026 retail brokerage, currency \u0026 commodity trading, and mutual funds \u0026 bonds.",
     "Ratings": [
       5,
@@ -54,7 +57,8 @@
       5
     ],
     "Counter": 3,
-    "UrlCounter": 0
+    "UrlCounter": 0,
+    "ProductType": 3
   },
   {
     "Id": "sailorhg-corsage",
@@ -70,7 +74,8 @@
       1
     ],
     "Counter": 10,
-    "UrlCounter": 2
+    "UrlCounter": 2,
+    "ProductType": 11
   },
   {
     "Id": "sailorhg-kit",
@@ -82,7 +87,8 @@
     "Description": "BharatPe is an Indian fintech company that offers digital payment and financial services to small and medium-sized businesses, including offline merchants and kirana store owners.",
     "Ratings": null,
     "Counter": 5,
-    "UrlCounter": 0
+    "UrlCounter": 0,
+    "ProductType": 3
   },
   {
     "Id": "sailorhg-led",
@@ -97,7 +103,8 @@
       2
     ],
     "Counter": 9,
-    "UrlCounter": 1
+    "UrlCounter": 1,
+    "ProductType": 7
   },
   {
     "Id": "selinazawacki-soi-shirt",
@@ -109,7 +116,8 @@
     "Description": "Lenskart is an eyewear company that sells eyeglasses, sunglasses, and contact lenses, and offers free eye exams and repair services.",
     "Ratings": null,
     "Counter": 1,
-    "UrlCounter": 0
+    "UrlCounter": 0,
+    "ProductType": 7
   },
   {
     "Id": "selinazawacki-soi-pins",
@@ -121,7 +129,8 @@
     "Description": "Blinkit is an Indian e-commerce marketplace that offers instant delivery of a variety of products, including groceries and electronics.",
     "Ratings": null,
     "Counter": 4,
-    "UrlCounter": 0
+    "UrlCounter": 0,
+    "ProductType": 7
   },
   {
     "Id": "vogueandcode-hipster-dev-bro",
@@ -133,7 +142,8 @@
     "Description": "A visual discovery platform that allows users to find and save ideas for various projects and interests,from home decor to recipes. It acts as a digital pinboard for inspiration.",
     "Ratings": null,
     "Counter": 5,
-    "UrlCounter": 1
+    "UrlCounter": 1,
+    "ProductType": 5
   },
   {
     "Id": "vogueandcode-pretty-girls-code-tee",
@@ -145,7 +155,8 @@
     "Description": "A dating app that empowers women by allowing them to initiate conversations with matches. It also includes features for finding friends and professional networking.",
     "Ratings": null,
     "Counter": 1,
-    "UrlCounter": 0
+    "UrlCounter": 0,
+    "ProductType": 5
   },
   {
     "Id": "vogueandcode-ruby-sis-2",
@@ -157,7 +168,8 @@
     "Description": "A platform that allows individuals to rent out their homes or rooms to travelers, offering unique accommodations worldwide. It connects hosts with guests seeking alternative lodging options.",
     "Ratings": null,
     "Counter": 4,
-    "UrlCounter": 0
+    "UrlCounter": 0,
+    "ProductType": 15
   },
   {
     "Id": "selinazawacki-moon",
@@ -169,7 +181,8 @@
     "Description": "ShareChat is a social media platform tailored for Indian users, enabling them to create and share content in various regional languages. It allows users to post status updates, photos, and videos, and engage in discussions across diverse topics.",
     "Ratings": null,
     "Counter": 1,
-    "UrlCounter": 0
+    "UrlCounter": 0,
+    "ProductType": 5
   },
   {
     "Id": "selinazawacki-shirt",
@@ -181,7 +194,8 @@
     "Description": "Rapido is an Indian bike taxi service that provides quick and affordable transportation options through its mobile app. It allows users to book rides on two-wheelers, making it a convenient choice for navigating traffic in urban areas.",
     "Ratings": null,
     "Counter": 1,
-    "UrlCounter": 0
+    "UrlCounter": 0,
+    "ProductType": 9
   },
   {
     "Id": "f4a2631e-8d35-47ea-a4b2-b97c6aa17347",
@@ -193,6 +207,7 @@
     "Description": "Bootstrap is a widely used open-source front-end framework that helps developers create responsive and mobile-first websites and web applications. It includes a comprehensive set of CSS and JavaScript components like navigation bars, modals, carousels, grids, and form controls, which simplify and standardize the development of complex user interfaces. Bootstrap\u0027s responsive grid system and pre-designed components make it easy to build layouts that adapt to different screen sizes without needing extensive custom CSS.;",
     "Ratings": null,
     "Counter": 4,
-    "UrlCounter": 2
+    "UrlCounter": 2,
+    "ProductType": 13
   }
 ]
