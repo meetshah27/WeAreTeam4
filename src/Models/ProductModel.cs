@@ -11,13 +11,21 @@ namespace ContosoCrafts.WebSite.Models
     public enum ProductTypeEnum
     {
         undefined = 0,
+        [Display(Name = "Educational")]
         education = 1,
+        [Display(Name = "Banking & Finance")]
         finance = 3,
+        [Display(Name = "Social Media")]
         social_media = 5,
+        [Display(Name = "Shopping")]
         shopping = 7,
+        [Display(Name = "Transport & Travel")]
         transport = 9,
+        [Display(Name = "Food Delivery")]
         food_delivery = 11,
+        [Display(Name = "Software Development")]
         software_development = 13,
+        [Display(Name = "Other")]
         other = 12345,
     }
 
