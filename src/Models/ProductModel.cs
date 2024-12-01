@@ -32,7 +32,7 @@ namespace ContosoCrafts.WebSite.Models
     }
 
     /// <summary>
-    /// Extensions of ProductTypeEnum to allow 
+    /// Extensions of ProductTypeEnum to allow referencing value in other formats
     /// </summary>
     public static class ProductTypeEnumExtensions
     {
