@@ -1,15 +1,21 @@
 // For dependency injection services
 using Microsoft.Extensions.DependencyInjection;
+
 // For unit testing attributes and assertions
 using NUnit.Framework;
+
 // For accessing components from the ContosoCrafts website project
 using ContosoCrafts.WebSite.Components;
+
 // For accessing services from the ContosoCrafts website project
 using ContosoCrafts.WebSite.Services;
+
 // For Blazor component testing
 using Bunit;
+
 // For LINQ operations on collections
 using System.Linq;
+
 
 // Define a namespace for unit tests related to components
 namespace UnitTests.Components
@@ -18,6 +24,7 @@ namespace UnitTests.Components
     public class ProductListTests : BunitTestContext
     {
         #region TestSetup
+
         // Method to set up any necessary data or services before each test
         [SetUp]
         public void TestInitialize()
@@ -26,6 +33,7 @@ namespace UnitTests.Components
         }
 
         #endregion TestSetup
+
         /// <summary>
         /// Verifies that the list of products is properly rendered
         /// Confirms that an entry known to be in the dataset is properly rendered on the page
@@ -61,8 +69,10 @@ namespace UnitTests.Components
             // Arrange
             // Register ProductService as a singleton in the service collection for testing
             Services.AddSingleton<JsonFileProductService>(TestHelper.ProductService);
+
             // Specify the ID of the product to select
             var id = "jenlooper-light_MoreInfo";
+
             // Render the ProductList component
             var page = RenderComponent<ProductList>();
 
@@ -95,10 +105,11 @@ namespace UnitTests.Components
             // Arrange
             // Create a new product for testing with a unique ID
             var data = TestHelper.ProductService.CreateData();
-
             var id = data.Id + "_MoreInfo";
+
             // Register ProductService as a singleton in the service collection for testing
             Services.AddSingleton<JsonFileProductService>(TestHelper.ProductService);
+
             // Render the ProductList component
             var page = RenderComponent<ProductList>();
 
@@ -140,7 +151,6 @@ namespace UnitTests.Components
         {
             // Arrange
             var data = TestHelper.ProductService.CreateData();
-
             var id = data.Id+"_MoreInfo";
 
             Services.AddSingleton<JsonFileProductService>(TestHelper.ProductService);
@@ -191,7 +201,6 @@ namespace UnitTests.Components
         {
             // Arrange
             var data = TestHelper.ProductService.CreateData();
-
             var id = data.Id + "_MoreInfo";
 
             Services.AddSingleton<JsonFileProductService>(TestHelper.ProductService);
@@ -218,7 +227,6 @@ namespace UnitTests.Components
             // Get the markup page post-url
             var postPageMarkup = page.Markup;
 
-
             // Assert
             // Confirm the counter changed from 0% to 100%
             Assert.That(prePageMarkup.Contains("0 %"), Is.EqualTo(true));
@@ -234,7 +242,6 @@ namespace UnitTests.Components
         {
             // Arrange
             var data = TestHelper.ProductService.CreateData();
-
             var id = data.Id + "_MoreInfo";
 
             Services.AddSingleton<JsonFileProductService>(TestHelper.ProductService);
@@ -263,7 +270,6 @@ namespace UnitTests.Components
 
             // Get the markup page after extra url click
             var postPageMarkup = page.Markup;
-
 
             // Assert
             // Confirm that the counter caps at 100%
