@@ -1,5 +1,6 @@
 ﻿@page
 @model ContosoCrafts.WebSite.Pages.Product.IndexModel
+@using ContosoCrafts.WebSite.Models
 @{
     ViewData["Title"] = "Index Page";
 }
@@ -17,6 +18,9 @@
                     <!-- Title Column with Sorting -->
                     <button class="btn btn-link" onclick="sortTable('Title')">Title</button>
                 </th>
+                <th>
+                    <button class="btn btn-link" onclick="sortTable('ProductType')">Product Type</button>
+                </th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -25,6 +29,7 @@
             {
                 <tr>
                     <td>@product.Title</td>
+                    <td>@ProductTypeEnumExtensions.DisplayName(product.ProductType)</td>
                     <td>
                         <!-- Action Buttons -->
                         <button class="btn-read" onclick="window.location.href='@Url.Page("Read", new { id = product.Id })'">Read</button>
