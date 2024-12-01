@@ -29,7 +29,7 @@
             {
                 <tr>
                     <td>@product.Title</td>
-                    <td>@ProductTypeEnumExtensions.DisplayName(product.ProductType)</td>
+                    <td>@product.ProductType.DisplayName()</td>
                     <td>
                         <!-- Action Buttons -->
                         <button class="btn-read" onclick="window.location.href='@Url.Page("Read", new { id = product.Id })'">Read</button>
