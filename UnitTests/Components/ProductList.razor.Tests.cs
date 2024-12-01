@@ -26,7 +26,10 @@ namespace UnitTests.Components
         }
 
         #endregion TestSetup
-
+        /// <summary>
+        /// Verifies that the list of products is properly rendered
+        /// Confirms that an entry known to be in the dataset is properly rendered on the page
+        /// </summary>
         [Test]
         public void ProductList_Valid_Default_Should_Return_Content()
         {
@@ -48,6 +51,10 @@ namespace UnitTests.Components
 
         }
 
+        /// <summary>
+        /// Verifies that the "more info" tab can be properly rendered
+        /// Confirms that the rendered page contains the description for the product specified to be selected
+        /// </summary>
         [Test]
         public void SelectProduct_Valid_ID_Should_Return_Content()
         {
@@ -78,6 +85,10 @@ namespace UnitTests.Components
             
         }
 
+        /// <summary>
+        /// Tests submitting a star rating higher than the current average
+        /// Confirms that the rendered stars have changed & the vote count incremented as expected
+        /// </summary>
         [Test]
         public void SubmitRating_Valid_ID_Click_Unstarred_Should_Increment_Count_And_Check_Star()
         {
@@ -120,6 +131,10 @@ namespace UnitTests.Components
             Assert.That(postPageMarkup.Contains("1 Vote"), Is.EqualTo(true));
         }
 
+        /// <summary>
+        /// Tests submitting a star rating lower than the current average
+        /// Confirms that the rendered stars have changed & the vote count incremented as expected
+        /// </summary>
         [Test]
         public void SubmitRating_Valid_ID_Click_Starred_Should_Uncheck_Higher_Stars_And_Increment_Count()
         {
@@ -167,6 +182,10 @@ namespace UnitTests.Components
             Assert.That(postPageMarkup.Contains("2 Votes"), Is.EqualTo(true));
         }
 
+        /// <summary>
+        /// Tests clicking on the url to visit the product's website
+        /// Confirms that the tracker for how many people have visited the product's website has increased accordingly
+        /// </summary>
         [Test]
         public void UrlCounter_Valid_ID_Should_Increment_On_Click()
         {
@@ -206,6 +225,10 @@ namespace UnitTests.Components
             Assert.That(postPageMarkup.Contains("100 %"), Is.EqualTo(true));
         }
 
+        /// <summary>
+        /// Tests clicking the link to the product's website multiple times in one go
+        /// Confirms that the "Popularity%" entry does not increase above 100%
+        /// </summary>
         [Test]
         public void UrlCounter_Valid_ID_Percent_Should_Cap_At_100()
         {
