@@ -25,6 +25,8 @@ namespace ContosoCrafts.WebSite.Models
         food_delivery = 11,
         [Display(Name = "Software Development")]
         software_development = 13,
+        [Display(Name = "Homes & Apartments")]
+        housing = 15,
         [Display(Name = "Other")]
         other = 12345,
     }
