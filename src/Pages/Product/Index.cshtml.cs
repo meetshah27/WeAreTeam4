@@ -66,6 +66,13 @@ namespace ContosoCrafts.WebSite.Pages.Product
                     ? Products.OrderBy(p => p.Title).ToList()
                     : Products.OrderByDescending(p => p.Title).ToList();
             }
+            if (sortBy.Equals("ProductType", StringComparison.OrdinalIgnoreCase))
+            {
+                // Sorting by Title
+                Products = sortOrder == "asc"
+                    ? Products.OrderBy(p => p.ProductType.DisplayName()).ToList()
+                    : Products.OrderByDescending(p => p.ProductType.DisplayName()).ToList();
+            }
             // You can add more sorting conditions for other fields here if needed
         }
 
