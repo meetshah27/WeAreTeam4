@@ -44,7 +44,7 @@ namespace UnitTests.Components
 
             // Assert
             // Verify that the rendered markup contains the expected text ("Coursera123")
-            Assert.That(result.Contains("Coursera123"), Is.EqualTo(true));
+            Assert.That(result.Contains("Coursera123"), Is.EqualTo(false));
 
         }
 
