@@ -47,8 +47,10 @@ namespace ContosoCrafts.WebSite.Pages.Product
             Products = ProductService.GetAllData();
 
             // Default values for sorting parameters if not provided
-            sortBy="Title";  // Default to "Title" if no sortBy parameter is passed
-            
+            if (sortBy==null || sortBy=="")
+            {
+                sortBy = "Title";
+            }
             // Default to "asc" if no sortOrder parameter is passed
             if (sortOrder=="asc")
             {
