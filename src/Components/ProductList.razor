@@ -21,7 +21,6 @@
 <!-- Displaying filtered products as cards -->
 <div class="card-columns">
     @foreach (var product in FilteredProducts)
-
     {
         <!-- Card link wraps around each product card -->
         <a href="javascript:void(0);" @onclick="(e => { SelectProduct(product.Id); WebsiteCounter(); })"
@@ -41,7 +40,6 @@
 </div>
 <!-- Modal for displaying detailed product information -->
 @if (selectedProduct is object)
-
 {
     <div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="productTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -92,24 +90,18 @@
                     {
                         <span>@voteCount @voteLabel</span>
                     }
+
                     <!-- Star rating system -->
                     @for (int i = 1; i < 6; i++)
                     {
-
                         var currentStar = i;
 
-
-
                         if (i <= currentRating)
-
                         {
                             <span class="fa fa-star checked" @onclick="(e => SubmitRating(currentStar))"></span>
                         }
 
-
-
                         if (i > currentRating)
-
                         {
                             <span class="fa fa-star" @onclick="(e => SubmitRating(currentStar))"></span>
                         }
@@ -140,9 +132,7 @@
         if (!string.IsNullOrEmpty(SearchString))
         {
             FilteredProducts = ProductService.GetAllData()
-
                 .Where(product => product.Title.Contains(SearchString, StringComparison.OrdinalIgnoreCase))
-
                 .ToList();
         }
     }
@@ -182,7 +172,6 @@
     // Retrieves and calculates the current rating and vote count
     void GetCurrentRating()
     {
-
         if (selectedProduct.Ratings == null)
         {
             currentRating = 0;
