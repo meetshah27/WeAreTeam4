@@ -6,6 +6,56 @@
 
 @inject JsonFileProductService ProductService
 
+
+<!-- Most engaged, most followed-thru (popularity%), and highest rating products -->
+<div class="card-columns">
+
+    <!-- Product card with most clicks -->
+    <a href="javascript:void(0);" @onclick="(e => { SelectProduct(TopClicked.Id); WebsiteCounter(); })"
+       data-toggle="modal" data-target="#productModal" class="card-link" id="@(TopClicked.Id + "_MoreInfo")">
+        <!-- Card structure -->
+        <div class="card">
+            <!-- Display product image as card background -->
+            <div class="card-img" style="background-image: url('@TopClicked.Image');">
+            </div>
+            <div class="card-body">
+                <!-- Display product title -->
+                <h5 class="card-title">@TopClicked.Title</h5>
+            </div>
+        </div>
+    </a>
+
+    <!-- Product card with most URL clicks -->
+    <a href="javascript:void(0);" @onclick="(e => { SelectProduct(TopURLClicked.Id); WebsiteCounter(); })"
+       data-toggle="modal" data-target="#productModal" class="card-link" id="@(TopURLClicked.Id + "_MoreInfo")">
+        <!-- Card structure -->
+        <div class="card">
+            <!-- Display product image as card background -->
+            <div class="card-img" style="background-image: url('@TopURLClicked.Image');">
+            </div>
+            <div class="card-body">
+                <!-- Display product title -->
+                <h5 class="card-title">@TopURLClicked.Title</h5>
+            </div>
+        </div>
+    </a>
+
+    <!-- Product card with best ratings -->
+    <a href="javascript:void(0);" @onclick="(e => { SelectProduct(TopRating.Id); WebsiteCounter(); })"
+       data-toggle="modal" data-target="#productModal" class="card-link" id="@(TopRating.Id + "_MoreInfo")">
+        <!-- Card structure -->
+        <div class="card">
+            <!-- Display product image as card background -->
+            <div class="card-img" style="background-image: url('@TopRating.Image');">
+            </div>
+            <div class="card-body">
+                <!-- Display product title -->
+                <h5 class="card-title">@TopRating.Title</h5>
+            </div>
+        </div>
+    </a>
+</div>
+
 <!-- Search bar container -->
 <div class="search-container">
     <div class="row align-items-center">
@@ -120,10 +170,19 @@
 
     List<ProductModel> FilteredProducts { get; set; } = new List<ProductModel>();
 
+    ProductModel TopRating { get; set; }
+
+    ProductModel TopURLClicked { get; set; }
+
+    ProductModel TopClicked { get; set; }
+
     // Initialize products on page load
     protected override void OnInitialized()
     {
         FilteredProducts = ProductService.GetAllData().ToList();
+        TopClicked = ProductService.GetAllData().OrderByDescending(p => p.Counter).First();
+        TopURLClicked = ProductService.GetAllData().Where(p => p.Counter > 0).OrderByDescending(p => (p.UrlCounter / p.Counter)).ThenByDescending(p => p.UrlCounter).First();
+        TopRating = ProductService.GetAllData().Where(p => p.Ratings != null).OrderByDescending(p => p.Ratings.Average()).ThenByDescending(p => p.Ratings.Length).First();
     }
 
     // Filters products by Title
