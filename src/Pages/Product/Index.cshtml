@@ -44,25 +44,26 @@
 
 <script>
     // JavaScript function to handle sorting
-    function sortTable(column)
-    {
+    function sortTable(column) {
         var currentUrl = window.location.href;
         var url = new URL(currentUrl);
 
-        // Get existing query parameters
-        var sortOrder = url.searchParams.get("sortOrder") || "asc"; // default to ascending
-        var sortBy = url.searchParams.get("sortBy") || column;
+        // Get the existing sortOrder or default to ascending
+        var sortOrder = url.searchParams.get("sortOrder") || "asc";
 
-        // Toggle sortOrder if the same column is clicked again
-        if (column === sortBy) {
+        // If the same column is clicked, toggle sortOrder; otherwise, default to "asc"
+        if (url.searchParams.get("sortBy") === column) {
             sortOrder = sortOrder === "asc" ? "desc" : "asc";
+        } else {
+            sortOrder = "asc"; // Reset to ascending for a new column
         }
 
-        // Update URL with sort parameters
+        // Update URL with the new column and sortOrder
         url.searchParams.set("sortBy", column);
         url.searchParams.set("sortOrder", sortOrder);
 
-        // Reload page with updated sort query
+        // Reload page with updated query
         window.location.href = url.toString();
     }
+
 </script>
