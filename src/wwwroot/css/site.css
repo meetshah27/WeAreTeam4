@@ -369,6 +369,24 @@ ul {
         color: #0056b3; /* Optional: Change color on hover */
     }
 
+/*carousel*/
+.carousel-item img {
+    height: 400px; /* Set the height of images */
+    object-fit: cover; /* Ensures images fit nicely */
+}
+
+.carousel-caption h5 {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.carousel-caption p {
+    font-size: 1.2rem;
+}
+
+.carousel {
+    margin-bottom: 50px;
+}
 
 /*Resposinve*/
 @media (max-width: 768px) {
