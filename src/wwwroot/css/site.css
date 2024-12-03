@@ -378,10 +378,12 @@ ul {
 .carousel-caption h5 {
     font-size: 2rem;
     font-weight: bold;
+    color: black;
 }
 
 .carousel-caption p {
     font-size: 1.2rem;
+    color: black;
 }
 
 .carousel {
