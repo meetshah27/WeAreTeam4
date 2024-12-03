@@ -7,56 +7,57 @@
 @inject JsonFileProductService ProductService
 
 
-<!-- Most engaged, most followed-thru (popularity%), and highest rating products -->
-<div class="card-columns">
+<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+    <!-- Indicators/Dots -->
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
 
-    <!-- Product card with most clicks -->
-    Most overall engagement!
-    <a href="javascript:void(0);" @onclick="(e => { SelectProduct(TopClicked.Id); WebsiteCounter(); })"
-       data-toggle="modal" data-target="#productModal" class="card-link" id="@(TopClicked.Id + "_MoreInfo")">
-        <!-- Card structure -->
-        <div class="card">
-            <!-- Display product image as card background -->
-            <div class="card-img" style="background-image: url('@TopClicked.Image');">
-            </div>
-            <div class="card-body">
-                <!-- Display product title -->
-                <h5 class="card-title">@TopClicked.Title</h5>
+    <!-- Carousel Items -->
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <a href="javascript:void(0);" @onclick="(e => { SelectProduct(TopClicked.Id); WebsiteCounter(); })"
+               data-toggle="modal" data-target="#productModal" id="@(TopClicked.Id + "_Carousel")">
+                <img src="@TopClicked.Image" class="d-block w-100" alt="Slide 1">
+            </a>
+            <div class="carousel-caption d-none d-md-block">
+                <h5>@TopClicked.Title</h5>
+                <p>Most overall engagement!</p>
             </div>
         </div>
-    </a>
-
-    <!-- Product card with most URL clicks -->
-    Most popular product website!
-    <a href="javascript:void(0);" @onclick="(e => { SelectProduct(TopURLClicked.Id); WebsiteCounter(); })"
-       data-toggle="modal" data-target="#productModal" class="card-link" id="@(TopURLClicked.Id + "_MoreInfo")">
-        <!-- Card structure -->
-        <div class="card">
-            <!-- Display product image as card background -->
-            <div class="card-img" style="background-image: url('@TopURLClicked.Image');">
-            </div>
-            <div class="card-body">
-                <!-- Display product title -->
-                <h5 class="card-title">@TopURLClicked.Title</h5>
+        <div class="carousel-item">
+            <a href="javascript:void(0);" @onclick="(e => { SelectProduct(TopURLClicked.Id); WebsiteCounter(); })"
+               data-toggle="modal" data-target="#productModal" id="@(TopURLClicked.Id + "_Carousel")">
+                <img src="@TopURLClicked.Image" class="d-block w-100" alt="Slide 2">
+            </a>
+            <div class="carousel-caption d-none d-md-block">
+                <h5>@TopURLClicked.Title</h5>
+                <p>Most popular product website!</p>
             </div>
         </div>
-    </a>
-
-    <!-- Product card with best ratings -->
-    Highest Ratings!
-    <a href="javascript:void(0);" @onclick="(e => { SelectProduct(TopRating.Id); WebsiteCounter(); })"
-       data-toggle="modal" data-target="#productModal" class="card-link" id="@(TopRating.Id + "_MoreInfo")">
-        <!-- Card structure -->
-        <div class="card">
-            <!-- Display product image as card background -->
-            <div class="card-img" style="background-image: url('@TopRating.Image');">
-            </div>
-            <div class="card-body">
-                <!-- Display product title -->
-                <h5 class="card-title">@TopRating.Title</h5>
+        <div class="carousel-item">
+            <a href="javascript:void(0);" @onclick="(e => { SelectProduct(TopRating.Id); WebsiteCounter(); })"
+               data-toggle="modal" data-target="#productModal" id="@(TopRating.Id + "_Carousel")">
+                <img src="@TopRating.Image" class="d-block w-100" alt="Slide 3">
+            </a>
+            <div class="carousel-caption d-none d-md-block">
+                <h5>@TopRating.Title</h5>
+                <p>Highest Ratings!</p>
             </div>
         </div>
-    </a>
+    </div>
+
+    <!-- Carousel Controls (Prev/Next) -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
 </div>
 
 <!-- Search bar container -->
