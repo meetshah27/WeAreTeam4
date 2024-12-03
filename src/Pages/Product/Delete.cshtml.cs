@@ -1,9 +1,12 @@
-// Importing services for data handling
-using ContosoCrafts.WebSite.Services;  
-// Importing ASP.NET MVC components
+using ContosoCrafts.WebSite.Models;
+
+using ContosoCrafts.WebSite.Services;
+
 using Microsoft.AspNetCore.Mvc;
-// Importing Razor Pages components                                                                                 
+                                                                               
 using Microsoft.AspNetCore.Mvc.RazorPages;
+
+using System.Linq;
 
 
 public class DeleteModel : PageModel
@@ -27,6 +30,10 @@ public class DeleteModel : PageModel
     [BindProperty]
     public string ProductId { get; set; }
 
+    /// <summary>
+    /// Gets or sets the product to be displayed on the page.
+    /// </summary>
+    public ProductModel Product { get; private set; }
     /// <summary> 
     /// HTTP GET method to retrieve the product ID from the URL 
     /// and store it in the ProductId property.
@@ -34,6 +41,7 @@ public class DeleteModel : PageModel
     /// <param name="id">The ID of the product to be deleted.</param>
     public void OnGet(string id)
     {
+        Product = ProductService.GetAllData().FirstOrDefault(m => m.Id == id);
         // Assign the received ID to the ProductId property for later use
         ProductId = id;
 
