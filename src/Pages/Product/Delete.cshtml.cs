@@ -39,11 +39,22 @@ public class DeleteModel : PageModel
     /// and store it in the ProductId property.
     /// </summary>
     /// <param name="id">The ID of the product to be deleted.</param>
-    public void OnGet(string id)
+    public IActionResult OnGet(string id)
     {
+        // Retrieves all products and finds the first one matching the provided ID
         Product = ProductService.GetAllData().FirstOrDefault(m => m.Id == id);
+
+        // Redirects to Index if product is not found or its title is missing
+        if (Product == null || string.IsNullOrEmpty(Product.Title))
+        {
+            return RedirectToPage("../Error");
+        }
+
         // Assign the received ID to the ProductId property for later use
         ProductId = id;
+
+        // Renders the page displaying the retrieved product
+        return Page();
 
     }
 
