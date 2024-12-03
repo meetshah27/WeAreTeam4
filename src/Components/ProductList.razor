@@ -11,6 +11,7 @@
 <div class="card-columns">
 
     <!-- Product card with most clicks -->
+    Most overall engagement!
     <a href="javascript:void(0);" @onclick="(e => { SelectProduct(TopClicked.Id); WebsiteCounter(); })"
        data-toggle="modal" data-target="#productModal" class="card-link" id="@(TopClicked.Id + "_MoreInfo")">
         <!-- Card structure -->
@@ -26,6 +27,7 @@
     </a>
 
     <!-- Product card with most URL clicks -->
+    Most popular product website!
     <a href="javascript:void(0);" @onclick="(e => { SelectProduct(TopURLClicked.Id); WebsiteCounter(); })"
        data-toggle="modal" data-target="#productModal" class="card-link" id="@(TopURLClicked.Id + "_MoreInfo")">
         <!-- Card structure -->
@@ -41,6 +43,7 @@
     </a>
 
     <!-- Product card with best ratings -->
+    Highest Ratings!
     <a href="javascript:void(0);" @onclick="(e => { SelectProduct(TopRating.Id); WebsiteCounter(); })"
        data-toggle="modal" data-target="#productModal" class="card-link" id="@(TopRating.Id + "_MoreInfo")">
         <!-- Card structure -->
