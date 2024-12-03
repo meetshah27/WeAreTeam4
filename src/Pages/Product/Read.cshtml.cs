@@ -50,7 +50,7 @@ namespace ContosoCrafts.WebSite.Pages.Product
             // Redirects to Index if product is not found or its title is missing
             if (Product == null || string.IsNullOrEmpty(Product.Title))
             {
-                return RedirectToPage("./Index");
+                return RedirectToPage("../Error");
             }
 
             // Renders the page displaying the retrieved product
