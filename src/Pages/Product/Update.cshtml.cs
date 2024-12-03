@@ -34,11 +34,19 @@ public class UpdateModel : PageModel
     /// Retrieves the product based on the provided product ID.
     /// </summary>
     /// <param name="id">The ID of the product to retrieve for editing.</param>
-    public void OnGet(string id)
+    public IActionResult OnGet(string id)
     {
-        // Fetch all products and find the one with a matching ID
-        Product = ProductService.GetAllData().FirstOrDefault(m => m.Id.Equals(id));
+        // Retrieves all products and finds the first one matching the provided ID
+        Product = ProductService.GetAllData().FirstOrDefault(m => m.Id == id);
 
+        // Redirects to Index if product is not found or its title is missing
+        if (Product == null || string.IsNullOrEmpty(Product.Title))
+        {
+            return RedirectToPage("../Error");
+        }
+
+        // Renders the page displaying the retrieved product
+        return Page();
     }
 
     /// <summary>
@@ -47,6 +55,11 @@ public class UpdateModel : PageModel
     /// </summary>
     public IActionResult OnPost()
     {
+        if (!ProductService.GetAllData().Any(p => p.Id.Equals(Product.Id)))
+        {
+            return RedirectToPage("../Error");
+        }
+
         // Check if the model state is valid; if not, return to the same page to display validation errors
         if (ModelState.IsValid == false)
         {
