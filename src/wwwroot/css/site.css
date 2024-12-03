@@ -376,14 +376,18 @@ ul {
 }
 
 .carousel-caption h5 {
-    font-size: 2rem;
-    font-weight: bold;
-    color: black;
-}
 
-.carousel-caption p {
-    font-size: 1.2rem;
-    color: black;
+    font-size: 1.2rem; /* Smaller font size */
+    font-weight: 600; /* Slightly bold for emphasis */
+    font-family: 'Roboto', sans-serif; /* Clean and professional font */
+    color: #fff; /* White text for contrast */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6); /* Subtle shadow for clarity */
+    background: rgba(0, 0, 0, 0.6); /* Simple semi-transparent black background */
+    padding: 8px 15px; /* Reduced padding for a more compact look */
+    border-radius: 5px; /* Slightly rounded corners */
+    margin-top: 10%; /* Adjust position above the carousel */
+    text-align: center; /* Center the text */
+    width: fit-content; /* Auto-adjust to text size */
 }
 
 .carousel {
