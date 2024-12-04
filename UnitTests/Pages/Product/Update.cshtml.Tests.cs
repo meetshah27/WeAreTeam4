@@ -129,17 +129,18 @@ namespace UnitTests.Pages.Product.Update
         public void OnPost_Invalid_Url_Should_Return_Page()
         {
             // Arrange
-            // Mock the ProductService and set up the model with an invalid URL
-            var mockProductService = new Mock<JsonFileProductService>(Mock.Of<IWebHostEnvironment>());
-            var model = new UpdateModel(mockProductService.Object)
+            // Set up the model with an invalid URL
+            var testProduct = TestHelper.ProductService.CreateData();
+            var model = new UpdateModel(TestHelper.ProductService)
             {
                 Product = new ProductModel
                 {
-                    Id = "test-id",
+                    Id = testProduct.Id,
                     Title = "Test Title",
                     Description = "Test Description",
                     Url = "invalid-url",
-                    Image = "Image"
+                    Image = "Image",
+                    ProductType = ProductTypeEnum.other
                 }
             };
             model.ModelState.AddModelError("Product.Url", "Invalid URL format");
