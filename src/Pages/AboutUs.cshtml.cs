@@ -10,15 +10,9 @@ namespace ContosoCrafts.WebSite.Pages
     public class About_UsModel : PageModel
     {
         /// <summary>
-        /// Generic interface for logging where categoryname is derived from the specified About_UsModel type name.
-        /// Enables activation of a named ILogger from dependency injection.
+        /// Handles HTTP GET requests to the About Us page.
+        /// Currently, this method does not perform any actions but can be extended in the future.
         /// </summary>
-        private readonly ILogger<About_UsModel> _logger;
-
-        public About_UsModel(ILogger<About_UsModel> logger)
-        {
-            _logger = logger;
-        }
         public void OnGet()
         {
         }
