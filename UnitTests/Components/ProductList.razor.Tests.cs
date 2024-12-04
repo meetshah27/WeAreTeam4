@@ -16,6 +16,7 @@ using Bunit;
 // For LINQ operations on collections
 using System.Linq;
 using Bunit.TestDoubles;
+using ContosoCrafts.WebSite.Models;
 
 
 // Define a namespace for unit tests related to components
@@ -135,6 +136,7 @@ namespace UnitTests.Components
         /// <summary>
         /// Verifies error handling for clicking on a product that has been deleted since loading the page
         /// Confirms that the user is redirected to the Error page
+        /// </summary>
         [Test]
         public void SelectProduct_Deleted_Should_Redirect_To_Error()
         {
@@ -171,6 +173,91 @@ namespace UnitTests.Components
             // Assert
             // Verify that the page that has been arrived at is, in fact, the error page
             Assert.That(navMan.Uri.Contains("Error"), Is.EqualTo(true));
+        }
+
+        /// <summary>
+        /// Verifies that the search function correctly filters products from rendering
+        /// Confirms that a given product still renders after being searched for
+        /// </summary>
+        [Test]
+        public void SearchProducts_Should_Filter_Rendered_Products()
+        {
+            // Arrange
+            // Register ProductService as a singleton in the service collection for testing
+            Services.AddSingleton<JsonFileProductService>(TestHelper.ProductService);
+
+            // Specify the product to search for
+            var product = TestHelper.ProductService.GetAllData().First();
+
+            // Render the ProductList component
+            var page = RenderComponent<ProductList>();
+
+            // type product title into the search bar
+            page.FindAll("input").First(m => m.OuterHtml.Contains("searchbar")).Change(product.Title);
+
+            // find the search button and click it
+            page.FindAll("Button").First(m => m.OuterHtml.Contains("searchbutton")).Click();
+
+            // Find product blocks
+            var buttonList = page.FindAll("A");
+
+            // Find the one that matches the ID looking for, for clicking
+            var button = buttonList.First(m => m.OuterHtml.Contains(product.Id));
+
+            // Act
+            // Simulate a click on the found anchor tag to select the product
+            button.Click();
+
+            // Get the markup page for the assert
+            var pageMarkup = page.Markup;
+
+            // Assert
+            // Verify that the product's specific description appears in the markup after selection
+            Assert.That(pageMarkup.Contains(product.ProductType.DisplayName()), Is.EqualTo(true));
+        }
+
+        /// <summary>
+        /// Verifies that the search reset function correctly returns the list of rendered products to normal
+        /// Confirms that a given product is unrended while the search bar is filled with garbage, then rendered after search reset
+        /// </summary>
+        [Test]
+        public void ResetSearch_Should_Restore_Rendering_To_Default()
+        {
+            // Arrange
+            // Register ProductService as a singleton in the service collection for testing
+            Services.AddSingleton<JsonFileProductService>(TestHelper.ProductService);
+
+            // Specify the product to search for
+            var product = TestHelper.ProductService.GetAllData().First();
+
+            // Render the ProductList component
+            var page = RenderComponent<ProductList>();
+
+            // type product title into the search bar
+            page.FindAll("input").First(m => m.OuterHtml.Contains("searchbar")).Change("!!!ThisIsAWeirdStringThatWillDefinitelyNotMatchAnyProductTitles!!!");
+
+            // find the search button and click it
+            page.FindAll("Button").First(m => m.OuterHtml.Contains("searchbutton")).Click();
+
+            // Find product blocks
+            var buttonList = page.FindAll("A");
+
+            // save current page markup for assert
+            var searchedMarkup = page.Markup;
+
+            // Act
+            // Click the reset search button
+            page.FindAll("Button").First(m => m.OuterHtml.Contains("searchreset")).Click();
+
+            // save post-reset page markup for assert for the assert
+            var pageMarkup = page.Markup;
+
+            // Assert
+            // Verify that the product was filtered out after searching
+            Assert.That(searchedMarkup.Contains(product.Title), Is.EqualTo(false));
+
+            // Verify that the product reappears after resetting search
+            Assert.That(pageMarkup.Contains(product.Title), Is.EqualTo(true));
         }
 
         /// <summary>
