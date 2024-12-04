@@ -31,14 +31,12 @@ namespace UnitTests.Pages.Privacy
             var mockLoggerDirect = Mock.Of<ILogger<PrivacyModel>>();
 
             // Initialize the PrivacyModel with the mocked logger
-            PageModel = new PrivacyModel(mockLoggerDirect)
+            PageModel = new PrivacyModel()
             {
                 // Set up the page context and temporary data using helper methods
                 PageContext = TestHelper.PageContext,
                 TempData = TestHelper.TempData,
-
             };
-
         }
 
         #endregion TestSetup
@@ -68,7 +66,5 @@ namespace UnitTests.Pages.Privacy
         }
 
         #endregion OnGet
-
     }
-
 }
