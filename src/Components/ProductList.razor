@@ -164,12 +164,16 @@
     protected override void OnInitialized()
     {
         FilteredProducts = ProductService.GetAllData().ToList();
-        
-        TrendingProducts.Add((ProductService.GetAllData().OrderByDescending(p => p.Counter).First(), "Most overall engagement!", "Slide 1", "carousel-item active"));
-        
-        TrendingProducts.Add((ProductService.GetAllData().Where(p => p.Counter > 0).OrderByDescending(p => (p.UrlCounter / p.Counter)).ThenByDescending(p => p.UrlCounter).First(), "Most popular product website", "Slide 2", "carousel-item"));
-        
-        TrendingProducts.Add((ProductService.GetAllData().Where(p => p.Ratings != null).OrderByDescending(p => p.Ratings.Average()).ThenByDescending(p => p.Ratings.Length).First(), "Highest Ratings!", "Slide 3", "carousel-item"));
+
+        List<(ProductModel, string, string, string)> Popular = new List<(ProductModel, string, string, string)>();
+
+        Popular.Add((ProductService.GetAllData().OrderByDescending(p => p.Counter).First(), "Most overall engagement!", "Slide 1", "carousel-item active"));
+
+        Popular.Add((ProductService.GetAllData().Where(p => p.Counter > 0).OrderByDescending(p => (p.UrlCounter / p.Counter)).ThenByDescending(p => p.UrlCounter).First(), "Most popular product website", "Slide 2", "carousel-item"));
+
+        Popular.Add((ProductService.GetAllData().Where(p => p.Ratings != null).OrderByDescending(p => p.Ratings.Average()).ThenByDescending(p => p.Ratings.Length).First(), "Highest Ratings!", "Slide 3", "carousel-item"));
+
+        TrendingProducts = Popular;
     }
 
     // Filters products by Title
