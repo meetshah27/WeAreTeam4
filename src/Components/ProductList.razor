@@ -19,33 +19,18 @@
 
     <!-- Carousel Items -->
     <div class="carousel-inner">
-        <div class="carousel-item active">
-            <a href="javascript:void(0);" @onclick="(e => { SelectProduct(TopClicked.Id); WebsiteCounter(); })"
-               data-toggle="modal" data-target="#productModal" id="@(TopClicked.Id + "_Carousel")">
-                <img src="@TopClicked.Image" class="d-block w-100" alt="Slide 1">
-            </a>
-            <div class="carousel-caption d-none d-md-block">
-                <h5>Most overall engagement!</h5>
+    @foreach (var product in TrendingProducts)
+    {
+            <div class=@(product.Item4)>
+                <a href="javascript:void(0);" @onclick="(e => { SelectProduct(product.Item1.Id); WebsiteCounter(); })"
+                        data-toggle="modal" data-target="#productModal" id=@(product.Item1.Id + "_Carousel")>
+                    <img src="@product.Item1.Image" class="d-block w-100" alt=@(product.Item3)>
+                </a>
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>@product.Item2</h5>
+                </div>
             </div>
-        </div>
-        <div class="carousel-item">
-            <a href="javascript:void(0);" @onclick="(e => { SelectProduct(TopURLClicked.Id); WebsiteCounter(); })"
-               data-toggle="modal" data-target="#productModal" id="@(TopURLClicked.Id + "_Carousel")">
-                <img src="@TopURLClicked.Image" class="d-block w-100" alt="Slide 2">
-            </a>
-            <div class="carousel-caption d-none d-md-block">
-                <h5>Most popular product website!</h5>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <a href="javascript:void(0);" @onclick="(e => { SelectProduct(TopRating.Id); WebsiteCounter(); })"
-               data-toggle="modal" data-target="#productModal" id="@(TopRating.Id + "_Carousel")">
-                <img src="@TopRating.Image" class="d-block w-100" alt="Slide 3">
-            </a>
-            <div class="carousel-caption d-none d-md-block">
-                <h5>Highest Ratings!</h5>
-            </div>
-        </div>
+    }
     </div>
 
     <!-- Carousel Controls (Prev/Next) -->
@@ -53,7 +38,7 @@
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Previous</span>
     </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next" id="CarouselNextButton">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Next</span>
     </button>
@@ -173,6 +158,8 @@
 
     List<ProductModel> FilteredProducts { get; set; } = new List<ProductModel>();
 
+    List<(ProductModel, string, string, string)> TrendingProducts { get; set; } = new List<(ProductModel, string, string, string)>();
+
     ProductModel TopRating { get; set; }
 
     ProductModel TopURLClicked { get; set; }
@@ -183,9 +170,12 @@
     protected override void OnInitialized()
     {
         FilteredProducts = ProductService.GetAllData().ToList();
-        TopClicked = ProductService.GetAllData().OrderByDescending(p => p.Counter).First();
-        TopURLClicked = ProductService.GetAllData().Where(p => p.Counter > 0).OrderByDescending(p => (p.UrlCounter / p.Counter)).ThenByDescending(p => p.UrlCounter).First();
-        TopRating = ProductService.GetAllData().Where(p => p.Ratings != null).OrderByDescending(p => p.Ratings.Average()).ThenByDescending(p => p.Ratings.Length).First();
+        
+        TrendingProducts.Add((ProductService.GetAllData().OrderByDescending(p => p.Counter).First(), "Most overall engagement!", "Slide 1", "carousel-item active"));
+        
+        TrendingProducts.Add((ProductService.GetAllData().Where(p => p.Counter > 0).OrderByDescending(p => (p.UrlCounter / p.Counter)).ThenByDescending(p => p.UrlCounter).First(), "Most popular product website", "Slide 2", "carousel-item"));
+        
+        TrendingProducts.Add((ProductService.GetAllData().Where(p => p.Ratings != null).OrderByDescending(p => p.Ratings.Average()).ThenByDescending(p => p.Ratings.Length).First(), "Highest Ratings!", "Slide 3", "carousel-item"));
     }
 
     // Filters products by Title
