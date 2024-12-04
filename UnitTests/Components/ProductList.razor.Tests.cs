@@ -132,6 +132,9 @@ namespace UnitTests.Components
 
         }
 
+        /// <summary>
+        /// Verifies error handling for clicking on a product that has been deleted since loading the page
+        /// Confirms that the user is redirected to the Error page
         [Test]
         public void SelectProduct_Deleted_Should_Redirect_To_Error()
         {
@@ -139,7 +142,7 @@ namespace UnitTests.Components
             // Register ProductService as a singleton in the service collection for testing
             Services.AddSingleton<JsonFileProductService>(TestHelper.ProductService);
 
-
+            // register fake navigation manager to track which URI is navigated to
             var navMan = Services.GetRequiredService<FakeNavigationManager>();
 
             // Create a new product for testing with a unique ID
