@@ -23,6 +23,7 @@ using ContosoCrafts.WebSite.Services;
 // Contains the models used in the ContosoCrafts website (e.g., data structures for products).
 using ContosoCrafts.WebSite.Models;
 using System.Linq;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace UnitTests.Pages.Product.Update
 
@@ -260,6 +261,8 @@ namespace UnitTests.Pages.Product.Update
 
         #endregion OnPost
 
+        #region OnGet
+
         //// <summary>
         /// Tests that OnGet initializes a valid model state when provided with a valid product ID.
         /// Verifies that the ModelState is valid and data is correctly loaded.
@@ -270,17 +273,42 @@ namespace UnitTests.Pages.Product.Update
         {
 
             // Arrange
-            // Use a valid product ID for testing
-            var id = "jenlooper-cactus";
+            // Get an extant product to use for testing
+            var data = TestHelper.ProductService.GetAllData().First();
 
             // Act
             // Execute OnGet with the valid ID
-            PageModel.OnGet(id);
+            PageModel.OnGet(data.Id);
 
+            // Assert
             // Confirms that the ModelState is valid after calling OnGet with a valid product ID, ensuring the correct data was loaded.
             Assert.That(PageModel.ModelState.IsValid, Is.EqualTo(true), "OnGet should result in a valid ModelState for a valid product ID.");
 
         }
+
+        /// <summary>
+        /// Tests detection of invalid products in OnGet
+        /// Verifies that the model redirects to the error page when provided an Id that doesnt not correspond to a product in the databse
+        /// </summary>
+        [Test]
+        public void OnGet_Invalid_Should_Redirect_To_Error()
+        {
+            // Arrange
+            // Get an extant product to use for testing
+            var id = "IAmReasonablySureAProductWithThisIdWillNeverExistPleaseDoNotProveMeWrong";
+
+            // Act
+            // Execute OnGet with the valid ID
+            var redirectResult = PageModel.OnGet(id) as RedirectToPageResult;
+
+            //Assert: confirms that the redirect target page is Error
+            //Verifies that the target page of the redirect result is '../Error',
+            Assert.That(redirectResult.PageName, Is.EqualTo("../Error"), "Redirect page should be '../Error'");
+        }
+
+        #endregion OnGet
+
+        #region Constructor
 
         /// <summary>
         /// Tests that the constructor assigns the ProductService when a valid instance is provided.
@@ -330,5 +358,7 @@ namespace UnitTests.Pages.Product.Update
             Assert.That(updateModel.ProductService, Is.EqualTo(mockProductService.Object), "ProductService should match the provided instance."); 
 
         }
+
+        #endregion Constructor
     }
 }
