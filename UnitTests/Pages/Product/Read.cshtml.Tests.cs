@@ -140,7 +140,7 @@ namespace UnitTests.Pages.Product.Read
 
         }
         /// <summary>
-        /// Test to verify that the OnGet method redirects to the Index page when a non-existent product ID is provided.
+        /// Test to verify that the OnGet method redirects to the Error page when a non-existent product ID is provided.
         /// </summary>
         [Test]
         public void OnGet_Product_Null_Should_Redirect_To_Error()
@@ -151,13 +151,13 @@ namespace UnitTests.Pages.Product.Read
             // Act: calls the OnGet method with an invalid product ID
             var result = PageModel.OnGet(invalidId);
 
-            // Assert: verifies that the result is a redirect to Index if the product ID is invalid
+            // Assert: verifies that the result is a redirect to Error if the product ID is invalid
             Assert.That(result, Is.TypeOf<RedirectToPageResult>(), "Should redirect to the Error page");
 
-            // Further Assert: confirms that the redirect target page is Index
+            // Further Assert: confirms that the redirect target page is Error
             var redirectResult = result as RedirectToPageResult;
 
-            // Verifies that the target page of the redirect result is './Index',
+            // Verifies that the target page of the redirect result is './Error',
             Assert.That(redirectResult.PageName, Is.EqualTo("../Error"), "Redirect page should be '../Error'");
         }
         /// <summary>
