@@ -15,6 +15,7 @@ using Bunit;
 
 // For LINQ operations on collections
 using System.Linq;
+using Bunit.TestDoubles;
 
 
 // Define a namespace for unit tests related to components
@@ -129,6 +130,44 @@ namespace UnitTests.Components
             // Verify that the product's specific description appears in the markup after selection
             Assert.That(pageMarkup.Contains("Engagement Rate (%)"), Is.EqualTo(true));
 
+        }
+
+        [Test]
+        public void SelectProduct_Deleted_Should_Redirect_To_Error()
+        {
+            // Arrange
+            // Register ProductService as a singleton in the service collection for testing
+            Services.AddSingleton<JsonFileProductService>(TestHelper.ProductService);
+
+
+            var navMan = Services.GetRequiredService<FakeNavigationManager>();
+
+            // Create a new product for testing with a unique ID
+            var data = TestHelper.ProductService.CreateData();
+            var id = data.Id + "_MoreInfo";
+
+            // Render the ProductList component
+            var page = RenderComponent<ProductList>();
+
+            // Delete the newly created product from the database
+            TestHelper.ProductService.DeleteData(data.Id);
+
+            // Find product blocks
+            var buttonList = page.FindAll("A");
+
+            // Find the one that matches the ID looking for, for clicking
+            var button = buttonList.First(m => m.OuterHtml.Contains(id));
+
+            // Act
+            // Simulate a click on the found anchor tag to select the product
+            button.Click();
+
+            // Get the markup page for the assert
+            var pageMarkup = page.Markup;
+
+            // Assert
+            // Verify that the page that has been arrived at is, in fact, the error page
+            Assert.That(navMan.Uri.Contains("Error"), Is.EqualTo(true));
         }
 
         /// <summary>
