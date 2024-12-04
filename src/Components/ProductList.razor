@@ -160,12 +160,6 @@
 
     List<(ProductModel, string, string, string)> TrendingProducts { get; set; } = new List<(ProductModel, string, string, string)>();
 
-    ProductModel TopRating { get; set; }
-
-    ProductModel TopURLClicked { get; set; }
-
-    ProductModel TopClicked { get; set; }
-
     // Initialize products on page load
     protected override void OnInitialized()
     {
