@@ -167,16 +167,15 @@ namespace UnitTests.Pages.Product.Update
         {
             // Arrange
             // Mock the ProductService and set up the model with missing required fields
-            var mockProductService = new Mock<JsonFileProductService>(Mock.Of<IWebHostEnvironment>());
-            var model = new UpdateModel(mockProductService.Object)
+            var testProduct = TestHelper.ProductService.CreateData();
+            var model = new UpdateModel(TestHelper.ProductService)
             {
                 // Only Id is set, other fields are missing
-                Product = new ProductModel { Id = "test-id" }
+                Product = new ProductModel { Id = testProduct.Id }
 
             };
             // Simulate errors for missing required fields
             model.ModelState.AddModelError("Product.Title", "Title is required");
-
             model.ModelState.AddModelError("Product.Description", "Description is required");
 
             // Act
