@@ -22,6 +22,7 @@ using NUnit.Framework;
 using ContosoCrafts.WebSite.Services;
 // Contains the models used in the ContosoCrafts website (e.g., data structures for products).
 using ContosoCrafts.WebSite.Models;
+using System.Linq;
 
 namespace UnitTests.Pages.Product.Update
 
@@ -205,14 +206,55 @@ namespace UnitTests.Pages.Product.Update
         {
             // Arrange
             // Create a valid product model
+            var data = TestHelper.ProductService.GetAllData().First();
+            var model = new UpdateModel(TestHelper.ProductService)
+            {
+                Product = new ProductModel
+                {
+                    Id = data.Id,
+                    Title = data.Title,
+                    Description = data.Description,
+                    Url = data.Url,
+                    Image = data.Image,
+                    GitHub = data.GitHub,
+                    ProductType = data.ProductType,
+                }
+            };
+
+            // Act
+            // Execute the OnPost method
+            var result = model.OnPost();
+
+            // Ensures that the Product property is set (not null) after executing OnPost with a valid model.
+            Assert.That(model.Product, Is.Not.Null, "Product property should not be null when OnPost is executed.");
+
+            // Further Assert: confirms that the redirect target page is Index
+            var redirectResult = result as RedirectToPageResult;
+
+            Assert.That(redirectResult.PageName, Is.EqualTo("./Index"), "Redirect page should be './Index'");
+
+        }
+
+        /// <summary>
+        /// Tests that OnPost redirects to the Index page when the model is valid.
+        /// Verifies that the Product property is set and not null after a valid post.
+        /// </summary>
+        [Test]
+        public void OnPost_InvalidID_ShouldRedirectToError()
+        {
+            // Arrange
+            // Create a product model not extant in the main dataset
             PageModel.Product = TestHelper.ProductService.CreateData();
 
             // Act
             // Execute the OnPost method
-            PageModel.OnPost();
+            var result = PageModel.OnPost();
 
-            // Ensures that the Product property is set (not null) after executing OnPost with a valid model.
-            Assert.That(PageModel.Product, Is.Not.Null, "Product property should not be null when OnPost is executed.");
+            //Assert: confirms that the redirect target page is Error
+            var redirectResult = result as RedirectToPageResult;
+
+            //Verifies that the target page of the redirect result is '../Error',
+            Assert.That(redirectResult.PageName, Is.EqualTo("../Error"), "Redirect page should be '../Error'");
 
         }
 
