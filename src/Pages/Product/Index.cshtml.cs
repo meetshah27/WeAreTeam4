@@ -70,7 +70,7 @@ namespace ContosoCrafts.WebSite.Pages.Product
             }
             if (sortBy.Equals("ProductType", StringComparison.OrdinalIgnoreCase))
             {
-                // Sorting by Title
+                // Sorting by Product Type
                 Products = sortOrder == "asc"
                     ? Products.OrderBy(p => p.ProductType.DisplayName()).ToList()
                     : Products.OrderByDescending(p => p.ProductType.DisplayName()).ToList();
