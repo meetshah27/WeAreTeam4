@@ -48,11 +48,11 @@
 <div class="search-container">
     <div class="row align-items-center">
         <!-- Input field for searching products -->
-        <input class="search-input form-control col-3" placeholder="Search Project" @bind="SearchString" />
+        <input class="search-input form-control col-3" placeholder="Search Project" @bind="SearchString" id="searchbar"/>
         <!-- Button to initiate search -->
-        <button class="btn btn-primary btn-search" type="submit" @onclick="SearchProducts" id="search">Search</button>
+        <button class="btn btn-primary btn-search" type="submit" @onclick="SearchProducts" id="searchbutton">Search</button>
         <!-- Button to reset the search filter -->
-        <button class="btn btn-secondary btn-reset" type="submit" @onclick="ResetSearch" id="reset">Reset</button>
+        <button class="btn btn-secondary btn-reset" type="submit" @onclick="ResetSearch" id="searchreset">Reset</button>
     </div>
 </div>
 
@@ -154,7 +154,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 @code {
-    public string SearchString { get; set; } = string.Empty;
+    string SearchString { get; set; } = string.Empty;
 
     List<ProductModel> FilteredProducts { get; set; } = new List<ProductModel>();
 
