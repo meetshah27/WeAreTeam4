@@ -7,7 +7,7 @@ namespace ContosoCrafts.WebSite.Pages
     /// <summary>
     ///  An abstract class for representing a page
     /// </summary>
-    public class About_UsModel : PageModel
+    public class AboutUsModel : PageModel
     {
         /// <summary>
         /// Handles HTTP GET requests to the About Us page.
