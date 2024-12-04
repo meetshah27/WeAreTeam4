@@ -96,6 +96,42 @@ namespace UnitTests.Components
         }
 
         /// <summary>
+        /// Verifies that the "More info" tab can be opened via the carousel
+        /// Confirms that the rendered page contains text that is only rendered on the more info modal
+        /// </summary>
+        [Test]
+        public void SelectProduct_Carousel_Should_Return_Content()
+        {
+            // Arrange
+            // Register ProductService as a singleton in the service collection for testing
+            Services.AddSingleton<JsonFileProductService>(TestHelper.ProductService);
+
+            // Specify the ID of the product to select
+            var id = "_Carousel";
+
+            // Render the ProductList component
+            var page = RenderComponent<ProductList>();
+
+            // Find product blocks
+            var buttonList = page.FindAll("A");
+
+            // Find the one that matches the ID looking for, for clicking
+            var button = buttonList.First(m => m.OuterHtml.Contains(id));
+
+            // Act
+            // Simulate a click on the found anchor tag to select the product
+            button.Click();
+
+            // Get the markup page for the assert
+            var pageMarkup = page.Markup;
+
+            // Assert
+            // Verify that the product's specific description appears in the markup after selection
+            Assert.That(pageMarkup.Contains("Engagement Rate (%)"), Is.EqualTo(true));
+
+        }
+
+        /// <summary>
         /// Tests submitting a star rating higher than the current average
         /// Confirms that the rendered stars have changed & the vote count incremented as expected
         /// </summary>
