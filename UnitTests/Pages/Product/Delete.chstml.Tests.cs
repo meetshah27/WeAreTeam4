@@ -20,6 +20,7 @@ using Moq;
 using NUnit.Framework;
 // ContosoCrafts service namespace, likely containing custom services used in the project
 using ContosoCrafts.WebSite.Services;
+using System.Linq;
 // Namespace for unit tests specific to the Product page in the ContosoCrafts application
 namespace UnitTests.Pages.Product
 {
@@ -106,8 +107,8 @@ namespace UnitTests.Pages.Product
         {
 
             // Arrange
-            // Set up necessary product data for testing
-            var data = TestHelper.ProductService.CreateData();
+            // Retrieve an extant product for testing
+            var data = TestHelper.ProductService.GetAllData().First();
 
             // Act
             // Calls the OnGet method with a valid product ID
