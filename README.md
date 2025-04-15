@@ -36,6 +36,7 @@ A scalable and interactive project discovery and collaboration platform built us
 ---
 
 🧠 Challenges Faced & Learnings
+
 -Learned to structure a large-scale Blazor project with clean separation of components.
 
 -Integrated MongoDB efficiently with .NET for dynamic queries and real-time updates.
