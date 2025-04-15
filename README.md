@@ -47,6 +47,7 @@ A scalable and interactive project discovery and collaboration platform built us
 -Adopted agile practices, improving task completion rate and sprint velocity.
 
 🔮 Future Improvements
+
 -Add OAuth login (e.g., GitHub, Microsoft)
 
 -Introduce commenting and team chat
