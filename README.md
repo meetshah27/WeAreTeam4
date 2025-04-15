@@ -35,6 +35,28 @@ A scalable and interactive project discovery and collaboration platform built us
 
 ---
 
+🧠 Challenges Faced & Learnings
+-Learned to structure a large-scale Blazor project with clean separation of components.
+
+-Integrated MongoDB efficiently with .NET for dynamic queries and real-time updates.
+
+-Improved collaboration by managing 30+ developers through GitHub and task boards.
+
+-Gained experience in building recommendation systems based on project tags and activity.
+
+-Adopted agile practices, improving task completion rate and sprint velocity.
+
+🔮 Future Improvements
+-Add OAuth login (e.g., GitHub, Microsoft)
+
+-Introduce commenting and team chat
+
+-Deploy using Azure Web Apps or Docker containers
+
+-Implement role-based access control (Admin, Contributor, Viewer)
+
+-Add analytics dashboard for engagement and metrics
+
 ## ⚙️ Getting Started
 
 > Clone the repo and follow the setup instructions:
